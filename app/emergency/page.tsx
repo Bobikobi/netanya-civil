@@ -93,7 +93,17 @@ const QUICK_LINKS = [
   { href: '/emergency/mashe', label: 'מודל מעש״ה', sublabel: 'עזרה ראשונה נפשית', icon: Heart, iconColor: 'text-pink-500', bg: 'bg-pink-50' },
   { href: '/emergency/teams', label: 'צוותי החירום', sublabel: 'תוכניות הפעלה מלאות', icon: Users, iconColor: 'text-blue-500', bg: 'bg-blue-50' },
   { href: '/emergency/scripts', label: 'תסריטי שיחה', sublabel: 'מצבי שטח מעשיים', icon: MessageSquare, iconColor: 'text-emerald-500', bg: 'bg-emerald-50' },
+  { href: '/emergency/contacts', label: 'ספר טלפונים', sublabel: 'אנשי קשר מרכזיים', icon: Phone, iconColor: 'text-orange-500', bg: 'bg-orange-50' },
   { href: '/emergency/faq', label: 'שאלות ותשובות', sublabel: 'מערכת יחד ותהליכים', icon: HelpCircle, iconColor: 'text-violet-500', bg: 'bg-violet-50' },
+];
+
+const EMERGENCY_PHONES = [
+  { label: 'מוקד עירוני 106', phone: '106', color: 'bg-blue-500' },
+  { label: 'משטרה 100', phone: '100', color: 'bg-blue-700' },
+  { label: 'מד"א 101', phone: '101', color: 'bg-red-500' },
+  { label: 'כיבוי 102', phone: '102', color: 'bg-orange-500' },
+  { label: 'פיקוד העורף 104', phone: '104', color: 'bg-gray-700' },
+  { label: 'ער"ן 1201', phone: '1201', color: 'bg-emerald-500' },
 ];
 
 const TIPS = [
@@ -208,7 +218,7 @@ export default function EmergencyHomePage() {
 
       {/* ===== Quick Navigation Links ===== */}
       <section className="max-w-6xl mx-auto px-6 mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {QUICK_LINKS.map(link => {
             const Icon = link.icon;
             return (
@@ -348,6 +358,26 @@ export default function EmergencyHomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ===== Emergency Quick Dial ===== */}
+      <section className="max-w-6xl mx-auto px-6 mt-10 mb-10">
+        <div className="text-center mb-4">
+          <h2 className="text-lg font-bold text-gray-900">חיוג מהיר למוקדי חירום</h2>
+          <p className="text-gray-400 text-xs mt-1">לחצו על מספר כדי לחייג · <Link href="/emergency/contacts" className="text-blue-500 hover:underline">לספר הטלפונים המלא</Link></p>
+        </div>
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
+          {EMERGENCY_PHONES.map((ep, idx) => (
+            <a
+              key={idx}
+              href={`tel:${ep.phone}`}
+              className={`${ep.color} rounded-xl p-3 text-center text-white hover:opacity-90 transition-opacity shadow-sm`}
+            >
+              <div className="text-lg font-bold" dir="ltr">{ep.phone}</div>
+              <div className="text-[10px] text-white/80 mt-0.5">{ep.label}</div>
+            </a>
+          ))}
         </div>
       </section>
     </div>
