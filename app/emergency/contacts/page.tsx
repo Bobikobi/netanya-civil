@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { Phone, Search, Copy, Check, ExternalLink } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { contactsPage } from '@/lib/translations';
 
 export interface Contact {
   name: string;
@@ -156,6 +158,7 @@ export default function ContactsPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
+  const { locale } = useI18n();
 
   function copyPhone(phone: string) {
     navigator.clipboard.writeText(phone);
@@ -182,8 +185,8 @@ export default function ContactsPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-8">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">ספר טלפונים</h1>
-        <p className="text-gray-400 text-base">מבנה ארגוני מכלול אוכלוסייה – עיריית נתניה · מעודכן אפריל 2026</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{contactsPage.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{contactsPage.subtitle[locale]}</p>
       </section>
 
       {/* Yachad link */}
@@ -191,7 +194,7 @@ export default function ContactsPage() {
         <a href="https://go.gov.il/wrwov" target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-2.5 text-sm font-medium hover:bg-blue-100 transition-colors">
           <ExternalLink size={15} />
-          כניסה למערכת יחד – לחץ כאן
+          {contactsPage.yachadLink[locale]}
         </a>
       </div>
 
@@ -200,7 +203,7 @@ export default function ContactsPage() {
         <Search size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" />
         <input
           type="text"
-          placeholder="חיפוש לפי שם, תפקיד או צוות..."
+          placeholder={contactsPage.searchPlaceholder[locale]}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full bg-white border border-gray-200 rounded-xl pr-11 pl-4 py-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100 transition-all"
@@ -215,7 +218,7 @@ export default function ContactsPage() {
             !activeCategory ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
           }`}
         >
-          הכל
+          {contactsPage.allCategories[locale]}
         </button>
         {CATEGORIES.map(cat => (
           <button

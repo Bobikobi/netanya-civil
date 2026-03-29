@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones, ExternalLink, Phone } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { faqPage } from '@/lib/translations';
 
 interface FAQCategory {
   id: string;
@@ -127,6 +129,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
 export default function FAQPage() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
+  const { locale } = useI18n();
 
   function toggleCategory(id: string) {
     setExpandedCategory(prev => (prev === id ? null : id));
@@ -140,8 +143,8 @@ export default function FAQPage() {
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">שאלות ותשובות</h1>
-        <p className="text-gray-400 text-base">מבוסס על מערכת &apos;יחד&apos; – שאלות ותשובות לרשויות המקומיות</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{faqPage.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{faqPage.subtitle[locale]}</p>
       </section>
 
       {/* Yachad link */}
@@ -149,7 +152,7 @@ export default function FAQPage() {
         <a href="https://go.gov.il/wrwov" target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-2.5 text-sm font-medium hover:bg-blue-100 transition-colors">
           <ExternalLink size={15} />
-          כניסה למערכת יחד – לחץ כאן
+          {faqPage.yachadLink[locale]}
         </a>
       </div>
 
@@ -213,7 +216,7 @@ export default function FAQPage() {
       <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
         <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
           <Phone size={16} className="text-blue-500" />
-          אנשי קשר – מידע ותמיכה טכנית
+          {faqPage.contactsTitle[locale]}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[

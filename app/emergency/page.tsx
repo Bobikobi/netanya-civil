@@ -25,6 +25,8 @@ import {
   UserCheck,
 } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { home, homeQuickLinks, homeFlowSteps, homeTips, homeEmergencyPhones } from '@/lib/translations';
 
 const FLOW_STEPS = [
   {
@@ -79,22 +81,22 @@ const FLOW_STEPS = [
 ];
 
 const PARALLEL_TEAMS = [
-  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה', icon: Hospital, color: 'text-red-500', bg: 'bg-red-50', border: 'border-red-200' },
-  { title: 'צוות קליטת אוכלוסייה בבתי מלון', desc: 'עבודה מול המלונות', icon: Hotel, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-200' },
-  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע', icon: HeartHandshake, color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-300' },
-  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע', icon: UserCheck, color: 'text-purple-500', bg: 'bg-purple-50', border: 'border-purple-200' },
-  { title: 'צוות קו פתוח', desc: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106', icon: Phone, color: 'text-green-500', bg: 'bg-green-50', border: 'border-green-200' },
-  { title: 'צוות מתנדבים וקהילה', desc: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים', icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
-  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע', icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
-  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב', icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
+  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה', people: 'שמרית דיאמנט · אסנת דוד', icon: Hospital, color: 'text-red-500', bg: 'bg-red-50', border: 'border-red-200' },
+  { title: 'צוות קליטת אוכלוסייה בבתי מלון', desc: 'עבודה מול המלונות', people: 'אתי עמיאל · הדר שחר פז', icon: Hotel, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-200' },
+  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע', people: 'נילי חומן · יעל שחר', icon: HeartHandshake, color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-300' },
+  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע', people: 'קלרה חן · יעל רכס', icon: UserCheck, color: 'text-purple-500', bg: 'bg-purple-50', border: 'border-purple-200' },
+  { title: 'צוות קו פתוח', desc: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106', people: 'רקפת וינגרט · שלומית עמרני', icon: Phone, color: 'text-green-500', bg: 'bg-green-50', border: 'border-green-200' },
+  { title: 'צוות מתנדבים וקהילה', desc: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים', people: 'אפרת ברוך · מלי גניש', icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
+  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע', people: 'סיגל קני פז · מירב מור', icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
+  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב', people: 'רותי גור · לימור איצקוביץ', icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
 ];
 
 const QUICK_LINKS = [
-  { href: '/emergency/mashe', label: 'מודל מעש״ה', sublabel: 'עזרה ראשונה נפשית', icon: Heart, iconColor: 'text-pink-500', bg: 'bg-pink-50' },
-  { href: '/emergency/teams', label: 'צוותי החירום', sublabel: 'תוכניות הפעלה מלאות', icon: Users, iconColor: 'text-blue-500', bg: 'bg-blue-50' },
-  { href: '/emergency/scripts', label: 'תסריטי שיחה', sublabel: 'מצבי שטח מעשיים', icon: MessageSquare, iconColor: 'text-emerald-500', bg: 'bg-emerald-50' },
-  { href: '/emergency/contacts', label: 'ספר טלפונים', sublabel: 'אנשי קשר מרכזיים', icon: Phone, iconColor: 'text-orange-500', bg: 'bg-orange-50' },
-  { href: '/emergency/faq', label: 'שאלות ותשובות', sublabel: 'מערכת יחד ותהליכים', icon: HelpCircle, iconColor: 'text-violet-500', bg: 'bg-violet-50' },
+  { href: '/emergency/mashe', key: 'mashe' as const, icon: Heart, iconColor: 'text-pink-500', bg: 'bg-pink-50' },
+  { href: '/emergency/teams', key: 'teams' as const, icon: Users, iconColor: 'text-blue-500', bg: 'bg-blue-50' },
+  { href: '/emergency/scripts', key: 'scripts' as const, icon: MessageSquare, iconColor: 'text-emerald-500', bg: 'bg-emerald-50' },
+  { href: '/emergency/contacts', key: 'contacts' as const, icon: Phone, iconColor: 'text-orange-500', bg: 'bg-orange-50' },
+  { href: '/emergency/faq', key: 'faq' as const, icon: HelpCircle, iconColor: 'text-violet-500', bg: 'bg-violet-50' },
 ];
 
 const EMERGENCY_PHONES = [
@@ -128,6 +130,7 @@ export default function EmergencyHomePage() {
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [tipIndex, setTipIndex] = useState(0);
   const [tipFade, setTipFade] = useState(true);
+  const { locale } = useI18n();
 
   function toggleStep(id: string) {
     setExpandedStep(prev => (prev === id ? null : id));
@@ -161,13 +164,13 @@ export default function EmergencyHomePage() {
             <Shield size={26} className="text-white/70" />
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">
-            צוותי חירום
+            {home.heroTitle[locale]}
           </h1>
           <p className="text-xl md:text-2xl font-bold text-amber-400 mb-4">
-            אגף שירותים חברתיים
+            {home.heroSubtitle[locale]}
           </p>
           <p className="text-white/60 text-sm md:text-base">
-            כלי לריענון ותרגול הפעלת צוותי חירום של אגף השירותים החברתיים בנתניה
+            {home.heroDesc[locale]}
           </p>
           {/* Scroll hint */}
           <div className="mt-6">
@@ -186,8 +189,8 @@ export default function EmergencyHomePage() {
         >
           <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
           <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">מערכת טפסי מס״ר</div>
-            <div className="text-white/70 text-sm mt-0.5">רישום משפחות · יציאה מאזור שנפגע · איתור נעדרים</div>
+            <div className="font-bold text-white text-lg">{home.msrSystem[locale]}</div>
+            <div className="text-white/70 text-sm mt-0.5">{home.msrDesc[locale]}</div>
           </div>
         </a>
         <a
@@ -198,8 +201,8 @@ export default function EmergencyHomePage() {
         >
           <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
           <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">מערכת יחד – לחץ כאן</div>
-            <div className="text-white/70 text-sm mt-0.5">מערכת לאומית לניהול אירועי חירום ברשויות מקומיות</div>
+            <div className="font-bold text-white text-lg">{home.yachadSystem[locale]}</div>
+            <div className="text-white/70 text-sm mt-0.5">{home.yachadDesc[locale]}</div>
           </div>
         </a>
         <a
@@ -210,8 +213,8 @@ export default function EmergencyHomePage() {
         >
           <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
           <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">דיווח תושבים שביתם ניזוק – רשות המיסים</div>
-            <div className="text-white/70 text-sm mt-0.5">מילוי למי שביתו נפגע · מגיע לצוות מלונות ולמס רכוש</div>
+            <div className="font-bold text-white text-lg">{home.taxReport[locale]}</div>
+            <div className="text-white/70 text-sm mt-0.5">{home.taxDesc[locale]}</div>
           </div>
         </a>
       </section>
@@ -230,8 +233,8 @@ export default function EmergencyHomePage() {
                 <div className={`mx-auto mb-3 w-12 h-12 rounded-xl ${link.bg} flex items-center justify-center`}>
                   <Icon size={24} className={`${link.iconColor} transition-transform duration-200 group-hover:scale-110`} />
                 </div>
-                <div className="font-bold text-gray-900 text-sm">{link.label}</div>
-                <div className="text-xs text-gray-400 mt-1">{link.sublabel}</div>
+                <div className="font-bold text-gray-900 text-sm">{homeQuickLinks[link.key]?.label[locale]}</div>
+                <div className="text-xs text-gray-400 mt-1">{homeQuickLinks[link.key]?.sublabel[locale]}</div>
               </Link>
             );
           })}
@@ -245,9 +248,9 @@ export default function EmergencyHomePage() {
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
               <h2 className="text-2xl font-bold text-gray-900">
-                זרימת הפעלת הצוותים באירוע הרס
+                {home.flowTitle[locale]}
               </h2>
-              <p className="text-gray-400 text-sm">לחצו על כל שלב כדי לראות פירוט</p>
+              <p className="text-gray-400 text-sm">{home.flowDesc[locale]}</p>
             </div>
 
             <div className="space-y-0">
@@ -264,8 +267,8 @@ export default function EmergencyHomePage() {
                         <Icon size={20} className={step.iconColor} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-bold text-gray-900 text-sm">{step.title}</div>
-                        <div className="text-gray-500 text-xs">{step.subtitle}</div>
+                        <div className="font-bold text-gray-900 text-sm">{homeFlowSteps[idx]?.title[locale] ?? step.title}</div>
+                        <div className="text-gray-500 text-xs">{homeFlowSteps[idx]?.subtitle[locale] ?? step.subtitle}</div>
                       </div>
                       <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
                         <ChevronDown size={16} className="text-gray-400" />
@@ -274,10 +277,10 @@ export default function EmergencyHomePage() {
                     {isExpanded && (
                       <div className={`bg-white border-x border-b ${step.border} rounded-b-2xl p-4 animate-slideDown`}>
                         <ul className="space-y-2">
-                          {step.details.map((detail, i) => (
+                          {(homeFlowSteps[idx]?.details ?? step.details.map(d => ({ he: d, en: d, ru: d }))).map((detail, i) => (
                             <li key={i} className="flex items-start gap-2.5 text-gray-600 text-sm">
                               <div className="w-1.5 h-1.5 rounded-full bg-gray-300 mt-1.5 flex-shrink-0" />
-                              {detail}
+                              {typeof detail === 'string' ? detail : detail[locale]}
                             </li>
                           ))}
                         </ul>
@@ -297,8 +300,8 @@ export default function EmergencyHomePage() {
           {/* LEFT (in RTL): Parallel Teams */}
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
-              <h2 className="text-2xl font-bold text-gray-900">צוותים מקבילים</h2>
-              <p className="text-gray-400 text-sm">צוותים שפועלים במקביל לזרם הראשי</p>
+              <h2 className="text-2xl font-bold text-gray-900">{home.parallelTitle[locale]}</h2>
+              <p className="text-gray-400 text-sm">{home.parallelDesc[locale]}</p>
             </div>
 
             <div className="grid grid-cols-1 gap-2.5">
@@ -316,6 +319,7 @@ export default function EmergencyHomePage() {
                       <div className="min-w-0">
                         <div className="font-bold text-gray-900 text-sm">{team.title}</div>
                         <div className="text-xs text-gray-500 whitespace-pre-line leading-relaxed mt-0.5">{team.desc}</div>
+                        {team.people && <div className="text-[11px] text-gray-400 font-medium mt-1">{team.people}</div>}
                       </div>
                     </div>
                   </div>
@@ -332,12 +336,12 @@ export default function EmergencyHomePage() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2 text-amber-600 font-bold text-sm">
               <Lightbulb size={16} />
-              טיפ מקצועי לצוות החירום
+              {home.tipLabel[locale]}
             </div>
             <span className="text-gray-400 text-xs">{tipIndex + 1} / {TIPS.length}</span>
           </div>
           <p className={`text-gray-700 text-base leading-relaxed transition-opacity duration-200 min-h-[48px] ${tipFade ? 'opacity-100' : 'opacity-0'}`}>
-            {TIPS[tipIndex]}
+            {homeTips[tipIndex]?.[locale] ?? TIPS[tipIndex]}
           </p>
           <div className="flex items-center gap-2 mt-4">
             <button
@@ -364,8 +368,8 @@ export default function EmergencyHomePage() {
       {/* ===== Emergency Quick Dial ===== */}
       <section className="max-w-6xl mx-auto px-6 mt-10 mb-10">
         <div className="text-center mb-4">
-          <h2 className="text-lg font-bold text-gray-900">חיוג מהיר למוקדי חירום</h2>
-          <p className="text-gray-400 text-xs mt-1">לחצו על מספר כדי לחייג · <Link href="/emergency/contacts" className="text-blue-500 hover:underline">לספר הטלפונים המלא</Link></p>
+          <h2 className="text-lg font-bold text-gray-900">{home.emergencyDial[locale]}</h2>
+          <p className="text-gray-400 text-xs mt-1">{home.emergencyDialDesc[locale]} · <Link href="/emergency/contacts" className="text-blue-500 hover:underline">{home.fullPhoneBook[locale]}</Link></p>
         </div>
         <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
           {EMERGENCY_PHONES.map((ep, idx) => (
@@ -375,7 +379,7 @@ export default function EmergencyHomePage() {
               className={`${ep.color} rounded-xl p-3 text-center text-white hover:opacity-90 transition-opacity shadow-sm`}
             >
               <div className="text-lg font-bold" dir="ltr">{ep.phone}</div>
-              <div className="text-[10px] text-white/80 mt-0.5">{ep.label}</div>
+              <div className="text-[10px] text-white/80 mt-0.5">{homeEmergencyPhones[idx]?.label[locale] ?? ep.label}</div>
             </a>
           ))}
         </div>

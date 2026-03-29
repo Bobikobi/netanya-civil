@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { ChevronDown, Users, Building2, Phone, Heart, Hotel, Search, UserCheck, Shield, Star, ExternalLink } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { teamsPage } from '@/lib/translations';
 
 interface TeamData {
   id: string;
@@ -222,12 +224,13 @@ const TEAMS: TeamData[] = [
 
 export default function EmergencyTeamsPage() {
   const [expandedTeam, setExpandedTeam] = useState<string | null>(null);
+  const { locale } = useI18n();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">צוותי החירום</h1>
-        <p className="text-gray-400 text-base">בחרו צוות לצפייה בתוכנית ההפעלה המלאה</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{teamsPage.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{teamsPage.subtitle[locale]}</p>
       </section>
 
       {/* Yachad link */}
@@ -235,7 +238,7 @@ export default function EmergencyTeamsPage() {
         <a href="https://go.gov.il/wrwov" target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-2.5 text-sm font-medium hover:bg-blue-100 transition-colors">
           <ExternalLink size={15} />
-          כניסה למערכת יחד – לחץ כאן
+          {teamsPage.yachadLink[locale]}
         </a>
       </div>
 
@@ -263,7 +266,7 @@ export default function EmergencyTeamsPage() {
               {isExpanded && (
                 <div className={`bg-white border-t ${team.border} px-5 pb-5 pt-4 space-y-4 animate-slideDown`}>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-sm mb-2.5">משימות עיקריות</h3>
+                    <h3 className="font-bold text-gray-900 text-sm mb-2.5">{teamsPage.mainTasks[locale]}</h3>
                     <ul className="space-y-2">
                       {team.tasks.map((task, i) => (
                         <li key={i} className="flex items-start gap-2.5 text-gray-600 text-sm">
@@ -274,7 +277,7 @@ export default function EmergencyTeamsPage() {
                     </ul>
                   </div>
                   <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-                    <h3 className="font-bold text-amber-700 mb-2 text-xs">נקודות מפתח</h3>
+                    <h3 className="font-bold text-amber-700 mb-2 text-xs">{teamsPage.keyPoints[locale]}</h3>
                     <ul className="space-y-1.5">
                       {team.keyPoints.map((point, i) => (
                         <li key={i} className="flex items-start gap-2 text-gray-600 text-sm">
@@ -295,7 +298,7 @@ export default function EmergencyTeamsPage() {
       <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
         <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
           <Phone size={16} className="text-blue-500" />
-          אנשי קשר מרכזיים
+          {teamsPage.contactsTitle[locale]}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[

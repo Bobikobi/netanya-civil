@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { Phone, ChevronDown, Shield } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { orgchartPage } from '@/lib/translations';
 
 interface OrgUnit {
   id: string;
@@ -24,9 +26,9 @@ const ORG_TREE: OrgUnit = {
     {
       id: 'maklol',
       title: 'מטה מכלול אוכלוסייה',
-      color: 'bg-slate-700',
-      borderColor: 'border-slate-700',
-      textColor: 'text-white',
+      color: 'bg-blue-100',
+      borderColor: 'border-blue-300',
+      textColor: 'text-blue-900',
       people: [
         { name: 'רותי גור', role: 'ראש מטה (א׳)', phone: '052-2422009' },
         { name: 'עדי פוליטי', role: 'סגן (א׳)', phone: '052-3315503' },
@@ -237,14 +239,14 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
               <div className="mt-1.5 space-y-0.5">
                 {node.people.map((p, i) => (
                   <div key={i} className="flex items-center gap-2 text-xs">
-                    <span className={`${depth < 1 ? 'text-white/80' : 'text-gray-600'}`}>
+                    <span className={`${depth === 0 ? 'text-white/80' : 'text-gray-600'}`}>
                       {p.name}{p.role ? ` – ${p.role}` : ''}
                     </span>
                     {p.phone && (
                       <a
                         href={`tel:${p.phone}`}
                         onClick={e => e.stopPropagation()}
-                        className={`flex items-center gap-0.5 ${depth < 1 ? 'text-white/70 hover:text-white' : 'text-blue-500 hover:text-blue-700'} hover:underline`}
+                        className={`flex items-center gap-0.5 ${depth === 0 ? 'text-white/70 hover:text-white' : 'text-blue-500 hover:text-blue-700'} hover:underline`}
                         dir="ltr"
                       >
                         <Phone size={10} />
@@ -259,7 +261,7 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
           {hasChildren && (
             <ChevronDown
               size={16}
-              className={`${depth < 1 ? 'text-white/60' : 'text-gray-400'} transition-transform duration-300 flex-shrink-0 mr-2 ${
+              className={`${depth === 0 ? 'text-white/60' : 'text-gray-400'} transition-transform duration-300 flex-shrink-0 mr-2 ${
                 expanded ? 'rotate-180' : ''
               }`}
             />
@@ -279,12 +281,14 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
 }
 
 export default function OrgChartPage() {
+  const { locale } = useI18n();
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-10 space-y-10">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">מבנה ארגוני</h1>
-        <p className="text-gray-400 text-base">תרשים מכלול אוכלוסייה – עיריית נתניה · מעודכן אפריל 2026</p>
-        <p className="text-gray-400 text-xs">לחצו על כל יחידה כדי לפתוח/לסגור · לחצו על מספר טלפון כדי לחייג</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{orgchartPage.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{orgchartPage.subtitle[locale]}</p>
+        <p className="text-gray-400 text-xs">{orgchartPage.instructions[locale]}</p>
       </section>
 
       {/* Interactive org tree */}
@@ -294,7 +298,7 @@ export default function OrgChartPage() {
 
       {/* Support staff */}
       <section className="space-y-4">
-        <h2 className="text-lg font-bold text-gray-900 text-center">צוותי תמיכה ומטה</h2>
+        <h2 className="text-lg font-bold text-gray-900 text-center">{orgchartPage.supportTitle[locale]}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
           {SUPPORT_STAFF.map((s, idx) => (
             <div key={idx} className="bg-gray-50 border border-gray-200 rounded-xl p-3 hover:shadow-md transition-shadow">
