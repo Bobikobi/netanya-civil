@@ -15,6 +15,14 @@ import {
   ChevronRight,
   ChevronLeft,
   Shield,
+  Hospital,
+  Hotel,
+  HeartHandshake,
+  Phone,
+  HandHelping,
+  ShieldHalf,
+  BarChart3,
+  UserCheck,
 } from 'lucide-react';
 import React from 'react';
 
@@ -71,14 +79,14 @@ const FLOW_STEPS = [
 ];
 
 const PARALLEL_TEAMS = [
-  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה' },
-  { title: 'צוות קליטת אוכלוסייה בבתי מלון', desc: 'עבודה מול המלונות' },
-  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע' },
-  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע' },
-  { title: 'צוות קו פתוח', desc: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106' },
-  { title: 'צוות מתנדבים וקהילה', desc: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים' },
-  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע' },
-  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב' },
+  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה', icon: Hospital, color: 'text-red-500', bg: 'bg-red-50', border: 'border-red-200' },
+  { title: 'צוות קליטת אוכלוסייה בבתי מלון', desc: 'עבודה מול המלונות', icon: Hotel, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-200' },
+  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע', icon: HeartHandshake, color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-300' },
+  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע', icon: UserCheck, color: 'text-purple-500', bg: 'bg-purple-50', border: 'border-purple-200' },
+  { title: 'צוות קו פתוח', desc: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106', icon: Phone, color: 'text-green-500', bg: 'bg-green-50', border: 'border-green-200' },
+  { title: 'צוות מתנדבים וקהילה', desc: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים', icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
+  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע', icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
+  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב', icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
 ];
 
 const QUICK_LINKS = [
@@ -222,7 +230,7 @@ export default function EmergencyHomePage() {
 
       {/* ===== Side-by-side: Flow Diagram + Parallel Teams ===== */}
       <section className="max-w-6xl mx-auto px-6 mt-14">
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
           {/* RIGHT (in RTL): Flow diagram */}
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
@@ -276,7 +284,7 @@ export default function EmergencyHomePage() {
             </div>
           </div>
 
-          {/* RIGHT: Parallel Teams */}
+          {/* LEFT (in RTL): Parallel Teams */}
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
               <h2 className="text-2xl font-bold text-gray-900">צוותים מקבילים</h2>
@@ -284,15 +292,25 @@ export default function EmergencyHomePage() {
             </div>
 
             <div className="grid grid-cols-1 gap-2.5">
-              {PARALLEL_TEAMS.map((team, idx) => (
-                <div
-                  key={idx}
-                  className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow"
-                >
-                  <div className="font-bold text-gray-900 text-sm mb-1">{team.title}</div>
-                  <div className="text-xs text-gray-400 whitespace-pre-line leading-relaxed">{team.desc}</div>
-                </div>
-              ))}
+              {PARALLEL_TEAMS.map((team, idx) => {
+                const TIcon = team.icon;
+                return (
+                  <div
+                    key={idx}
+                    className={`${team.bg} border ${team.border} rounded-xl p-3.5 hover:shadow-md transition-shadow`}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="bg-white rounded-lg w-8 h-8 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                        <TIcon size={16} className={team.color} />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-bold text-gray-900 text-sm">{team.title}</div>
+                        <div className="text-xs text-gray-500 whitespace-pre-line leading-relaxed mt-0.5">{team.desc}</div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
