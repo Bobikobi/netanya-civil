@@ -2,29 +2,75 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone, GitBranch } from 'lucide-react';
-import React from 'react';
+import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone, GitBranch, Globe } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { I18nProvider, useI18n, LOCALE_FLAGS, Locale } from '@/lib/i18n';
+import { nav, footer } from '@/lib/translations';
 
 const NAV_ITEMS = [
-  { href: '/emergency', label: 'בית', icon: Home },
-  { href: '/emergency/mashe', label: 'מודל מעש״ה', icon: Heart },
-  { href: '/emergency/teams', label: 'צוותי החירום', icon: Users },
-  { href: '/emergency/scripts', label: 'תסריטי שיחה', icon: MessageSquare },
-  { href: '/emergency/contacts', label: 'ספר טלפונים', icon: Phone },
-  { href: '/emergency/orgchart', label: 'מבנה ארגוני', icon: GitBranch },
-  { href: '/emergency/faq', label: 'שאלות ותשובות', icon: HelpCircle },
+  { href: '/emergency', key: 'home', icon: Home },
+  { href: '/emergency/mashe', key: 'mashe', icon: Heart },
+  { href: '/emergency/teams', key: 'teams', icon: Users },
+  { href: '/emergency/scripts', key: 'scripts', icon: MessageSquare },
+  { href: '/emergency/contacts', key: 'contacts', icon: Phone },
+  { href: '/emergency/orgchart', key: 'orgchart', icon: GitBranch },
+  { href: '/emergency/faq', key: 'faq', icon: HelpCircle },
 ];
 
-export default function EmergencyLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+function LanguageSwitcher() {
+  const { locale, setLocale } = useI18n();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const locales: Locale[] = ['he', 'en', 'ru'];
 
   return (
-    <div dir="rtl" className="min-h-screen bg-gray-50 text-gray-900">
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+      >
+        <Globe size={14} />
+        <span className="hidden md:inline">{LOCALE_FLAGS[locale]}</span>
+      </button>
+      {open && (
+        <div className="absolute top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 z-50 min-w-[120px]" style={{ left: 0 }}>
+          {locales.map(l => (
+            <button
+              key={l}
+              onClick={() => { setLocale(l); setOpen(false); }}
+              className={`w-full text-right px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 ${l === locale ? 'font-bold text-gray-900' : 'text-gray-600'}`}
+            >
+              <span>{LOCALE_FLAGS[l]}</span>
+              <span>{l === 'he' ? 'עברית' : l === 'en' ? 'English' : 'Русский'}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function LayoutInner({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const { locale, dir } = useI18n();
+  const t = (key: string, dict: Record<string, Record<Locale, string>>) => dict[key]?.[locale] ?? dict[key]?.['he'] ?? key;
+
+  return (
+    <div dir={dir} className="min-h-screen bg-gray-50 text-gray-900">
       {/* Sticky top navigation */}
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            {/* Nav items - right side in RTL */}
+            {/* Nav items */}
             <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide">
               {NAV_ITEMS.map(item => {
                 const Icon = item.icon;
@@ -40,29 +86,30 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
                     }`}
                   >
                     <Icon size={14} className="md:hidden flex-shrink-0" />
-                    {item.label}
+                    {t(item.key, nav)}
                   </Link>
                 );
               })}
+              <LanguageSwitcher />
             </div>
-            {/* Logo + Brand - left side in RTL */}
+            {/* Logo + Brand */}
             <div className="flex items-center gap-3">
               <Link href="/emergency" className="hidden md:flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
                 <Shield size={22} className="text-gray-500" />
-                <div className="text-right">
-                  <div className="font-bold text-sm text-gray-900 leading-tight">צוותי חירום</div>
-                  <div className="text-[11px] text-gray-400 leading-tight">אגף שירותים חברתיים - נתניה</div>
+                <div className={locale === 'he' ? 'text-right' : 'text-left'}>
+                  <div className="font-bold text-sm text-gray-900 leading-tight">{t('brand', nav)}</div>
+                  <div className="text-[11px] text-gray-400 leading-tight">{t('brandSub', nav)}</div>
                 </div>
               </Link>
               <Link href="/emergency">
-                <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-7 md:h-9 w-auto" />
+                <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-8 md:h-9 w-auto min-w-[80px]" />
               </Link>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* Page content - full width for hero sections */}
+      {/* Page content */}
       <main className="animate-fadeIn">
         {children}
       </main>
@@ -70,12 +117,12 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white py-6 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-2">
-          <p className="text-gray-600 font-medium">אגף השירותים החברתיים · עיריית נתניה</p>
-          <p className="text-gray-400 text-xs">כלי לריענון ותרגול צוותי חירום · אין להסתמך כתחליף לנהלים רשמיים</p>
+          <p className="text-gray-600 font-medium">{t('line1', footer)}</p>
+          <p className="text-gray-400 text-xs">{t('line2', footer)}</p>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 pt-2 border-t border-gray-100 mt-3">
-            <Link href="/emergency/accessibility" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">הצהרת נגישות</Link>
-            <Link href="/emergency/privacy" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">מדיניות פרטיות</Link>
-            <span className="text-xs text-gray-300">© {new Date().getFullYear()} עיריית נתניה</span>
+            <Link href="/emergency/accessibility" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">{t('accessibility', footer)}</Link>
+            <Link href="/emergency/privacy" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">{t('privacy', footer)}</Link>
+            <span className="text-xs text-gray-300">© {new Date().getFullYear()} אלעד סעדון</span>
           </div>
         </div>
       </footer>
@@ -123,5 +170,13 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
         }
       `}</style>
     </div>
+  );
+}
+
+export default function EmergencyLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <I18nProvider>
+      <LayoutInner>{children}</LayoutInner>
+    </I18nProvider>
   );
 }

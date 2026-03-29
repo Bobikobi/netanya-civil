@@ -1,5 +1,7 @@
 'use client';
 import { Lock, Shield, Eye, Trash2, UserCheck, Bell } from 'lucide-react';
+import { useI18n } from '@/lib/i18n';
+import { privacyPage } from '@/lib/translations';
 
 const SECTIONS = [
   {
@@ -12,7 +14,7 @@ const SECTIONS = [
     icon: Shield,
     title: 'אבטחת מידע',
     color: 'green',
-    content: `עיריית נתניה נוקטת באמצעי אבטחת מידע מתקדמים להגנה על המידע המאוחסן באתר, בהתאם לחוק הגנת הפרטיות, תשמ"א-1981, ותיקון 13 לחוק. האתר מוגן באמצעות הצפנת SSL/TLS, ומידע המאוחסן במערכות מאובטח בהתאם לסטנדרטים המקובלים. אנו מבצעים בדיקות אבטחה שוטפות למניעת חדירה לא מורשית.`,
+    content: `מפעיל האתר נוקט באמצעי אבטחת מידע סבירים להגנה על המידע המאוחסן באתר, ברוח חוק הגנת הפרטיות, תשמ"א-1981, ותיקון 13 לחוק. האתר מוגן באמצעות הצפנת SSL/TLS, ומידע המאוחסן במערכות מאובטח בהתאם לסטנדרטים המקובלים.`,
   },
   {
     icon: UserCheck,
@@ -30,7 +32,7 @@ const SECTIONS = [
     icon: Trash2,
     title: 'זכות עיון, תיקון ומחיקה',
     color: 'red',
-    content: `בהתאם לחוק הגנת הפרטיות, כל אדם רשאי לעיין במידע אישי המוחזק לגביו, לבקש לתקנו או למחקו. לצורך מימוש זכויות אלו, ניתן לפנות לממונה על הגנת הפרטיות בעירייה בכתובת: רזיאל 1, נתניה, או בדוא"ל privacy@netanya.muni.il. נטפל בפנייתכם תוך 30 יום כנדרש בחוק.`,
+    content: `בהתאם לחוק הגנת הפרטיות, כל אדם רשאי לעיין במידע אישי המוחזק לגביו, לבקש לתקנו או למחקו. לצורך מימוש זכויות אלו, ניתן לפנות למפעיל האתר בדוא"ל ELAD.SAA@NETANYA.MUNI.IL. אטפל בפנייתכם בהקדם האפשרי.`,
   },
 ];
 
@@ -43,6 +45,8 @@ const COLOR_MAP: Record<string, { bg: string; border: string; icon: string }> = 
 };
 
 export default function PrivacyPage() {
+  const { locale } = useI18n();
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       <div className="flex items-center gap-3 mb-8">
@@ -50,16 +54,24 @@ export default function PrivacyPage() {
           <Lock size={24} className="text-gray-600" />
         </div>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">מדיניות פרטיות</h1>
-          <p className="text-sm text-gray-500">עודכן לאחרונה: אפריל 2026</p>
+          <h1 className="text-2xl font-bold text-gray-900">{privacyPage.title[locale]}</h1>
+          <p className="text-sm text-gray-500">{privacyPage.updated[locale]}</p>
         </div>
+      </div>
+
+      {/* Disclaimer */}
+      <div className="bg-amber-50 rounded-2xl border border-amber-200 p-5 mb-6">
+        <p className="text-amber-800 text-sm leading-relaxed">
+          {privacyPage.disclaimer[locale]}
+        </p>
       </div>
 
       {/* Intro */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
         <p className="text-gray-600 leading-relaxed">
-          מדיניות פרטיות זו מפרטת את אופן האיסוף, השימוש והשמירה על מידע אישי באתר צוותי חירום של
-          עיריית נתניה, בהתאם לחוק הגנת הפרטיות, תשמ&quot;א-1981, תיקון 13 לחוק, חוק הגנת הצרכן,
+          מדיניות פרטיות זו מפרטת את אופן האיסוף, השימוש והשמירה על מידע אישי באתר צוותי חירום,
+          יוזמה פרטית של אלעד סעדון לסיוע לצוותי חירום של אגף השירותים החברתיים בנתניה.
+          המדיניות פועלת ברוח חוק הגנת הפרטיות, תשמ&quot;א-1981, תיקון 13 לחוק, חוק הגנת הצרכן,
           וחוק התקשורת (בזק ושידורים) (תיקון מס&apos; 40), תשס&quot;ח-2008 (&quot;חוק הספאם&quot;).
         </p>
       </div>
@@ -85,12 +97,12 @@ export default function PrivacyPage() {
 
       {/* Contact */}
       <div className="mt-8 bg-gray-50 rounded-2xl border border-gray-200 p-6 text-center">
-        <p className="text-sm text-gray-500 mb-1">שאלות בנוגע למדיניות הפרטיות?</p>
-        <a href="mailto:privacy@netanya.muni.il" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-          privacy@netanya.muni.il
+        <p className="text-sm text-gray-500 mb-1">{privacyPage.questionsLabel[locale]}</p>
+        <a href="mailto:ELAD.SAA@NETANYA.MUNI.IL" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+          ELAD.SAA@NETANYA.MUNI.IL
         </a>
         <p className="text-xs text-gray-400 mt-3">
-          עיריית נתניה שומרת לעצמה את הזכות לעדכן מדיניות זו מעת לעת. שינויים מהותיים יפורסמו באתר.
+          {privacyPage.updateNotice[locale]}
         </p>
       </div>
     </div>

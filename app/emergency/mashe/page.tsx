@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { ChevronDown, AlertTriangle, CheckCircle, Play, BookOpen, Phone } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { mashe as masheT, masheSteps as masheStepsT, masheMistakes, masheReminders } from '@/lib/translations';
 
 const STEPS = [
   {
@@ -71,66 +73,67 @@ const REMINDERS = [
 
 export default function MashePage() {
   const [expandedStep, setExpandedStep] = useState<number | null>(0);
+  const { locale } = useI18n();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-14">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">מודל מעש״ה</h1>
-        <p className="text-gray-400 text-base">עזרה ראשונה נפשית – פותח ע״י ד״ר משה פרחי</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{masheT.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{masheT.subtitle[locale]}</p>
       </section>
 
       <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 space-y-5 shadow-sm">
         <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
           <BookOpen size={20} className="text-blue-500" />
-          מהו מודל מעש״ה?
+          {masheT.whatTitle[locale]}
         </h2>
         <p className="text-gray-500 leading-relaxed text-sm">
-          מודל מעש״ה הוא כלי לאומי מובנה לעזרה ראשונה נפשית (עשר״נ), פותח על ידי ד״ר משה פרחי.
-          המודל מבוסס על עקרונות נוירו-פסיכולוגיים שמטרתם מעבר מחשיבה רגשית לחשיבה קוגניטיבית-תפקודית, תוך דקה-שתיים בלבד.
+          {masheT.whatDesc[locale]}
         </p>
         <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-          <p className="font-bold text-blue-700 text-sm mb-1">מטרת המודל</p>
-          <p className="text-gray-600 text-sm">העברת הנפגע ממצב פסיבי-רגשי למצב פעיל-תפקודי – מ&quot;למה?&quot; (רגש) ל&quot;מה?&quot; (עובדה/תפקוד).</p>
+          <p className="font-bold text-blue-700 text-sm mb-1">{masheT.goalTitle[locale]}</p>
+          <p className="text-gray-600 text-sm">{masheT.goalDesc[locale]}</p>
         </div>
         <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
-          <p className="font-bold text-emerald-700 text-sm mb-1">מי יכול להשתמש?</p>
-          <p className="text-gray-600 text-sm">מתאים לכל אדם – ללא צורך בידע מקצועי מוקדם בבריאות הנפש. הוכח כיעיל להפחתת קשיים פסיכולוגיים בעתיד.</p>
+          <p className="font-bold text-emerald-700 text-sm mb-1">{masheT.whoTitle[locale]}</p>
+          <p className="text-gray-600 text-sm">{masheT.whoDesc[locale]}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3 bg-gray-50 border border-gray-200 rounded-xl p-4">
-          <span className="text-xs font-medium text-gray-400">ראשי תיבות:</span>
+          <span className="text-xs font-medium text-gray-400">{masheT.acronymLabel[locale]}</span>
           <div className="flex gap-2">
-            {STEPS.map(s => (
-              <span key={s.letter} className={`${s.color} text-white font-bold w-9 h-9 rounded-lg text-lg flex items-center justify-center`}>{s.letter}</span>
+            {masheStepsT.map((s, i) => (
+              <span key={i} className={`${STEPS[i].color} text-white font-bold w-9 h-9 rounded-lg text-lg flex items-center justify-center`}>{s.letter[locale]}</span>
             ))}
           </div>
-          <span className="text-gray-500 text-sm">מחויבות · עידוד לפעולה · שאלות קוגניטיביות · הבניה</span>
+          <span className="text-gray-500 text-sm">{masheT.acronymFull[locale]}</span>
         </div>
       </section>
 
       <section className="space-y-5">
-        <h2 className="text-xl font-bold text-gray-900 text-center">עקרונות הליבה – לפי סדר הפעולות</h2>
+        <h2 className="text-xl font-bold text-gray-900 text-center">{masheT.coreTitle[locale]}</h2>
         <div className="space-y-3">
-          {STEPS.map((step, idx) => {
+          {masheStepsT.map((step, idx) => {
             const isExpanded = expandedStep === idx;
+            const orig = STEPS[idx];
             return (
-              <div key={idx} className={`bg-white border ${step.borderColor} rounded-2xl overflow-hidden shadow-sm`}>
+              <div key={idx} className={`bg-white border ${orig.borderColor} rounded-2xl overflow-hidden shadow-sm`}>
                 <button onClick={() => setExpandedStep(isExpanded ? null : idx)} className="w-full flex items-center gap-4 p-5 text-right hover:bg-gray-50 transition-colors">
-                  <div className={`${step.color} text-white text-xl font-bold w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0`}>{step.letter}</div>
+                  <div className={`${orig.color} text-white text-xl font-bold w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0`}>{step.letter[locale]}</div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-bold text-gray-900">{step.letter} – {step.title}</div>
-                    <div className="text-xs text-gray-400">{step.english}</div>
+                    <div className="font-bold text-gray-900">{step.letter[locale]} – {step.title[locale]}</div>
+                    <div className="text-xs text-gray-400">{step.english[locale]}</div>
                   </div>
-                  <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-lg font-medium ml-2">שלב {idx + 1}</span>
+                  <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-lg font-medium ml-2">{masheT.step[locale]} {idx + 1}</span>
                   <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
                     <ChevronDown size={18} className="text-gray-400" />
                   </div>
                 </button>
                 {isExpanded && (
                   <div className="px-5 pb-5 space-y-4 animate-slideDown">
-                    <p className="text-gray-500 leading-relaxed text-sm">{step.description}</p>
-                    <div className={`${step.colorLight} border ${step.borderColor} rounded-xl p-4`}>
-                      <div className="text-xs font-medium text-gray-400 mb-1.5">דוגמה לשימוש</div>
-                      <p className="text-gray-600 text-sm italic">{step.example}</p>
+                    <p className="text-gray-500 leading-relaxed text-sm">{step.description[locale]}</p>
+                    <div className={`${orig.colorLight} border ${orig.borderColor} rounded-xl p-4`}>
+                      <div className="text-xs font-medium text-gray-400 mb-1.5">{masheT.exampleLabel[locale]}</div>
+                      <p className="text-gray-600 text-sm italic">{step.example[locale]}</p>
                     </div>
                   </div>
                 )}
@@ -143,18 +146,18 @@ export default function MashePage() {
       <section className="space-y-5">
         <h2 className="text-xl font-bold text-gray-900 text-center flex items-center justify-center gap-2">
           <AlertTriangle size={20} className="text-amber-500" />
-          טעויות נפוצות וכיצד להימנע
+          {masheT.mistakesTitle[locale]}
         </h2>
         <div className="space-y-3">
-          {MISTAKES.map((m, idx) => (
+          {masheMistakes.map((m, idx) => (
             <div key={idx} className="bg-white border border-gray-200 rounded-2xl p-4 flex flex-col md:flex-row gap-3 shadow-sm">
               <div className="flex-1 bg-red-50 border border-red-200 rounded-xl p-3">
-                <div className="text-red-600 font-bold text-xs mb-1 flex items-center gap-1"><span>&#10007;</span> לא לעשות</div>
-                <p className="text-gray-600 text-sm">{m.wrong}</p>
+                <div className="text-red-600 font-bold text-xs mb-1 flex items-center gap-1"><span>&#10007;</span> {masheT.dontDo[locale]}</div>
+                <p className="text-gray-600 text-sm">{m.wrong[locale]}</p>
               </div>
               <div className="flex-1 bg-emerald-50 border border-emerald-200 rounded-xl p-3">
-                <div className="text-emerald-600 font-bold text-xs mb-1 flex items-center gap-1"><CheckCircle size={12} /> במקום</div>
-                <p className="text-gray-600 text-sm">{m.right}</p>
+                <div className="text-emerald-600 font-bold text-xs mb-1 flex items-center gap-1"><CheckCircle size={12} /> {masheT.instead[locale]}</div>
+                <p className="text-gray-600 text-sm">{m.right[locale]}</p>
               </div>
             </div>
           ))}
@@ -164,28 +167,28 @@ export default function MashePage() {
       <section className="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 space-y-4 shadow-sm">
         <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
           <Play size={20} className="text-blue-500" />
-          סרטון הדרכה – ד״ר משה פרחי
+          {masheT.videoTitle[locale]}
         </h2>
         <p className="text-gray-500 text-sm">
-          ד״ר משה פרחי, ראש החוג לעבודה סוציאלית ומפתח מודל מעש״ה, מציג את המודל להגשת עזרה ראשונה נפשית.
+          {masheT.videoDesc[locale]}
         </p>
         <div className="bg-gray-50 border border-gray-200 rounded-xl p-10 text-center">
           <Play size={40} className="mx-auto mb-2 text-gray-300" />
-          <p className="text-gray-400 text-sm">סרטון ההדרכה יתווסף בקרוב</p>
+          <p className="text-gray-400 text-sm">{masheT.videoPlaceholder[locale]}</p>
         </div>
       </section>
 
       <section className="space-y-5">
-        <h2 className="text-xl font-bold text-gray-900 text-center">תזכורות מהירות לשטח</h2>
+        <h2 className="text-xl font-bold text-gray-900 text-center">{masheT.remindersTitle[locale]}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {REMINDERS.map((reminder, idx) => (
+          {masheReminders.map((reminder, idx) => (
             <div key={idx} className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-              <h3 className="font-bold text-gray-900 text-sm mb-3">{reminder.title}</h3>
+              <h3 className="font-bold text-gray-900 text-sm mb-3">{reminder.title[locale]}</h3>
               <ul className="space-y-1.5">
                 {reminder.items.map((item, i) => (
                   <li key={i} className="text-gray-500 flex items-start gap-2 text-sm">
                     <div className="w-1.5 h-1.5 rounded-full bg-gray-300 mt-1.5 flex-shrink-0" />
-                    {item}
+                    {item[locale]}
                   </li>
                 ))}
               </ul>
@@ -198,7 +201,7 @@ export default function MashePage() {
       <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
         <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
           <Phone size={16} className="text-blue-500" />
-          אנשי קשר – מטה רגשי וצוותי התערבות
+          {masheT.contactsTitle[locale]}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[

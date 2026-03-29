@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { ChevronDown, AlertCircle, Home, Hotel, Search, ShieldOff, ExternalLink, Phone } from 'lucide-react';
 import React from 'react';
+import { useI18n } from '@/lib/i18n';
+import { scriptsPage } from '@/lib/translations';
 
 interface ScriptData {
   id: string;
@@ -93,12 +95,13 @@ const SCRIPTS: ScriptData[] = [
 
 export default function ScriptsPage() {
   const [expandedScript, setExpandedScript] = useState<string | null>(null);
+  const { locale } = useI18n();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
       <section className="text-center space-y-3">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">תסריטי שיחה והרגעה</h1>
-        <p className="text-gray-400 text-base">תסריטים מעשיים למצבי אמת בשטח – לחצו כדי לפתוח</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">{scriptsPage.title[locale]}</h1>
+        <p className="text-gray-400 text-base">{scriptsPage.subtitle[locale]}</p>
       </section>
 
       {/* Yachad link */}
@@ -106,7 +109,7 @@ export default function ScriptsPage() {
         <a href="https://go.gov.il/wrwov" target="_blank" rel="noopener noreferrer"
           className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-blue-700 rounded-xl px-5 py-2.5 text-sm font-medium hover:bg-blue-100 transition-colors">
           <ExternalLink size={15} />
-          כניסה למערכת יחד – לחץ כאן
+          {scriptsPage.yachadLink[locale]}
         </a>
       </div>
 
@@ -134,12 +137,12 @@ export default function ScriptsPage() {
               {isExpanded && (
                 <div className={`bg-white border-t ${script.border} px-5 pb-5 pt-4 space-y-5 animate-slideDown`}>
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
-                    <h3 className="font-bold text-gray-500 mb-1.5 text-xs">תיאור המצב</h3>
+                    <h3 className="font-bold text-gray-500 mb-1.5 text-xs">{scriptsPage.scenario[locale]}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{script.scenario}</p>
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-gray-900 text-sm mb-2.5">שלבי הפעולה</h3>
+                    <h3 className="font-bold text-gray-900 text-sm mb-2.5">{scriptsPage.stepsTitle[locale]}</h3>
                     <ol className="space-y-2">
                       {script.steps.map((step, i) => (
                         <li key={i} className="flex items-start gap-3 text-gray-600 text-sm">
@@ -154,7 +157,7 @@ export default function ScriptsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
-                      <h3 className="font-bold text-emerald-700 mb-2.5 text-xs flex items-center gap-1">&#10003; כן לומר</h3>
+                      <h3 className="font-bold text-emerald-700 mb-2.5 text-xs flex items-center gap-1">&#10003; {scriptsPage.doSay[locale]}</h3>
                       <ul className="space-y-2">
                         {script.doSay.map((phrase, i) => (
                           <li key={i} className="text-gray-600 text-sm">{phrase}</li>
@@ -162,7 +165,7 @@ export default function ScriptsPage() {
                       </ul>
                     </div>
                     <div className="bg-red-50 border border-red-200 rounded-xl p-4">
-                      <h3 className="font-bold text-red-700 mb-2.5 text-xs flex items-center gap-1">&#10007; לא לומר</h3>
+                      <h3 className="font-bold text-red-700 mb-2.5 text-xs flex items-center gap-1">&#10007; {scriptsPage.dontSay[locale]}</h3>
                       <ul className="space-y-2">
                         {script.dontSay.map((phrase, i) => (
                           <li key={i} className="text-gray-600 text-sm">{phrase}</li>
@@ -181,7 +184,7 @@ export default function ScriptsPage() {
       <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
         <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
           <Phone size={16} className="text-blue-500" />
-          אנשי קשר – צוותי שטח ומוקדים
+          {scriptsPage.contactsTitle[locale]}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[
