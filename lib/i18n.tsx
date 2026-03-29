@@ -30,6 +30,12 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('locale', l);
   }, []);
 
+  // Sync <html lang> and dir with locale
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === 'he' ? 'rtl' : 'ltr';
+  }, [locale]);
+
   const dir = locale === 'he' ? 'rtl' : 'ltr';
 
   return (
