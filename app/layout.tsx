@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "צוותי חירום – אגף שירותים חברתיים נתניה",
-  description: "כלי לריענון ותרגול הפעלת צוותי חירום של אגף השירותים החברתיים בנתניה",
+  title: "צוותי חירום – מנהל שירותים חברתיים נתניה",
+  description: "כלי לריענון ותרגול הפעלת צוותי חירום של מנהל השירותים החברתיים בנתניה",
 };
 
 export default function RootLayout({

@@ -13,11 +13,11 @@ export const nav: Record<string, T> = {
   orgchart: { he: 'מבנה ארגוני', en: 'Org Chart', ru: 'Оргструктура' },
   faq: { he: 'שאלות ותשובות', en: 'FAQ', ru: 'Вопросы и ответы' },
   brand: { he: 'צוותי חירום', en: 'Emergency Teams', ru: 'Команды ЧС' },
-  brandSub: { he: 'אגף שירותים חברתיים - נתניה', en: 'Social Services Dept. - Netanya', ru: 'Отдел соцслужб - Нетания' },
+  brandSub: { he: 'מנהל שירותים חברתיים - נתניה', en: 'Social Services Administration - Netanya', ru: 'Управление соцслужб - Нетания' },
 };
 
 export const footer: Record<string, T> = {
-  line1: { he: 'יוזמה פרטית לסיוע לצוותי חירום · אגף השירותים החברתיים, נתניה', en: 'Private initiative to assist emergency teams · Social Services Dept., Netanya', ru: 'Частная инициатива для помощи группам ЧС · Отдел соцслужб, Нетания' },
+  line1: { he: 'יוזמה פרטית לסיוע לצוותי חירום · מנהל השירותים החברתיים, נתניה', en: 'Private initiative to assist emergency teams · Social Services Administration, Netanya', ru: 'Частная инициатива для помощи группам ЧС · Управление соцслужб, Нетания' },
   line2: { he: 'אתר זה אינו אתר רשמי של עיריית נתניה · כלי לריענון ותרגול · אין להסתמך כתחליף לנהלים רשמיים', en: 'This is not an official Netanya municipality website · Training & refresher tool · Not a substitute for official procedures', ru: 'Это не официальный сайт муниципалитета Нетании · Инструмент для обучения · Не заменяет официальные процедуры' },
   accessibility: { he: 'הצהרת נגישות', en: 'Accessibility', ru: 'Доступность' },
   privacy: { he: 'מדיניות פרטיות', en: 'Privacy Policy', ru: 'Конфиденциальность' },
@@ -26,8 +26,8 @@ export const footer: Record<string, T> = {
 // ===== HOME PAGE =====
 export const home: Record<string, T> = {
   heroTitle: { he: 'צוותי חירום', en: 'Emergency Teams', ru: 'Команды ЧС' },
-  heroSubtitle: { he: 'אגף שירותים חברתיים', en: 'Social Services Department', ru: 'Отдел социальных служб' },
-  heroDesc: { he: 'כלי לריענון ותרגול הפעלת צוותי חירום של אגף השירותים החברתיים בנתניה', en: 'A tool for refreshing and practicing emergency team operations in Netanya\'s Social Services Department', ru: 'Инструмент для обновления и практики работы групп ЧС отдела социальных служб Нетании' },
+  heroSubtitle: { he: 'מנהל שירותים חברתיים', en: 'Social Services Administration', ru: 'Управление социальных служб' },
+  heroDesc: { he: 'כלי לריענון ותרגול הפעלת צוותי חירום של מנהל השירותים החברתיים בנתניה', en: 'A tool for refreshing and practicing emergency team operations in Netanya\'s Social Services Administration', ru: 'Инструмент для обновления и практики работы групп ЧС управления социальных служб Нетании' },
   msrSystem: { he: 'מערכת טפסי מס״ר', en: 'MSR Forms System', ru: 'Система форм МСР' },
   msrDesc: { he: 'רישום משפחות · יציאה מאזור שנפגע · איתור נעדרים', en: 'Family registration · Evacuation from affected area · Locating missing persons', ru: 'Регистрация семей · Эвакуация из зоны · Поиск пропавших' },
   yachadSystem: { he: 'מערכת יחד – לחץ כאן', en: 'YACHAD System – Click here', ru: 'Система ЯХАД – нажмите' },
@@ -102,6 +102,17 @@ export const homeTips: T[] = [
   { he: 'הכן ערכת חירום אישית עם מים, חטיף, מטען ופנס.', en: 'Prepare a personal emergency kit with water, snacks, charger and flashlight.', ru: 'Подготовьте личный аварийный набор: вода, перекус, зарядка, фонарик.' },
   { he: 'למד את שמות אנשי הקשר המרכזיים בכל צוות.', en: 'Learn the names of key contacts in each team.', ru: 'Выучите имена ключевых контактов в каждой команде.' },
   { he: 'הפסקה קצרה כל שעה – שתייה, נשימה, חזרה.', en: 'Short break every hour – drink, breathe, return.', ru: 'Короткий перерыв каждый час – вода, дыхание, возврат.' },
+];
+
+export const homeParallelTeams = [
+  { title: { he: 'צוות קישור לבתי חולים', en: 'Hospital Liaison Team', ru: 'Группа связи с больницами' }, desc: { he: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה', en: 'Deploying to hospitals: Laniado, Meir, Hillel Yaffe', ru: 'Выезд в больницы: Ланиадо, Меир, Гилель Яффе' }, people: { he: 'שמרית דיאמנט · אסנת דוד', en: 'Shamrit Diamant · Osnat David', ru: 'Шамрит Диамант · Оснат Давид' } },
+  { title: { he: 'צוות קליטת אוכלוסייה בבתי מלון', en: 'Hotel Population Intake Team', ru: 'Группа размещения в отелях' }, desc: { he: 'עבודה מול המלונות', en: 'Working with hotels', ru: 'Работа с отелями' }, people: { he: 'אתי עמיאל · הדר שחר פז', en: 'Eti Amiel · Hadar Shachar Paz', ru: 'Эти Амиэль · Хадар Шахар Паз' } },
+  { title: { he: 'צוות בשורה מרה', en: 'Death Notification Team', ru: 'Группа печальных известий' }, desc: { he: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע', en: 'Delivering death notifications\nNever at the event site', ru: 'Доставка уведомлений о гибели\nНикогда на месте события' }, people: { he: 'נילי חומן · יעל שחר', en: 'Nili Homan · Yael Shachar', ru: 'Нили Хоман · Яэль Шахар' } },
+  { title: { he: 'צוות תל"ם', en: 'TALEM Team', ru: 'Группа ТАЛЕМ' }, desc: { he: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע', en: 'Proactive contact with vulnerable populations\nActivated hours after peak event', ru: 'Инициативный контакт с уязвимым населением\nАктивируется через часы после пика события' }, people: { he: 'קלרה חן · יעל רכס', en: 'Clara Chen · Yael Reches', ru: 'Клара Хен · Яэль Рехес' } },
+  { title: { he: 'צוות קו פתוח', en: 'Open Line Team', ru: 'Группа горячей линии' }, desc: { he: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106', en: 'Phone support for emotionally distressed residents\nReferrals from 106 center', ru: 'Телефонная поддержка жителям в стрессе\nНаправления из центра 106' }, people: { he: 'רקפת וינגרט · שלומית עמרני', en: 'Rakefet Weingart · Shlomit Amrani', ru: 'Ракефет Вайнгарт · Шломит Амрани' } },
+  { title: { he: 'צוות מתנדבים וקהילה', en: 'Volunteers & Community Team', ru: 'Группа волонтёров и сообщества' }, desc: { he: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים', en: 'Operating logistics HQ\nRegistering & managing volunteers', ru: 'Управление логистическим штабом\nРегистрация и управление волонтёрами' }, people: { he: 'אפרת ברוך · מלי גניש', en: 'Efrat Baruch · Mali Ganish', ru: 'Эфрат Барух · Мали Ганиш' } },
+  { title: { he: '"מי יציל את המציל"', en: '"Who Saves the Savior"', ru: '«Кто спасёт спасателя»' }, desc: { he: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע', en: 'Debriefing & support for emergency teams\nFor all field and professional staff', ru: 'Дебрифинг и поддержка команд ЧС\nДля всех полевых и профессиональных сотрудников' }, people: { he: 'סיגל קני פז · מירב מור', en: 'Sigal Kni Paz · Merav Mor', ru: 'Сигаль Кни Паз · Мерав Мор' } },
+  { title: { he: 'מטה מכלול אוכלוסייה', en: 'Population Division HQ', ru: 'Штаб отдела населения' }, desc: { he: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב', en: 'Situation overview\nCoordination & task allocation\nStatus assessment updates', ru: 'Обзор ситуации\nКоординация и распределение задач\nОбновления оценки обстановки' }, people: { he: 'רותי גור · לימור איצקוביץ', en: 'Ruti Gur · Limor Itzkovitz', ru: 'Рути Гур · Лимор Ицкович' } },
 ];
 
 export const homeEmergencyPhones = [
@@ -236,7 +247,7 @@ export const orgchartPage: Record<string, T> = {
 export const accessibilityPage: Record<string, T> = {
   title: { he: 'הצהרת נגישות', en: 'Accessibility Statement', ru: 'Заявление о доступности' },
   updated: { he: 'עודכן לאחרונה: אפריל 2026', en: 'Last updated: April 2026', ru: 'Последнее обновление: апрель 2026' },
-  disclaimer: { he: 'שימו לב: אתר זה הוא יוזמה פרטית של אלעד סעדון, עובד אגף השירותים החברתיים בעיריית נתניה, ונועד לסייע לצוותי החירום בעת אירוע. האתר אינו אתר רשמי של עיריית נתניה. התכנים באתר נועדו לריענון ותרגול בלבד ואין להסתמך עליהם כתחליף לנהלים רשמיים.', en: 'Note: This website is a private initiative by Elad Saadon, an employee of the Social Services Department at Netanya Municipality, designed to assist emergency teams during events. This is not an official Netanya Municipality website. Content is for training purposes only and should not substitute official procedures.', ru: 'Внимание: Этот сайт является частной инициативой Элада Саадона, сотрудника отдела социальных служб муниципалитета Нетании, предназначен для помощи группам ЧС. Это не официальный сайт муниципалитета. Содержание предназначено только для обучения.' },
+  disclaimer: { he: 'שימו לב: אתר זה הוא יוזמה פרטית של אלעד סעדון, עובד מנהל השירותים החברתיים בעיריית נתניה, ונועד לסייע לצוותי החירום בעת אירוע. האתר אינו אתר רשמי של עיריית נתניה. התכנים באתר נועדו לריענון ותרגול בלבד ואין להסתמך עליהם כתחליף לנהלים רשמיים.', en: 'Note: This website is a private initiative by Elad Saadon, an employee of the Social Services Administration at Netanya Municipality, designed to assist emergency teams during events. This is not an official Netanya Municipality website. Content is for training purposes only and should not substitute official procedures.', ru: 'Внимание: Этот сайт является частной инициативой Элада Саадона, сотрудника управления социальных служб муниципалитета Нетании, предназначен для помощи группам ЧС. Это не официальный сайт муниципалитета. Содержание предназначено только для обучения.' },
   commitmentTitle: { he: 'מחויבות לנגישות', en: 'Commitment to Accessibility', ru: 'Обязательство доступности' },
   featuresTitle: { he: 'התאמות נגישות שבוצעו', en: 'Accessibility Features Implemented', ru: 'Реализованные функции доступности' },
   inProgressTitle: { he: 'תחומים בתהליך הנגשה', en: 'Areas in Progress', ru: 'Области в процессе' },

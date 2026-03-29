@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
-import { home, homeQuickLinks, homeFlowSteps, homeTips, homeEmergencyPhones } from '@/lib/translations';
+import { home, homeQuickLinks, homeFlowSteps, homeTips, homeEmergencyPhones, homeParallelTeams } from '@/lib/translations';
 
 const FLOW_STEPS = [
   {
@@ -81,14 +81,14 @@ const FLOW_STEPS = [
 ];
 
 const PARALLEL_TEAMS = [
-  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי חולים: לניאדו, מאיר, הלל יפה', people: 'שמרית דיאמנט · אסנת דוד', icon: Hospital, color: 'text-red-500', bg: 'bg-red-50', border: 'border-red-200' },
-  { title: 'צוות קליטת אוכלוסייה בבתי מלון', desc: 'עבודה מול המלונות', people: 'אתי עמיאל · הדר שחר פז', icon: Hotel, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-200' },
-  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע', people: 'נילי חומן · יעל שחר', icon: HeartHandshake, color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-300' },
-  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע', people: 'קלרה חן · יעל רכס', icon: UserCheck, color: 'text-purple-500', bg: 'bg-purple-50', border: 'border-purple-200' },
-  { title: 'צוות קו פתוח', desc: 'מענה טלפוני לתושבים במצוקה רגשית\nהפניות ממוקד 106', people: 'רקפת וינגרט · שלומית עמרני', icon: Phone, color: 'text-green-500', bg: 'bg-green-50', border: 'border-green-200' },
-  { title: 'צוות מתנדבים וקהילה', desc: 'הפעלת חמ"ל לוגיסטיקה\nרישום וניהול מתנדבים', people: 'אפרת ברוך · מלי גניש', icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
-  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע', people: 'סיגל קני פז · מירב מור', icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
-  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכונים בהערכת מצב', people: 'רותי גור · לימור איצקוביץ', icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
+  { icon: Hospital, color: 'text-red-500', bg: 'bg-red-50', border: 'border-red-200' },
+  { icon: Hotel, color: 'text-amber-500', bg: 'bg-amber-50', border: 'border-amber-200' },
+  { icon: HeartHandshake, color: 'text-gray-600', bg: 'bg-gray-50', border: 'border-gray-300' },
+  { icon: UserCheck, color: 'text-purple-500', bg: 'bg-purple-50', border: 'border-purple-200' },
+  { icon: Phone, color: 'text-green-500', bg: 'bg-green-50', border: 'border-green-200' },
+  { icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
+  { icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
+  { icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
 ];
 
 const QUICK_LINKS = [
@@ -297,6 +297,7 @@ export default function EmergencyHomePage() {
             <div className="grid grid-cols-1 gap-2.5">
               {PARALLEL_TEAMS.map((team, idx) => {
                 const TIcon = team.icon;
+                const t = homeParallelTeams[idx];
                 return (
                   <div
                     key={idx}
@@ -307,9 +308,9 @@ export default function EmergencyHomePage() {
                         <TIcon size={16} className={team.color} />
                       </div>
                       <div className="min-w-0">
-                        <div className="font-bold text-gray-900 text-sm">{team.title}</div>
-                        <div className="text-xs text-gray-500 whitespace-pre-line leading-relaxed mt-0.5">{team.desc}</div>
-                        {team.people && <div className="text-[11px] text-gray-400 font-medium mt-1">{team.people}</div>}
+                        <div className="font-bold text-gray-900 text-sm">{t.title[locale]}</div>
+                        <div className="text-xs text-gray-500 whitespace-pre-line leading-relaxed mt-0.5">{t.desc[locale]}</div>
+                        {t.people && <div className="text-[11px] text-gray-400 font-medium mt-1">{t.people[locale]}</div>}
                       </div>
                     </div>
                   </div>
