@@ -71,25 +71,27 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Nav items */}
-            <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide">
-              {NAV_ITEMS.map(item => {
-                const Icon = item.icon;
-                const isActive = pathname === item.href;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center gap-1.5 px-2.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                      isActive
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-                    }`}
-                  >
-                    <Icon size={14} className="md:hidden flex-shrink-0" />
-                    {t(item.key, nav)}
-                  </Link>
-                );
-              })}
+            <div className="flex items-center gap-1">
+              <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide">
+                {NAV_ITEMS.map(item => {
+                  const Icon = item.icon;
+                  const isActive = pathname === item.href;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-1.5 px-2.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                        isActive
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                      }`}
+                    >
+                      <Icon size={14} className="md:hidden flex-shrink-0" />
+                      {t(item.key, nav)}
+                    </Link>
+                  );
+                })}
+              </div>
               <LanguageSwitcher />
             </div>
             {/* Logo + Brand */}
