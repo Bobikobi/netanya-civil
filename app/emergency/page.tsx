@@ -205,18 +205,6 @@ export default function EmergencyHomePage() {
             <div className="text-white/70 text-sm mt-0.5">{home.yachadDesc[locale]}</div>
           </div>
         </a>
-        <a
-          href="https://govforms.gov.il/mw/forms/Emergency_UnRecogognized@taxes.gov.il"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block bg-orange-500 hover:bg-orange-600 transition-colors rounded-2xl p-5 flex items-center gap-4 shadow-lg"
-        >
-          <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-          <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">{home.taxReport[locale]}</div>
-            <div className="text-white/70 text-sm mt-0.5">{home.taxDesc[locale]}</div>
-          </div>
-        </a>
       </section>
 
       {/* ===== Quick Navigation Links ===== */}
@@ -261,6 +249,8 @@ export default function EmergencyHomePage() {
                   <div key={step.id}>
                     <button
                       onClick={() => toggleStep(step.id)}
+                      aria-expanded={isExpanded}
+                      aria-controls={`flow-${step.id}`}
                       className={`w-full bg-gradient-to-l ${step.gradient} border ${step.border} ${isExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} p-4 flex items-center gap-3 text-right transition-all duration-200 hover:shadow-md`}
                     >
                       <div className={`${step.iconBg} rounded-xl w-10 h-10 flex items-center justify-center flex-shrink-0`}>
@@ -275,7 +265,7 @@ export default function EmergencyHomePage() {
                       </div>
                     </button>
                     {isExpanded && (
-                      <div className={`bg-white border-x border-b ${step.border} rounded-b-2xl p-4 animate-slideDown`}>
+                      <div id={`flow-${step.id}`} role="region" aria-label={homeFlowSteps[idx]?.title[locale] ?? step.title} className={`bg-white border-x border-b ${step.border} rounded-b-2xl p-4 animate-slideDown`}>
                         <ul className="space-y-2">
                           {(homeFlowSteps[idx]?.details ?? step.details.map(d => ({ he: d, en: d, ru: d }))).map((detail, i) => (
                             <li key={i} className="flex items-start gap-2.5 text-gray-600 text-sm">

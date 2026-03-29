@@ -121,6 +121,8 @@ export default function ScriptsPage() {
             <div key={script.id} className={`bg-gradient-to-l ${script.bgColor} border ${script.border} ${isExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} overflow-hidden shadow-sm`}>
               <button
                 onClick={() => setExpandedScript(isExpanded ? null : script.id)}
+                aria-expanded={isExpanded}
+                aria-controls={`script-${script.id}`}
                 className="w-full flex items-center gap-4 p-5 text-right hover:bg-white/50 transition-colors"
               >
                 <div className={`${script.iconBg} rounded-xl w-11 h-11 flex items-center justify-center flex-shrink-0`}>
@@ -135,7 +137,7 @@ export default function ScriptsPage() {
                 </div>
               </button>
               {isExpanded && (
-                <div className={`bg-white border-t ${script.border} px-5 pb-5 pt-4 space-y-5 animate-slideDown`}>
+                <div id={`script-${script.id}`} role="region" aria-label={script.title} className={`bg-white border-t ${script.border} px-5 pb-5 pt-4 space-y-5 animate-slideDown`}>
                   <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
                     <h3 className="font-bold text-gray-500 mb-1.5 text-xs">{scriptsPage.scenario[locale]}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{script.scenario}</p>

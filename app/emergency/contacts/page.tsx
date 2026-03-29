@@ -204,6 +204,7 @@ export default function ContactsPage() {
         <input
           type="text"
           placeholder={contactsPage.searchPlaceholder[locale]}
+          aria-label={contactsPage.searchPlaceholder[locale]}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className="w-full bg-white border border-gray-200 rounded-xl pr-11 pl-4 py-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100 transition-all"

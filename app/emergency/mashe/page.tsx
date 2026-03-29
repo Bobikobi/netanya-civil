@@ -117,7 +117,7 @@ export default function MashePage() {
             const orig = STEPS[idx];
             return (
               <div key={idx} className={`bg-white border ${orig.borderColor} rounded-2xl overflow-hidden shadow-sm`}>
-                <button onClick={() => setExpandedStep(isExpanded ? null : idx)} className="w-full flex items-center gap-4 p-5 text-right hover:bg-gray-50 transition-colors">
+                <button onClick={() => setExpandedStep(isExpanded ? null : idx)} aria-expanded={isExpanded} aria-controls={`mashe-step-${idx}`} className="w-full flex items-center gap-4 p-5 text-right hover:bg-gray-50 transition-colors">
                   <div className={`${orig.color} text-white text-xl font-bold w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0`}>{step.letter[locale]}</div>
                   <div className="flex-1 min-w-0">
                     <div className="font-bold text-gray-900">{step.letter[locale]} – {step.title[locale]}</div>
@@ -129,7 +129,7 @@ export default function MashePage() {
                   </div>
                 </button>
                 {isExpanded && (
-                  <div className="px-5 pb-5 space-y-4 animate-slideDown">
+                  <div id={`mashe-step-${idx}`} role="region" aria-label={step.title[locale]} className="px-5 pb-5 space-y-4 animate-slideDown">
                     <p className="text-gray-500 leading-relaxed text-sm">{step.description[locale]}</p>
                     <div className={`${orig.colorLight} border ${orig.borderColor} rounded-xl p-4`}>
                       <div className="text-xs font-medium text-gray-400 mb-1.5">{masheT.exampleLabel[locale]}</div>
