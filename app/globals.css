@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global focus-visible ring for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Screen-reader only utility (Tailwind sr-only equivalent for global) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

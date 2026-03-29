@@ -36,17 +36,24 @@ function LanguageSwitcher() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen(!open)}
+        onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        aria-label={locale === 'he' ? 'בחירת שפה' : locale === 'en' ? 'Select language' : 'Выбор языка'}
         className="flex items-center gap-1.5 px-2.5 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
       >
         <Globe size={14} />
         <span className="hidden md:inline">{LOCALE_FLAGS[locale]}</span>
       </button>
       {open && (
-        <div className="absolute top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 z-50 min-w-[120px]" style={{ left: 0 }}>
+        <div role="menu" className="absolute top-full mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 z-50 min-w-[120px]" style={{ left: 0 }}>
           {locales.map(l => (
             <button
               key={l}
+              role="menuitem"
+              aria-current={l === locale ? 'true' : undefined}
               onClick={() => { setLocale(l); setOpen(false); }}
+              onKeyDown={e => { if (e.key === 'Escape') setOpen(false); }}
               className={`w-full text-right px-4 py-2 text-sm hover:bg-gray-50 flex items-center gap-2 ${l === locale ? 'font-bold text-gray-900' : 'text-gray-600'}`}
             >
               <span>{LOCALE_FLAGS[l]}</span>
@@ -66,8 +73,12 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
 
   return (
     <div dir={dir} className="min-h-screen bg-gray-50 text-gray-900">
+      {/* Skip to content */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:z-[100] focus:bg-white focus:border focus:border-gray-300 focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-gray-900 focus:shadow-lg" style={{ [dir === 'rtl' ? 'right' : 'left']: '0.5rem' }}>
+        {locale === 'he' ? 'דלג לתוכן' : locale === 'en' ? 'Skip to content' : 'Перейти к содержанию'}
+      </a>
       {/* Sticky top navigation */}
-      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <nav aria-label={locale === 'he' ? 'ניווט ראשי' : locale === 'en' ? 'Main navigation' : 'Главная навигация'} className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Nav items */}
@@ -80,13 +91,14 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`flex items-center gap-1.5 px-2.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                        isActive
-                          ? 'bg-gray-900 text-white'
-                          : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
-                      }`}
-                    >
-                      <Icon size={14} className="md:hidden flex-shrink-0" />
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`flex items-center gap-1.5 px-2.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                      isActive
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
+                    }`}
+                  >
+                      <Icon size={14} className="md:hidden flex-shrink-0" aria-hidden="true" />
                       {t(item.key, nav)}
                     </Link>
                   );
@@ -112,12 +124,12 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
       </nav>
 
       {/* Page content */}
-      <main className="animate-fadeIn">
+      <main id="main-content" className="animate-fadeIn">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-200 bg-white py-6 mt-16">
+      <footer aria-label={locale === 'he' ? 'כותרת תחתונה' : locale === 'en' ? 'Footer' : 'Подвал'} className="border-t border-gray-200 bg-white py-6 mt-16">
         <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-2">
           <p className="text-gray-600 font-medium">{t('line1', footer)}</p>
           <p className="text-gray-400 text-xs">{t('line2', footer)}</p>

@@ -164,6 +164,8 @@ export default function FAQPage() {
             <div key={category.id} className={`bg-white border border-gray-200 ${isCatExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} overflow-hidden shadow-sm`}>
               <button
                 onClick={() => toggleCategory(category.id)}
+                aria-expanded={isCatExpanded}
+                aria-controls={`faq-cat-${category.id}`}
                 className="w-full flex items-center gap-4 p-5 text-right hover:bg-gray-50 transition-colors"
               >
                 <div className={`${category.iconBg} w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0`}>
@@ -178,7 +180,7 @@ export default function FAQPage() {
                 </div>
               </button>
               {isCatExpanded && (
-                <div className="border-t border-gray-200 px-4 pb-4 pt-2 space-y-1.5 animate-slideDown">
+                <div id={`faq-cat-${category.id}`} role="region" aria-label={category.title} className="border-t border-gray-200 px-4 pb-4 pt-2 space-y-1.5 animate-slideDown">
                   {category.questions.map((faq, idx) => {
                     const key = `${category.id}-${idx}`;
                     const isQExpanded = expandedQuestion === key;
@@ -186,6 +188,8 @@ export default function FAQPage() {
                       <div key={key} className="bg-gray-50 border border-gray-200 rounded-xl overflow-hidden">
                         <button
                           onClick={() => toggleQuestion(key)}
+                          aria-expanded={isQExpanded}
+                          aria-controls={`faq-q-${key}`}
                           className="w-full flex items-center gap-3 p-3.5 text-right hover:bg-gray-100 transition-colors"
                         >
                           <span className="text-blue-500 font-bold text-xs flex-shrink-0">ש:</span>
@@ -195,7 +199,7 @@ export default function FAQPage() {
                           </div>
                         </button>
                         {isQExpanded && (
-                          <div className="bg-blue-50 border-t border-blue-200 p-3.5 animate-slideDown">
+                          <div id={`faq-q-${key}`} role="region" aria-label={faq.q} className="bg-blue-50 border-t border-blue-200 p-3.5 animate-slideDown">
                             <div className="flex gap-2">
                               <span className="text-blue-500 font-bold text-xs flex-shrink-0">ת:</span>
                               <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>

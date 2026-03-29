@@ -228,6 +228,8 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
     <div className="animate-fadeIn">
       <button
         onClick={() => setExpanded(!expanded)}
+        aria-expanded={hasChildren ? expanded : undefined}
+        aria-label={node.title}
         className={`w-full ${node.color} border-2 ${node.borderColor} rounded-xl p-3 text-right transition-all duration-300 hover:shadow-lg ${
           depth === 0 ? 'mb-4' : ''
         }`}

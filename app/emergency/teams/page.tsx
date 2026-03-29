@@ -250,6 +250,8 @@ export default function EmergencyTeamsPage() {
             <div key={team.id} className={`bg-gradient-to-l ${team.bgColor} border ${team.border} ${isExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} overflow-hidden shadow-sm`}>
               <button
                 onClick={() => setExpandedTeam(isExpanded ? null : team.id)}
+                aria-expanded={isExpanded}
+                aria-controls={`team-${team.id}`}
                 className="w-full flex items-center gap-4 p-5 text-right hover:bg-white/50 transition-colors"
               >
                 <div className={`${team.iconBg} rounded-xl w-11 h-11 flex items-center justify-center flex-shrink-0`}>
@@ -264,7 +266,7 @@ export default function EmergencyTeamsPage() {
                 </div>
               </button>
               {isExpanded && (
-                <div className={`bg-white border-t ${team.border} px-5 pb-5 pt-4 space-y-4 animate-slideDown`}>
+                <div id={`team-${team.id}`} role="region" aria-label={team.title} className={`bg-white border-t ${team.border} px-5 pb-5 pt-4 space-y-4 animate-slideDown`}>
                   <div>
                     <h3 className="font-bold text-gray-900 text-sm mb-2.5">{teamsPage.mainTasks[locale]}</h3>
                     <ul className="space-y-2">
