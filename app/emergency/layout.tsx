@@ -22,19 +22,7 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
       <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            {/* Brand */}
-            <Link href="/emergency" className="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
-              <Shield size={22} className="text-gray-500" />
-              <div className="text-right">
-                <div className="font-bold text-sm text-gray-900 leading-tight">צוותי חירום</div>
-                <div className="text-[11px] text-gray-400 leading-tight">אגף שירותים חברתיים - נתניה</div>
-              </div>
-            </Link>
-            {/* Logo center */}
-            <Link href="/emergency" className="absolute left-1/2 -translate-x-1/2">
-              <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-9 w-auto" />
-            </Link>
-            {/* Nav items */}
+            {/* Nav items - right side in RTL */}
             <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
               {NAV_ITEMS.map(item => {
                 const isActive = pathname === item.href;
@@ -52,6 +40,19 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
                   </Link>
                 );
               })}
+            </div>
+            {/* Logo + Brand - left side in RTL */}
+            <div className="flex items-center gap-4">
+              <Link href="/emergency" className="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
+                <Shield size={22} className="text-gray-500" />
+                <div className="text-right">
+                  <div className="font-bold text-sm text-gray-900 leading-tight">צוותי חירום</div>
+                  <div className="text-[11px] text-gray-400 leading-tight">אגף שירותים חברתיים - נתניה</div>
+                </div>
+              </Link>
+              <Link href="/emergency">
+                <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-9 w-auto" />
+              </Link>
             </div>
           </div>
         </div>
