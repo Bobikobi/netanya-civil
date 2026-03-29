@@ -1,15 +1,16 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, Users, Building2, Phone, Heart, Hotel, Search, UserCheck, Shield, Star } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ChevronDown, Users, Building2, Phone, Heart, Hotel, Search, UserCheck, Shield, Star } from 'lucide-react';
+import React from 'react';
 
 interface TeamData {
   id: string;
   title: string;
   subtitle: string;
-  icon: LucideIcon;
-  color: string;
-  borderColor: string;
+  icon: React.ElementType;
+  gradient: string;
+  border: string;
+  iconColor: string;
   tasks: string[];
   keyPoints: string[];
 }
@@ -20,8 +21,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות התערבות במקום',
     subtitle: 'צוות ראשון המגיע למקום האירוע, נותן מענה נפשי ראשוני ומנתב תושבים',
     icon: Users,
-    color: 'from-red-500 to-red-600',
-    borderColor: 'border-red-500',
+    gradient: 'from-red-500/15 to-red-900/15',
+    border: 'border-red-500/30',
+    iconColor: 'text-red-400',
     tasks: [
       'הגעה מהירה לאזור האירוע',
       'מתן מענה נפשי ראשוני (מודל מעש"ה)',
@@ -41,8 +43,9 @@ const TEAMS: TeamData[] = [
     title: 'שולחן קדמי',
     subtitle: 'נקודת קליטה קדמית למשפחות – רישום, תשאול והפניה',
     icon: Building2,
-    color: 'from-orange-500 to-orange-600',
-    borderColor: 'border-orange-500',
+    gradient: 'from-orange-500/15 to-orange-900/15',
+    border: 'border-orange-500/30',
+    iconColor: 'text-orange-400',
     tasks: [
       'קליטה ראשונית של תושבים מפונים',
       'תשאול ורישום פרטי משפחה',
@@ -61,8 +64,9 @@ const TEAMS: TeamData[] = [
     title: 'מס"ר – מרכז סיוע ראשוני',
     subtitle: 'מרכז למשפחות – הרגעה, מידע, זכאויות, ציוד ואיתור נעדרים',
     icon: Heart,
-    color: 'from-blue-500 to-blue-600',
-    borderColor: 'border-blue-500',
+    gradient: 'from-blue-500/15 to-blue-900/15',
+    border: 'border-blue-500/30',
+    iconColor: 'text-blue-400',
     tasks: [
       'הרגעה ותמיכה נפשית למשפחות',
       'מתן מידע עדכני על מצב האירוע',
@@ -72,7 +76,7 @@ const TEAMS: TeamData[] = [
       'תיאום מול צוותים מקבילים',
     ],
     keyPoints: [
-      'מרחב מוגן ושקט – חשוב ליצור אוירה רגועה',
+      'מרחב מוגן ושקט – חשוב ליצור אווירה רגועה',
       'עדכונים שוטפים מהמטה',
       'נגישות מלאה לכלל האוכלוסייה',
     ],
@@ -82,8 +86,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות מלונות',
     subtitle: 'קליטת זכאים למלונות, תיאום עם משרד התיירות ומערכת יחד',
     icon: Hotel,
-    color: 'from-teal-500 to-teal-600',
-    borderColor: 'border-teal-500',
+    gradient: 'from-teal-500/15 to-teal-900/15',
+    border: 'border-teal-500/30',
+    iconColor: 'text-teal-400',
     tasks: [
       'בדיקת זכאות למלון עפ"י קריטריונים',
       'תיאום מול משרד התיירות על חדרים זמינים',
@@ -103,8 +108,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות קישור לבתי חולים',
     subtitle: 'ליווי משפחות בבתי חולים, איסוף מידע ואיתור נעדרים',
     icon: Search,
-    color: 'from-purple-500 to-purple-600',
-    borderColor: 'border-purple-500',
+    gradient: 'from-purple-500/15 to-purple-900/15',
+    border: 'border-purple-500/30',
+    iconColor: 'text-purple-400',
     tasks: [
       'יציאה לבתי החולים הרלוונטיים',
       'איסוף מידע על פצועים מאושפזים',
@@ -123,8 +129,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות בשורה מרה',
     subtitle: 'מסירת הודעה על הרוג – בהתאם לכללים מחמירים ועם ליווי מקצועי',
     icon: Shield,
-    color: 'from-gray-600 to-gray-700',
-    borderColor: 'border-gray-500',
+    gradient: 'from-gray-500/15 to-gray-900/15',
+    border: 'border-gray-500/30',
+    iconColor: 'text-gray-400',
     tasks: [
       'מסירת הודעה על הרוג של בן משפחה',
       'ליווי מקצועי צמוד למשפחה לאחר ההודעה',
@@ -143,8 +150,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות תל"ם – תשומת לב מיוחדת',
     subtitle: 'סיוע לאוכלוסיות פגיעות הדורשות קשר יזום – מספר שעות לאחר שיא האירוע',
     icon: UserCheck,
-    color: 'from-pink-500 to-pink-600',
-    borderColor: 'border-pink-500',
+    gradient: 'from-pink-500/15 to-pink-900/15',
+    border: 'border-pink-500/30',
+    iconColor: 'text-pink-400',
     tasks: [
       'איתור קשישים בודדים באזור האירוע',
       'קשר יזום עם אוכלוסיות פגיעות (נכים, חולי נפש)',
@@ -163,8 +171,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות מענה רגשי לתושבים',
     subtitle: 'מענה רגשי טלפוני לתושבים במצוקה – בהפעלת צוות השפ"ח',
     icon: Phone,
-    color: 'from-indigo-500 to-indigo-600',
-    borderColor: 'border-indigo-500',
+    gradient: 'from-indigo-500/15 to-indigo-900/15',
+    border: 'border-indigo-500/30',
+    iconColor: 'text-indigo-400',
     tasks: [
       'מענה טלפוני לתושבים במצוקה',
       'קבלת הפניות ממוקד 106',
@@ -183,8 +192,9 @@ const TEAMS: TeamData[] = [
     title: 'צוות מתנדבים וקהילה',
     subtitle: 'הפעלת מתנדבים בשעת חירום ומתן סיוע לצרכים מידיים',
     icon: Star,
-    color: 'from-amber-500 to-amber-600',
-    borderColor: 'border-amber-500',
+    gradient: 'from-amber-500/15 to-amber-900/15',
+    border: 'border-amber-500/30',
+    iconColor: 'text-amber-400',
     tasks: [
       'עיבוי צוותי שטח במתנדבים מאומנים',
       'רישום וניהול מתנדבים חדשים',
@@ -203,8 +213,9 @@ const TEAMS: TeamData[] = [
     title: '"מי יציל את המציל"',
     subtitle: 'ונטילציה ותמיכה רגשית לצוותי החירום הפועלים בשטח',
     icon: Heart,
-    color: 'from-rose-500 to-rose-600',
-    borderColor: 'border-rose-500',
+    gradient: 'from-rose-500/15 to-rose-900/15',
+    border: 'border-rose-500/30',
+    iconColor: 'text-rose-400',
     tasks: [
       'מתן ונטילציה לצוותי השטח בהפסקות',
       'זיהוי סימני עומס וסטרס אצל צוותי החירום',
@@ -223,8 +234,9 @@ const TEAMS: TeamData[] = [
     title: 'מטה מכלול אוכלוסייה',
     subtitle: 'ניהול, תיאום וריכוז תמונת מצב כוללת – מנהל מכלול + ראש תא רווחה',
     icon: Shield,
-    color: 'from-slate-600 to-slate-700',
-    borderColor: 'border-slate-500',
+    gradient: 'from-slate-500/15 to-slate-900/15',
+    border: 'border-slate-500/30',
+    iconColor: 'text-slate-400',
     tasks: [
       'ריכוז תמונת מצב מכל הצוותים',
       'קבלת החלטות וחלוקת משימות',
@@ -245,52 +257,56 @@ export default function EmergencyTeamsPage() {
   const [expandedTeam, setExpandedTeam] = useState<string | null>(null);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Hero */}
       <section className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800">צוותי החירום</h1>
-        <p className="text-slate-500 text-lg">בחרו צוות לצפייה בתוכנית ההפעלה המלאה</p>
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-white to-white/70 bg-clip-text text-transparent">
+          צוותי החירום
+        </h1>
+        <p className="text-white/40 text-base">בחרו צוות לצפייה בתוכנית ההפעלה המלאה</p>
       </section>
 
-      {/* Teams Grid */}
+      {/* Teams */}
       <div className="space-y-3">
         {TEAMS.map(team => {
           const Icon = team.icon;
           const isExpanded = expandedTeam === team.id;
           return (
-            <div key={team.id} className="bg-white rounded-xl shadow overflow-hidden">
+            <div key={team.id} className={`bg-gradient-to-l ${team.gradient} border ${team.border} ${isExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} overflow-hidden`}>
               <button
                 onClick={() => setExpandedTeam(isExpanded ? null : team.id)}
-                className="w-full flex items-center gap-4 p-5 text-right hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center gap-4 p-5 text-right hover:bg-white/5 transition-colors"
               >
-                <div className={`bg-gradient-to-bl ${team.color} text-white w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0`}>
-                  <Icon size={22} />
+                <div className="bg-white/10 rounded-xl w-11 h-11 flex items-center justify-center flex-shrink-0">
+                  <Icon size={20} className={team.iconColor} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-bold text-lg text-slate-800">{team.title}</div>
-                  <div className="text-sm text-slate-500 truncate">{team.subtitle}</div>
+                  <div className="font-bold text-white text-sm">{team.title}</div>
+                  <div className="text-xs text-white/40 truncate">{team.subtitle}</div>
                 </div>
-                {isExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
+                <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
+                  <ChevronDown size={18} className="text-white/40" />
+                </div>
               </button>
               {isExpanded && (
-                <div className={`border-t border-r-4 ${team.borderColor} px-5 pb-5 pt-4 space-y-4`}>
+                <div className={`bg-white/5 border-t ${team.border} px-5 pb-5 pt-4 space-y-4 animate-slideDown`}>
                   <div>
-                    <h3 className="font-bold text-slate-700 mb-2">משימות עיקריות</h3>
-                    <ul className="space-y-1.5">
+                    <h3 className="font-bold text-white text-sm mb-2.5">משימות עיקריות</h3>
+                    <ul className="space-y-2">
                       {team.tasks.map((task, i) => (
-                        <li key={i} className="flex items-start gap-2 text-slate-600 text-sm">
-                          <span className="text-blue-500 mt-0.5">●</span>
+                        <li key={i} className="flex items-start gap-2.5 text-white/60 text-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/25 mt-1.5 flex-shrink-0" />
                           {task}
                         </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-amber-50 rounded-lg p-4 border border-amber-100">
-                    <h3 className="font-bold text-amber-800 mb-2 text-sm">נקודות מפתח</h3>
-                    <ul className="space-y-1">
+                  <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
+                    <h3 className="font-bold text-amber-400 mb-2 text-xs">נקודות מפתח</h3>
+                    <ul className="space-y-1.5">
                       {team.keyPoints.map((point, i) => (
-                        <li key={i} className="flex items-start gap-2 text-amber-700 text-sm">
-                          <span className="mt-0.5">⚡</span>
+                        <li key={i} className="flex items-start gap-2 text-white/60 text-sm">
+                          <span className="text-amber-400 mt-0.5 text-xs">&#9889;</span>
                           {point}
                         </li>
                       ))}

@@ -1,13 +1,13 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones } from 'lucide-react';
+import React from 'react';
 
 interface FAQCategory {
   id: string;
   title: string;
-  icon: LucideIcon;
-  color: string;
+  icon: React.ElementType;
+  iconColor: string;
   questions: { q: string; a: string }[];
 }
 
@@ -16,7 +16,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'general',
     title: 'מטרת מערכת \'יחד\' ומידע כללי',
     icon: HelpCircle,
-    color: 'text-blue-600 bg-blue-50',
+    iconColor: 'text-blue-400',
     questions: [
       {
         q: 'מה זו מערכת \'יחד\'?',
@@ -44,7 +44,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'data_entry',
     title: 'הזנת נתונים למערכת',
     icon: Database,
-    color: 'text-emerald-600 bg-emerald-50',
+    iconColor: 'text-emerald-400',
     questions: [
       {
         q: 'מי מוסמך להזין נתונים למערכת?',
@@ -68,7 +68,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'access',
     title: 'כניסה והרשאות למערכת \'יחד\'',
     icon: LogIn,
-    color: 'text-purple-600 bg-purple-50',
+    iconColor: 'text-purple-400',
     questions: [
       {
         q: 'איך נכנסים למערכת?',
@@ -96,7 +96,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'reports',
     title: 'נתונים ודוחות',
     icon: BarChart3,
-    color: 'text-amber-600 bg-amber-50',
+    iconColor: 'text-amber-400',
     questions: [
       {
         q: 'אילו דוחות ניתן להפיק?',
@@ -128,7 +128,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'evacuation',
     title: 'תהליך הפינוי',
     icon: Truck,
-    color: 'text-red-600 bg-red-50',
+    iconColor: 'text-red-400',
     questions: [
       {
         q: 'מי מחליט על פינוי?',
@@ -156,7 +156,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'forms',
     title: 'מילוי טופס דיווח',
     icon: FileText,
-    color: 'text-teal-600 bg-teal-50',
+    iconColor: 'text-teal-400',
     questions: [
       {
         q: 'אילו טפסים צריך למלא באירוע?',
@@ -171,7 +171,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
         a: 'כן, יש גרסאות מודפסות. אבל חובה להעלות למערכת בהקדם האפשרי.',
       },
       {
-        q: 'מה עושים עם טפסים שלא מלאים מעד?',
+        q: 'מה עושים עם טפסים שלא מלאים עד הסוף?',
         a: 'מעבירים למנהל הצוות שידאג להשלמה. חשוב לא להשאיר טפסים חלקיים.',
       },
       {
@@ -184,7 +184,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'municipality',
     title: 'תפקיד הרשות המקומית',
     icon: Building2,
-    color: 'text-indigo-600 bg-indigo-50',
+    iconColor: 'text-indigo-400',
     questions: [
       {
         q: 'מה תפקיד הרשות המקומית באירוע חירום?',
@@ -208,7 +208,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'support',
     title: 'תמיכה וקישורים',
     icon: Headphones,
-    color: 'text-pink-600 bg-pink-50',
+    iconColor: 'text-pink-400',
     questions: [
       {
         q: 'לאן לפנות בבעיה טכנית?',
@@ -240,11 +240,13 @@ export default function FAQPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       {/* Hero */}
       <section className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800">שאלות ותשובות</h1>
-        <p className="text-slate-500 text-lg">מבוסס על מערכת &apos;יחד&apos; – שאלות ותשובות לרשויות המקומיות</p>
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-white to-white/70 bg-clip-text text-transparent">
+          שאלות ותשובות
+        </h1>
+        <p className="text-white/40 text-base">מבוסס על מערכת &apos;יחד&apos; – שאלות ותשובות לרשויות המקומיות</p>
       </section>
 
       {/* Categories */}
@@ -253,40 +255,44 @@ export default function FAQPage() {
           const Icon = category.icon;
           const isCatExpanded = expandedCategory === category.id;
           return (
-            <div key={category.id} className="bg-white rounded-xl shadow overflow-hidden">
+            <div key={category.id} className={`bg-white/5 border border-white/10 ${isCatExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} overflow-hidden`}>
               <button
                 onClick={() => toggleCategory(category.id)}
-                className="w-full flex items-center gap-4 p-5 text-right hover:bg-slate-50 transition-colors"
+                className="w-full flex items-center gap-4 p-5 text-right hover:bg-white/5 transition-colors"
               >
-                <div className={`${category.color} w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0`}>
-                  <Icon size={22} />
+                <div className="bg-white/10 w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Icon size={20} className={category.iconColor} />
                 </div>
-                <div className="flex-1">
-                  <div className="font-bold text-lg text-slate-800">{category.title}</div>
-                  <div className="text-sm text-slate-500">{category.questions.length} שאלות</div>
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-white text-sm">{category.title}</div>
+                  <div className="text-xs text-white/40">{category.questions.length} שאלות</div>
                 </div>
-                {isCatExpanded ? <ChevronUp size={20} className="text-slate-400" /> : <ChevronDown size={20} className="text-slate-400" />}
+                <div className={`transition-transform duration-200 ${isCatExpanded ? 'rotate-180' : ''}`}>
+                  <ChevronDown size={18} className="text-white/40" />
+                </div>
               </button>
               {isCatExpanded && (
-                <div className="border-t px-5 pb-4 space-y-2">
+                <div className="border-t border-white/10 px-4 pb-4 pt-2 space-y-1.5 animate-slideDown">
                   {category.questions.map((faq, idx) => {
                     const key = `${category.id}-${idx}`;
                     const isQExpanded = expandedQuestion === key;
                     return (
-                      <div key={key} className="border rounded-lg overflow-hidden">
+                      <div key={key} className="bg-white/5 border border-white/10 rounded-xl overflow-hidden">
                         <button
                           onClick={() => toggleQuestion(key)}
-                          className="w-full flex items-center gap-3 p-3 text-right hover:bg-slate-50 transition-colors"
+                          className="w-full flex items-center gap-3 p-3.5 text-right hover:bg-white/5 transition-colors"
                         >
-                          <span className="text-blue-500 font-bold">ש:</span>
-                          <span className="flex-1 text-slate-700 font-medium text-sm">{faq.q}</span>
-                          {isQExpanded ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
+                          <span className="text-blue-400 font-bold text-xs flex-shrink-0">ש:</span>
+                          <span className="flex-1 text-white/70 text-sm text-right">{faq.q}</span>
+                          <div className={`transition-transform duration-200 flex-shrink-0 ${isQExpanded ? 'rotate-180' : ''}`}>
+                            <ChevronDown size={14} className="text-white/30" />
+                          </div>
                         </button>
                         {isQExpanded && (
-                          <div className="bg-blue-50 p-3 border-t">
+                          <div className="bg-blue-500/10 border-t border-blue-500/20 p-3.5 animate-slideDown">
                             <div className="flex gap-2">
-                              <span className="text-blue-600 font-bold">ת:</span>
-                              <p className="text-slate-700 text-sm leading-relaxed">{faq.a}</p>
+                              <span className="text-blue-400 font-bold text-xs flex-shrink-0">ת:</span>
+                              <p className="text-white/60 text-sm leading-relaxed">{faq.a}</p>
                             </div>
                           </div>
                         )}
