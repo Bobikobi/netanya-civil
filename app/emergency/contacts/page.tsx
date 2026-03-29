@@ -13,47 +13,92 @@ export interface Contact {
 
 const CONTACTS: Contact[] = [
   // מטה מכלול אוכלוסייה
-  { name: '', role: 'ראש מכלול אוכלוסייה', phone: '', category: 'מטה מכלול' },
-  { name: '', role: 'סגן ראש מכלול', phone: '', category: 'מטה מכלול' },
-  { name: '', role: 'ראש תא רווחה', phone: '', category: 'מטה מכלול' },
-  { name: '', role: 'רכז מידע ודיווח', phone: '', category: 'מטה מכלול' },
-  { name: '', role: 'קצין קישור פיקוד העורף', phone: '', category: 'מטה מכלול' },
+  { name: 'רותי גור', role: 'ראש מטה (משמרת א׳)', phone: '052-2422009', category: 'מטה מכלול' },
+  { name: 'עדי פוליטי', role: 'סגן ראש מטה (משמרת א׳)', phone: '052-3315503', category: 'מטה מכלול' },
+  { name: 'לימור איצקוביץ', role: 'ראש מטה (משמרת ב׳)', phone: '052-3890241', category: 'מטה מכלול' },
+  { name: 'דבי סבטוי', role: 'סגן ראש מטה (משמרת ב׳)', phone: '052-8138756', category: 'מטה מכלול' },
+  { name: 'יניר יעקובי', role: 'רכז חירום מכלול', phone: '052-3800007', category: 'מטה מכלול' },
+  { name: 'בני שכטר', role: 'מערכות מידע ונתונים', phone: '052-2452270', category: 'מטה מכלול' },
+  { name: 'לוציאנה', role: 'מערכות מידע ונתונים', phone: '050-6400205', category: 'מטה מכלול' },
+  { name: 'ענת עשור', role: 'מיון פניות', phone: '052-6404403', category: 'מטה מכלול' },
+  { name: 'רויטל נחמיאס', role: 'פרסום, שיווק ומידע', phone: '054-4922372', category: 'מטה מכלול' },
+  { name: 'חגית אביב', role: 'משאבי אנוש (1)', phone: '050-7233665', category: 'מטה מכלול' },
+  { name: 'רויטל רש', role: 'משאבי אנוש (2)', phone: '050-3808184', category: 'מטה מכלול' },
 
-  // צוות תקרית
-  { name: '', role: 'ראש צוות תקרית', phone: '', category: 'צוות תקרית' },
-  { name: '', role: 'חבר צוות תקרית', phone: '', category: 'צוות תקרית' },
+  // מטה צוותי התערבות
+  { name: 'נדין שם טוב', role: 'ראש מטה התערבות', phone: '054-4719718', category: 'צוותי התערבות' },
+  { name: 'יעל קידר', role: 'צוותי התערבות', phone: '058-5768666', category: 'צוותי התערבות' },
 
-  // מס"ר
-  { name: '', role: 'מנהל מס"ר', phone: '', category: 'מס"ר' },
-  { name: '', role: 'אחראי מתחם קליטה', phone: '', category: 'מס"ר' },
-  { name: '', role: 'אחראי מתחם המתנה', phone: '', category: 'מס"ר' },
-  { name: '', role: 'אחראי מתחם שיבוץ', phone: '', category: 'מס"ר' },
-  { name: '', role: 'אחראי מתחם נעדרים', phone: '', category: 'מס"ר' },
+  // רובעים
+  { name: 'דקלה קליין', role: 'רובע א׳', phone: '050-6936618', category: 'רובעים' },
+  { name: 'מורית שטרן', role: 'רובע א׳', phone: '054-6783122', category: 'רובעים' },
+  { name: 'אורלי וקשי', role: 'רובע ב׳', phone: '052-5123079', category: 'רובעים' },
+  { name: 'אודי מגידי', role: 'רובע ב׳', phone: '052-5799063', category: 'רובעים' },
+  { name: 'מירי ברון', role: 'רובע ג׳', phone: '050-7112414', category: 'רובעים' },
+  { name: 'אור הרוש', role: 'רובע ג׳', phone: '052-5343103', category: 'רובעים' },
+  { name: 'מיכל חלפון', role: 'רובע ד׳', phone: '050-2748662', category: 'רובעים' },
+  { name: 'סיון לוי נפתלי', role: 'רובע ד׳', phone: '052-6879393', category: 'רובעים' },
+  { name: 'אביבית דבי', role: 'רובע ה׳', phone: '052-2207705', category: 'רובעים' },
+  { name: 'אירית שפירא', role: 'רובע ה׳', phone: '052-4434987', category: 'רובעים' },
 
-  // צוות מלונות
-  { name: '', role: 'ראש צוות מלונות', phone: '', category: 'צוות מלונות' },
-  { name: '', role: 'רכז שיבוצים', phone: '', category: 'צוות מלונות' },
+  // מס"ר – מרכז משפחות
+  { name: 'שביט ביטון', role: 'מרכז משפחות', phone: '054-4849474', category: 'מס"ר' },
+  { name: 'ליטל לוריא', role: 'מרכז משפחות', phone: '054-8184472', category: 'מס"ר' },
+  { name: 'כנרת מנטין', role: 'מתחם המתנה', phone: '', category: 'מס"ר' },
+  { name: 'מיה אופננג', role: 'מתחם נעדרים', phone: '', category: 'מס"ר' },
 
-  // צוות קישור לבתי חולים
-  { name: '', role: 'קישור לניאדו', phone: '', category: 'קישור בתי חולים' },
-  { name: '', role: 'קישור מאיר', phone: '', category: 'קישור בתי חולים' },
-  { name: '', role: 'קישור הלל יפה', phone: '', category: 'קישור בתי חולים' },
+  // מטה מל"מ
+  { name: 'שני רשף', role: 'ראש מטה מל"מ', phone: '054-7336485', category: 'מטה מל"מ' },
+  { name: 'ציפי כרמלי', role: 'סגן מטה מל"מ', phone: '052-2587918', category: 'מטה מל"מ' },
+  { name: 'נאוה תמיר', role: 'אס"ל', phone: '054-7717016', category: 'מטה מל"מ' },
+  { name: 'דפנה מור', role: 'אס"ל', phone: '052-2724404', category: 'מטה מל"מ' },
+  { name: 'בל מרקוביץ', role: 'שפ"ח', phone: '052-4565525', category: 'מטה מל"מ' },
 
-  // צוות בשורה מרה
-  { name: '', role: 'ראש צוות בשורה מרה', phone: '', category: 'בשורה מרה' },
+  // מטה רגשי
+  { name: 'סיגל קני פז', role: 'ראש מטה רגשי', phone: '054-5594108', category: 'מטה רגשי' },
+  { name: 'מירב מור', role: 'סגן מטה רגשי', phone: '052-4686349', category: 'מטה רגשי' },
 
-  // צוות תל"ם
-  { name: '', role: 'ראש צוות תל"ם', phone: '', category: 'תל"ם' },
+  // קו פתוח ומידע
+  { name: 'רקפת וינגרט', role: 'צוות קו פתוח ומידע', phone: '052-5799061', category: 'קו פתוח' },
+  { name: 'שלומית עמרני', role: 'צוות קו פתוח ומידע', phone: '054-2339491', category: 'קו פתוח' },
 
-  // צוות מענה רגשי / קו פתוח
-  { name: '', role: 'ראש צוות קו פתוח', phone: '', category: 'קו פתוח' },
+  // קישור בית חולים
+  { name: 'שמרית דיאמנט', role: 'קישור בית חולים (1)', phone: '052-4722014', category: 'קישור בתי חולים' },
+  { name: 'אסנת דוד', role: 'קישור בית חולים (2)', phone: '054-8200602', category: 'קישור בתי חולים' },
 
-  // צוות מתנדבים
-  { name: '', role: 'ראש צוות מתנדבים', phone: '', category: 'מתנדבים וקהילה' },
-  { name: '', role: 'רכז לוגיסטיקה', phone: '', category: 'מתנדבים וקהילה' },
+  // מטה חללים (בשורה מרה)
+  { name: 'נילי חומן', role: 'ראש מטה חללים', phone: '050-5958666', category: 'מטה חללים' },
+  { name: 'יעל שחר', role: 'סגן מטה חללים', phone: '052-4476011', category: 'מטה חללים' },
 
-  // "מי יציל את המציל"
-  { name: '', role: 'אחראי ונטילציה', phone: '', category: 'מי יציל את המציל' },
+  // מטה אוכלוסיות מיוחדות (תל"ם)
+  { name: 'קלרה חן', role: 'ראש מטה אוכלוסיות מיוחדות', phone: '052-6642723', category: 'אוכלוסיות מיוחדות' },
+  { name: 'יעל רכס', role: 'סגן מטה אוכלוסיות מיוחדות', phone: '052-5550588', category: 'אוכלוסיות מיוחדות' },
+
+  // מטה קליטת אוכלוסייה (מלונות)
+  { name: 'אתי עמיאל', role: 'ראש מטה קליטת אוכלוסייה', phone: '054-8462292', category: 'קליטת אוכלוסייה' },
+  { name: 'הדר שחר פז', role: 'סגן מטה קליטת אוכלוסייה', phone: '054-4251952', category: 'קליטת אוכלוסייה' },
+
+  // מטה תפעול ומתנדבים
+  { name: 'אפרת ברוך', role: 'ראש מטה תפעול ומתנדבים', phone: '052-4680330', category: 'תפעול ומתנדבים' },
+  { name: 'מלי גניש', role: 'סגן + חמ"ל לוגיסטיקה', phone: '052-2921818', category: 'תפעול ומתנדבים' },
+  { name: 'אתי יוזף', role: 'חמ"ל מתנדבים', phone: '052-5799082', category: 'תפעול ומתנדבים' },
+
+  // מטה אזרחים ותיקים
+  { name: 'גילה גלעדי', role: 'ראש מטה אזרחים ותיקים', phone: '052-5799058', category: 'אזרחים ותיקים' },
+  { name: 'ספי אביב', role: 'סגן מטה אזרחים ותיקים', phone: '054-6460570', category: 'אזרחים ותיקים' },
+
+  // מטה קליטת עלייה
+  { name: 'בני אמר', role: 'ראש מטה קליטת עלייה', phone: '052-6398920', category: 'קליטת עלייה' },
+
+  // מטה תיירות
+  { name: 'אולגה לורייה', role: 'ראש מטה תיירות', phone: '054-3355359', category: 'תיירות' },
+  { name: 'עדנה שפיצר', role: 'סגן מטה תיירות', phone: '054-3451816', category: 'תיירות' },
+
+  // מטה בריאות
+  { name: 'שלומי רוקח', role: 'ראש מטה בריאות', phone: '052-3684242', category: 'בריאות' },
+
+  // מרכז ט.ל.י.ה
+  { name: 'צפי גלובין', role: 'מרכז ט.ל.י.ה', phone: '054-4501520', category: 'ט.ל.י.ה' },
 
   // גורמי חוץ
   { name: 'מוקד עירוני', role: 'מוקד 106', phone: '106', category: 'גורמי חוץ' },
@@ -67,29 +112,43 @@ const CONTACTS: Contact[] = [
 
 const CATEGORIES = [
   'מטה מכלול',
-  'צוות תקרית',
+  'צוותי התערבות',
+  'רובעים',
   'מס"ר',
-  'צוות מלונות',
-  'קישור בתי חולים',
-  'בשורה מרה',
-  'תל"ם',
+  'מטה מל"מ',
+  'מטה רגשי',
   'קו פתוח',
-  'מתנדבים וקהילה',
-  'מי יציל את המציל',
+  'קישור בתי חולים',
+  'מטה חללים',
+  'אוכלוסיות מיוחדות',
+  'קליטת אוכלוסייה',
+  'תפעול ומתנדבים',
+  'אזרחים ותיקים',
+  'קליטת עלייה',
+  'תיירות',
+  'בריאות',
+  'ט.ל.י.ה',
   'גורמי חוץ',
 ];
 
 const CATEGORY_COLORS: Record<string, { bg: string; border: string; text: string; badge: string }> = {
   'מטה מכלול': { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-700', badge: 'bg-slate-100 text-slate-600' },
-  'צוות תקרית': { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-100 text-red-600' },
+  'צוותי התערבות': { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-100 text-red-600' },
+  'רובעים': { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-700', badge: 'bg-orange-100 text-orange-600' },
   'מס"ר': { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700', badge: 'bg-blue-100 text-blue-600' },
-  'צוות מלונות': { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-700', badge: 'bg-teal-100 text-teal-600' },
-  'קישור בתי חולים': { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700', badge: 'bg-purple-100 text-purple-600' },
-  'בשורה מרה': { bg: 'bg-gray-50', border: 'border-gray-300', text: 'text-gray-700', badge: 'bg-gray-200 text-gray-600' },
-  'תל"ם': { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-700', badge: 'bg-pink-100 text-pink-600' },
+  'מטה מל"מ': { bg: 'bg-cyan-50', border: 'border-cyan-200', text: 'text-cyan-700', badge: 'bg-cyan-100 text-cyan-600' },
+  'מטה רגשי': { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-700', badge: 'bg-pink-100 text-pink-600' },
   'קו פתוח': { bg: 'bg-green-50', border: 'border-green-200', text: 'text-green-700', badge: 'bg-green-100 text-green-600' },
-  'מתנדבים וקהילה': { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', badge: 'bg-amber-100 text-amber-600' },
-  'מי יציל את המציל': { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-700', badge: 'bg-rose-100 text-rose-600' },
+  'קישור בתי חולים': { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700', badge: 'bg-purple-100 text-purple-600' },
+  'מטה חללים': { bg: 'bg-gray-50', border: 'border-gray-300', text: 'text-gray-700', badge: 'bg-gray-200 text-gray-600' },
+  'אוכלוסיות מיוחדות': { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-700', badge: 'bg-violet-100 text-violet-600' },
+  'קליטת אוכלוסייה': { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-700', badge: 'bg-teal-100 text-teal-600' },
+  'תפעול ומתנדבים': { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-700', badge: 'bg-amber-100 text-amber-600' },
+  'אזרחים ותיקים': { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-700', badge: 'bg-emerald-100 text-emerald-600' },
+  'קליטת עלייה': { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-700', badge: 'bg-sky-100 text-sky-600' },
+  'תיירות': { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-700', badge: 'bg-rose-100 text-rose-600' },
+  'בריאות': { bg: 'bg-lime-50', border: 'border-lime-200', text: 'text-lime-700', badge: 'bg-lime-100 text-lime-600' },
+  'ט.ל.י.ה': { bg: 'bg-fuchsia-50', border: 'border-fuchsia-200', text: 'text-fuchsia-700', badge: 'bg-fuchsia-100 text-fuchsia-600' },
   'גורמי חוץ': { bg: 'bg-indigo-50', border: 'border-indigo-200', text: 'text-indigo-700', badge: 'bg-indigo-100 text-indigo-600' },
 };
 
@@ -124,7 +183,7 @@ export default function ContactsPage() {
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-8">
       <section className="text-center space-y-3">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900">ספר טלפונים</h1>
-        <p className="text-gray-400 text-base">אנשי קשר מרכזיים לפי צוותים – לחצו על מספר כדי לחייג</p>
+        <p className="text-gray-400 text-base">מבנה ארגוני מכלול אוכלוסייה – עיריית נתניה · מעודכן אפריל 2026</p>
       </section>
 
       {/* Yachad link */}
@@ -218,16 +277,6 @@ export default function ContactsPage() {
                             <Copy size={13} className="text-gray-400" />
                           )}
                         </button>
-                        {contact.phone2 && (
-                          <a
-                            href={`tel:${contact.phone2}`}
-                            className={`flex items-center gap-1 ${colors.text} text-sm font-medium hover:underline mr-2`}
-                            dir="ltr"
-                          >
-                            <Phone size={13} />
-                            {contact.phone2}
-                          </a>
-                        )}
                       </div>
                     )}
                     {!contact.phone && (
@@ -248,10 +297,9 @@ export default function ContactsPage() {
         </div>
       )}
 
-      {/* Note */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
         <p className="text-amber-700 text-sm font-medium">
-          הספר מעודכן לפי מבנה צוותי החירום. יש להשלים שמות ומספרים בהתאם לרשימה העדכנית של מנהל המכלול.
+          מבוסס על תרשים מבנה ארגוני מכלול אוכלוסייה · מעודכן אפריל 2026
         </p>
       </div>
     </div>

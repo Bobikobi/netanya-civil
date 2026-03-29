@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones, ExternalLink } from 'lucide-react';
+import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones, ExternalLink, Phone } from 'lucide-react';
 import React from 'react';
 
 interface FAQCategory {
@@ -208,6 +208,32 @@ export default function FAQPage() {
           );
         })}
       </div>
+
+      {/* Embedded key contacts */}
+      <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+          <Phone size={16} className="text-blue-500" />
+          אנשי קשר – מידע ותמיכה טכנית
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          {[
+            { name: 'בני שכטר', role: 'מערכות מידע', phone: '052-2452270' },
+            { name: 'ענת עשור', role: 'מיון פניות', phone: '052-6404403' },
+            { name: 'יניר יעקובי', role: 'רכז חירום מכלול', phone: '052-3800007' },
+            { name: 'רויטל נחמיאס', role: 'פרסום ומידע', phone: '054-4922372' },
+            { name: 'רקפת וינגרט', role: 'קו פתוח ומידע', phone: '052-5799061' },
+            { name: 'מוקד 106', role: 'מוקד עירוני', phone: '106' },
+          ].map((c, i) => (
+            <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+              <Phone size={12} className="text-blue-500 flex-shrink-0" />
+              <div className="min-w-0">
+                <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
+                <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

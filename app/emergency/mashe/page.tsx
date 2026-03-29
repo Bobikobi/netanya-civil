@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, AlertTriangle, CheckCircle, Play, BookOpen } from 'lucide-react';
+import { ChevronDown, AlertTriangle, CheckCircle, Play, BookOpen, Phone } from 'lucide-react';
 import React from 'react';
 
 const STEPS = [
@@ -190,6 +190,32 @@ export default function MashePage() {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Embedded key contacts */}
+      <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
+          <Phone size={16} className="text-blue-500" />
+          אנשי קשר – מטה רגשי וצוותי התערבות
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+          {[
+            { name: 'סיגל קני פז', role: 'ראש מטה רגשי', phone: '054-5594108' },
+            { name: 'מירב מור', role: 'סגן מטה רגשי', phone: '052-4686349' },
+            { name: 'נדין שם טוב', role: 'ראש מטה התערבות', phone: '054-4719718' },
+            { name: 'ער"ן', role: 'עזרה ראשונה נפשית', phone: '1201' },
+            { name: 'נט"ל', role: 'קו סיוע רגשי', phone: '*2784' },
+            { name: 'מוקד 106', role: 'מוקד עירוני', phone: '106' },
+          ].map((c, i) => (
+            <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+              <Phone size={12} className="text-blue-500 flex-shrink-0" />
+              <div className="min-w-0">
+                <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
+                <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
+              </div>
+            </a>
           ))}
         </div>
       </section>
