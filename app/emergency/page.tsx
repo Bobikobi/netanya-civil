@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   AlertTriangle,
@@ -12,9 +12,12 @@ import {
   ChevronDown,
   ChevronUp,
   ExternalLink,
-  Zap,
   ArrowDown,
+  Lightbulb,
+  ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
+import React from 'react';
 
 const FLOW_STEPS = [
   {
@@ -22,8 +25,10 @@ const FLOW_STEPS = [
     title: 'אירוע הרס',
     subtitle: 'נפילת טיל / אירוע המוני',
     icon: AlertTriangle,
-    color: 'from-red-600 to-red-700',
-    borderColor: 'border-red-500',
+    gradient: 'from-red-500/20 to-red-900/20',
+    border: 'border-red-500/50',
+    iconBg: 'bg-red-500/20',
+    iconColor: 'text-red-400',
     details: [
       'קבלת התרעה / דיווח על אירוע',
       'הפעלת שרשרת דיווח',
@@ -35,8 +40,10 @@ const FLOW_STEPS = [
     title: 'צוות התערבות במקום',
     subtitle: 'הרגעה · טיפול · ניתוב',
     icon: Users,
-    color: 'from-orange-500 to-orange-600',
-    borderColor: 'border-orange-500',
+    gradient: 'from-orange-500/20 to-orange-900/20',
+    border: 'border-orange-500/50',
+    iconBg: 'bg-orange-500/20',
+    iconColor: 'text-orange-400',
     details: [
       'הגעה ראשונה לאזור האירוע',
       'מענה נפשי ראשוני לפצועים ולנוכחים',
@@ -49,8 +56,10 @@ const FLOW_STEPS = [
     title: 'שולחן קדמי',
     subtitle: 'תשאול · רישום · הפניה',
     icon: ClipboardList,
-    color: 'from-yellow-500 to-yellow-600',
-    borderColor: 'border-yellow-500',
+    gradient: 'from-amber-500/20 to-amber-900/20',
+    border: 'border-amber-500/50',
+    iconBg: 'bg-amber-500/20',
+    iconColor: 'text-amber-400',
     details: [
       'נקודת קליטה קדמית למשפחות',
       'תשאול ראשוני ורישום פרטים',
@@ -63,8 +72,10 @@ const FLOW_STEPS = [
     title: 'מס"ר – מרכז סיוע ראשוני',
     subtitle: 'הרגעה · מידע · זכאות · ציוד',
     icon: Building2,
-    color: 'from-blue-600 to-blue-700',
-    borderColor: 'border-blue-500',
+    gradient: 'from-blue-500/20 to-blue-900/20',
+    border: 'border-blue-500/50',
+    iconBg: 'bg-blue-500/20',
+    iconColor: 'text-blue-400',
     details: [
       'מרכז סיוע מרכזי למשפחות',
       'מתן מידע על זכאויות',
@@ -76,21 +87,21 @@ const FLOW_STEPS = [
 ];
 
 const PARALLEL_TEAMS = [
-  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי החולים, סיוע למשפחות ואיתור נעדרים' },
-  { title: 'צוות מלונות', desc: 'קבלה וקליטה של זכאים, עבודה מול המלונות' },
-  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג, לעולם לא בשטח האירוע' },
-  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות, מופעל שעות לאחר שיא האירוע' },
-  { title: 'מענה רגשי לתושבים', desc: 'מענה טלפוני לתושבים במצוקה, הפניות ממוקד 106' },
-  { title: 'צוות מתנדבים וקהילה', desc: 'עיבוי צוותי שטח, רישום וניהול מתנדבים' },
-  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום, לכל אנשי השטח והמקצוע' },
-  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב, תיאום והקצאת משימות, עדכון ראש העיר' },
+  { title: 'צוות קישור לבתי חולים', desc: 'יציאה לבתי החולים\nסיוע למשפחות ואיתור נעדרים' },
+  { title: 'צוות מלונות', desc: 'קבלה וקליטה של זכאים\nעבודה מול המלונות' },
+  { title: 'צוות בשורה מרה', desc: 'מסירת הודעה על הרוג\nלעולם לא בשטח האירוע' },
+  { title: 'צוות תל"ם', desc: 'קשר יזום עם אוכלוסיות פגיעות\nמופעל שעות לאחר שיא האירוע' },
+  { title: 'מענה רגשי לתושבים', desc: 'מענה טלפוני לתושבים במצוקה\nהפניות ממוקד 106' },
+  { title: 'צוות מתנדבים וקהילה', desc: 'עיבוי צוותי שטח\nרישום וניהול מתנדבים' },
+  { title: '"מי יציל את המציל"', desc: 'ונטילציה ותמיכה לצוותי החירום\nלכל אנשי השטח והמקצוע' },
+  { title: 'מטה מכלול אוכלוסייה', desc: 'ריכוז תמונת מצב\nתיאום והקצאת משימות\nעדכון ראש העיר' },
 ];
 
 const QUICK_LINKS = [
-  { href: '/emergency/mashe', label: 'מודל מעש״ה', sublabel: 'עזרה ראשונה נפשית', icon: Heart },
-  { href: '/emergency/teams', label: 'צוותי החירום', sublabel: 'תוכניות הפעלה מלאות', icon: Users },
-  { href: '/emergency/scripts', label: 'תסריטי שיחה', sublabel: 'מצבי שטח מעשיים', icon: MessageSquare },
-  { href: '/emergency/faq', label: 'שאלות ותשובות', sublabel: 'מערכת יחד ותהליכים', icon: HelpCircle },
+  { href: '/emergency/mashe', label: 'מודל מעש״ה', sublabel: 'עזרה ראשונה נפשית', icon: Heart, color: 'from-pink-500/20 to-pink-900/10', iconColor: 'text-pink-400' },
+  { href: '/emergency/teams', label: 'צוותי החירום', sublabel: 'תוכניות הפעלה מלאות', icon: Users, color: 'from-blue-500/20 to-blue-900/10', iconColor: 'text-blue-400' },
+  { href: '/emergency/scripts', label: 'תסריטי שיחה', sublabel: 'מצבי שטח מעשיים', icon: MessageSquare, color: 'from-emerald-500/20 to-emerald-900/10', iconColor: 'text-emerald-400' },
+  { href: '/emergency/faq', label: 'שאלות ותשובות', sublabel: 'מערכת יחד ותהליכים', icon: HelpCircle, color: 'from-violet-500/20 to-violet-900/10', iconColor: 'text-violet-400' },
 ];
 
 const TIPS = [
@@ -104,90 +115,116 @@ const TIPS = [
   'שמור על שפה רגועה ועובדתית – הימנע מדרמטיזציה.',
   'ודא שכל תושב שעוזב את המקום יודע לאן לפנות.',
   'בסוף המשמרת – ונטילציה חובה, לא המלצה.',
+  'אל תניח שאתה יודע מה האדם מרגיש – שאל ותקשיב.',
+  'אם אתה לא בטוח – התייעץ עם הצוות. אין בושה בזה.',
+  'הכן ערכת חירום אישית עם מים, חטיף, מטען ופנס.',
+  'למד את שמות אנשי הקשר המרכזיים בכל צוות.',
+  'הפסקה קצרה כל שעה – שתייה, נשימה, חזרה.',
 ];
 
 export default function EmergencyHomePage() {
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [tipIndex, setTipIndex] = useState(0);
+  const [tipFade, setTipFade] = useState(true);
 
   function toggleStep(id: string) {
     setExpandedStep(prev => (prev === id ? null : id));
   }
 
-  function nextTip() {
-    setTipIndex(prev => (prev + 1) % TIPS.length);
+  function changeTip(dir: number) {
+    setTipFade(false);
+    setTimeout(() => {
+      setTipIndex(prev => (prev + dir + TIPS.length) % TIPS.length);
+      setTipFade(true);
+    }, 200);
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => changeTip(1), 8000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="space-y-12">
+    <div className="space-y-14">
       {/* Hero */}
-      <section className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-800">
-          צוותי חירום – אגף שירותים חברתיים
+      <section className="text-center space-y-4">
+        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 text-sm text-white/60 mb-2">
+          <Users size={14} />
+          תהליך הפעלה
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-l from-white to-white/70 bg-clip-text text-transparent leading-tight">
+          צוותי חירום
+          <span className="block text-lg md:text-xl font-normal text-white/50 mt-2">אגף שירותים חברתיים</span>
         </h1>
-        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+        <p className="text-white/40 text-base max-w-xl mx-auto">
           כלי לריענון ותרגול הפעלת צוותי חירום של אגף השירותים החברתיים בנתניה
         </p>
       </section>
 
-      {/* Quick Links */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {/* Quick Navigation Links */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {QUICK_LINKS.map(link => {
           const Icon = link.icon;
           return (
             <Link
               key={link.href}
               href={link.href}
-              className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-5 text-center group"
+              className={`bg-gradient-to-b ${link.color} border border-white/10 rounded-2xl p-5 text-center card-hover group`}
             >
-              <div className="bg-blue-50 group-hover:bg-blue-100 transition-colors rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
-                <Icon size={22} className="text-blue-700" />
+              <div className="mx-auto mb-3">
+                <Icon size={28} className={`${link.iconColor} mx-auto transition-transform duration-200 group-hover:scale-110`} />
               </div>
-              <div className="font-bold text-slate-800 text-sm">{link.label}</div>
-              <div className="text-xs text-slate-500 mt-1">{link.sublabel}</div>
+              <div className="font-bold text-white text-sm">{link.label}</div>
+              <div className="text-xs text-white/40 mt-1">{link.sublabel}</div>
             </Link>
           );
         })}
       </section>
 
       {/* External Links */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <a
           href="https://emergency-dashboard-live-silk.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-blue-700 hover:bg-blue-800 text-white rounded-xl p-5 flex items-center gap-4 transition-colors"
+          className="bg-gradient-to-l from-blue-600/30 to-blue-900/30 border border-blue-500/30 rounded-2xl p-5 flex items-center gap-4 card-hover group"
         >
-          <ClipboardList size={28} />
-          <div>
-            <div className="font-bold">מערכת טפסי מס״ר</div>
-            <div className="text-blue-200 text-sm">רישום משפחות · יציאה מאזור שנפגע · איתור נעדרים</div>
+          <div className="bg-blue-500/20 rounded-xl p-3 flex-shrink-0">
+            <ClipboardList size={24} className="text-blue-400" />
           </div>
-          <ExternalLink size={18} className="mr-auto" />
+          <div className="flex-1 min-w-0">
+            <div className="font-bold text-white text-sm">מערכת טפסי מס״ר</div>
+            <div className="text-blue-300/60 text-xs mt-0.5">רישום משפחות · יציאה מאזור שנפגע · איתור נעדרים</div>
+          </div>
+          <ExternalLink size={16} className="text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
         </a>
         <a
           href="https://govforms.gov.il/mw/forms/Emergency_UnRecogognized@taxes.gov.il"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl p-5 flex items-center gap-4 transition-colors"
+          className="bg-gradient-to-l from-emerald-600/30 to-emerald-900/30 border border-emerald-500/30 rounded-2xl p-5 flex items-center gap-4 card-hover group"
         >
-          <Building2 size={28} />
-          <div>
-            <div className="font-bold">דיווח תושבים – רשות המיסים</div>
-            <div className="text-emerald-200 text-sm">מילוי למי שביתו נפגע · מגיע לצוות מלונות ולמס רכוש</div>
+          <div className="bg-emerald-500/20 rounded-xl p-3 flex-shrink-0">
+            <Building2 size={24} className="text-emerald-400" />
           </div>
-          <ExternalLink size={18} className="mr-auto" />
+          <div className="flex-1 min-w-0">
+            <div className="font-bold text-white text-sm">דיווח תושבים – רשות המיסים</div>
+            <div className="text-emerald-300/60 text-xs mt-0.5">מילוי למי שביתו נפגע · מגיע לצוות מלונות ולמס רכוש</div>
+          </div>
+          <ExternalLink size={16} className="text-white/30 group-hover:text-white/60 transition-colors flex-shrink-0" />
         </a>
       </section>
 
       {/* Flow Diagram */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800 text-center">
-          זרימת הפעלת הצוותים באירוע הרס
-        </h2>
-        <p className="text-center text-slate-500 text-sm">לחצו על כל שלב כדי לראות פירוט המשימות</p>
+      <section className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-bold text-white">
+            זרימת הפעלת הצוותים באירוע הרס
+          </h2>
+          <p className="text-white/40 text-sm">לחצו על כל שלב כדי לראות פירוט המשימות</p>
+        </div>
 
-        <div className="space-y-3">
+        <div className="space-y-0">
           {FLOW_STEPS.map((step, idx) => {
             const Icon = step.icon;
             const isExpanded = expandedStep === step.id;
@@ -195,23 +232,25 @@ export default function EmergencyHomePage() {
               <div key={step.id}>
                 <button
                   onClick={() => toggleStep(step.id)}
-                  className={`w-full bg-gradient-to-l ${step.color} text-white rounded-xl p-5 flex items-center gap-4 text-right transition-all hover:opacity-95`}
+                  className={`w-full bg-gradient-to-l ${step.gradient} border ${step.border} ${isExpanded ? 'rounded-t-2xl' : 'rounded-2xl'} p-5 flex items-center gap-4 text-right transition-all duration-200 hover:bg-white/5`}
                 >
-                  <div className="bg-white/20 rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                    <Icon size={24} />
+                  <div className={`${step.iconBg} rounded-xl w-12 h-12 flex items-center justify-center flex-shrink-0`}>
+                    <Icon size={22} className={step.iconColor} />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-bold text-lg">{step.title}</div>
-                    <div className="text-white/80 text-sm">{step.subtitle}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="font-bold text-white">{step.title}</div>
+                    <div className="text-white/50 text-sm">{step.subtitle}</div>
                   </div>
-                  {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  <div className={`transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}>
+                    <ChevronDown size={18} className="text-white/40" />
+                  </div>
                 </button>
                 {isExpanded && (
-                  <div className={`bg-white border-r-4 ${step.borderColor} rounded-b-xl p-5 shadow-inner`}>
-                    <ul className="space-y-2">
+                  <div className={`bg-white/5 border-x border-b ${step.border} rounded-b-2xl p-5 animate-slideDown`}>
+                    <ul className="space-y-2.5">
                       {step.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-slate-700">
-                          <span className="text-blue-600 mt-0.5">●</span>
+                        <li key={i} className="flex items-start gap-3 text-white/70 text-sm">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 flex-shrink-0" />
                           {detail}
                         </li>
                       ))}
@@ -219,8 +258,8 @@ export default function EmergencyHomePage() {
                   </div>
                 )}
                 {idx < FLOW_STEPS.length - 1 && (
-                  <div className="flex justify-center py-1">
-                    <ArrowDown size={20} className="text-slate-400" />
+                  <div className="flex justify-center py-2">
+                    <ArrowDown size={18} className="text-white/20 animate-pulseArrow" />
                   </div>
                 )}
               </div>
@@ -230,34 +269,52 @@ export default function EmergencyHomePage() {
       </section>
 
       {/* Parallel Teams */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-bold text-slate-800 text-center">צוותים מקבילים</h2>
+      <section className="space-y-6">
+        <h2 className="text-xl font-bold text-white text-center">צוותים מקבילים</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {PARALLEL_TEAMS.map((team, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl shadow p-4 border-r-4 border-blue-500"
+              className="bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/[0.07] transition-colors"
             >
-              <div className="font-bold text-slate-800 mb-1">{team.title}</div>
-              <div className="text-sm text-slate-600">{team.desc}</div>
+              <div className="font-bold text-white text-sm mb-1">{team.title}</div>
+              <div className="text-xs text-white/40 whitespace-pre-line leading-relaxed">{team.desc}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* Tip Carousel */}
-      <section className="bg-amber-50 border border-amber-200 rounded-xl p-6 text-center">
-        <div className="text-amber-700 font-bold mb-2 flex items-center justify-center gap-2">
-          <Zap size={18} />
-          טיפ מקצועי לצוות החירום
+      <section className="bg-gradient-to-l from-amber-500/10 to-amber-900/10 border border-amber-500/20 rounded-2xl p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
+            <Lightbulb size={16} />
+            טיפ מקצועי לצוות החירום
+          </div>
+          <span className="text-white/30 text-xs">{tipIndex + 1} / {TIPS.length}</span>
         </div>
-        <p className="text-slate-700 text-lg mb-4">{TIPS[tipIndex]}</p>
-        <button
-          onClick={nextTip}
-          className="bg-amber-200 hover:bg-amber-300 text-amber-800 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-        >
-          טיפ הבא ({tipIndex + 1} / {TIPS.length})
-        </button>
+        <p className={`text-white/80 text-base leading-relaxed transition-opacity duration-200 min-h-[48px] ${tipFade ? 'opacity-100' : 'opacity-0'}`}>
+          {TIPS[tipIndex]}
+        </p>
+        <div className="flex items-center gap-2 mt-4">
+          <button
+            onClick={() => changeTip(-1)}
+            className="bg-white/10 hover:bg-white/15 rounded-lg p-1.5 transition-colors"
+          >
+            <ChevronRight size={16} className="text-white/60" />
+          </button>
+          <button
+            onClick={() => changeTip(1)}
+            className="bg-white/10 hover:bg-white/15 rounded-lg p-1.5 transition-colors"
+          >
+            <ChevronLeft size={16} className="text-white/60" />
+          </button>
+          <div className="flex gap-1 mr-2">
+            {TIPS.map((_, i) => (
+              <div key={i} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === tipIndex ? 'bg-amber-400' : 'bg-white/10'}`} />
+            ))}
+          </div>
+        </div>
       </section>
     </div>
   );
