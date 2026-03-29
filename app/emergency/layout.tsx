@@ -23,27 +23,29 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Nav items - right side in RTL */}
-            <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+            <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide">
               {NAV_ITEMS.map(item => {
+                const Icon = item.icon;
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    className={`flex items-center gap-1.5 px-2.5 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                       isActive
                         ? 'bg-gray-900 text-white'
                         : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
+                    <Icon size={14} className="md:hidden flex-shrink-0" />
                     {item.label}
                   </Link>
                 );
               })}
             </div>
             {/* Logo + Brand - left side in RTL */}
-            <div className="flex items-center gap-4">
-              <Link href="/emergency" className="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
+            <div className="flex items-center gap-3">
+              <Link href="/emergency" className="hidden md:flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
                 <Shield size={22} className="text-gray-500" />
                 <div className="text-right">
                   <div className="font-bold text-sm text-gray-900 leading-tight">צוותי חירום</div>
@@ -51,7 +53,7 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
                 </div>
               </Link>
               <Link href="/emergency">
-                <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-9 w-auto" />
+                <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-7 md:h-9 w-auto" />
               </Link>
             </div>
           </div>
