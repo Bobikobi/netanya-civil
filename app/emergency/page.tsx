@@ -38,8 +38,8 @@ const FLOW_STEPS = [
     iconColor: 'text-red-500',
     details: [
       'קבלת התרעה / דיווח על אירוע',
-      'ראש מכלול אוכלוסייה וראשי מטות מגיע למקום האירוע',
-      'הפעלת הצוותים הרלוונטים באמצעות קבוצות וואטסאפ',
+      'ראש מכלול אוכלוסייה וראשי מטות מגיעים למקום האירוע',
+      'הפעלת הצוותים הרלוונטיים באמצעות קבוצות וואטסאפ',
     ],
   },
   {
@@ -145,23 +145,23 @@ export default function EmergencyHomePage() {
         <div className="absolute top-[-15%] left-[-5%] w-[350px] h-[350px] rounded-full bg-white/[0.04]" />
         <div className="absolute bottom-[-20%] left-[30%] w-[250px] h-[250px] rounded-full bg-white/[0.03]" />
 
-        <div className="relative z-10 max-w-3xl mx-auto text-center px-6 py-24 md:py-32">
+        <div className="relative z-10 max-w-3xl mx-auto text-center px-6 py-14 md:py-20">
           {/* Shield icon */}
-          <div className="mx-auto mb-8 w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
-            <Shield size={30} className="text-white/70" />
+          <div className="mx-auto mb-5 w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
+            <Shield size={26} className="text-white/70" />
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
+          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">
             צוותי חירום
           </h1>
-          <p className="text-2xl md:text-3xl font-bold text-amber-400 mb-6">
+          <p className="text-xl md:text-2xl font-bold text-amber-400 mb-4">
             אגף שירותים חברתיים
           </p>
-          <p className="text-white/60 text-base md:text-lg">
+          <p className="text-white/60 text-sm md:text-base">
             כלי לריענון ותרגול הפעלת צוותי חירום של אגף השירותים החברתיים בנתניה
           </p>
           {/* Scroll hint */}
-          <div className="mt-10">
-            <ChevronDown size={24} className="mx-auto text-white/30 animate-pulseArrow" />
+          <div className="mt-6">
+            <ChevronDown size={22} className="mx-auto text-white/30 animate-pulseArrow" />
           </div>
         </div>
       </section>
