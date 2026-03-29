@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone } from 'lucide-react';
+import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone, GitBranch } from 'lucide-react';
 import React from 'react';
 
 const NAV_ITEMS = [
@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: '/emergency/teams', label: 'צוותי החירום', icon: Users },
   { href: '/emergency/scripts', label: 'תסריטי שיחה', icon: MessageSquare },
   { href: '/emergency/contacts', label: 'ספר טלפונים', icon: Phone },
+  { href: '/emergency/orgchart', label: 'מבנה ארגוני', icon: GitBranch },
   { href: '/emergency/faq', label: 'שאלות ותשובות', icon: HelpCircle },
 ];
 
@@ -68,9 +69,14 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
 
       {/* Footer */}
       <footer className="border-t border-gray-200 bg-white py-6 mt-16">
-        <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-1">
+        <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-2">
           <p className="text-gray-600 font-medium">אגף השירותים החברתיים · עיריית נתניה</p>
           <p className="text-gray-400 text-xs">כלי לריענון ותרגול צוותי חירום · אין להסתמך כתחליף לנהלים רשמיים</p>
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 pt-2 border-t border-gray-100 mt-3">
+            <Link href="/emergency/accessibility" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">הצהרת נגישות</Link>
+            <Link href="/emergency/privacy" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">מדיניות פרטיות</Link>
+            <span className="text-xs text-gray-300">© {new Date().getFullYear()} עיריית נתניה</span>
+          </div>
         </div>
       </footer>
 
