@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Users, MessageSquare, HelpCircle, Shield } from 'lucide-react';
+import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone } from 'lucide-react';
 import React from 'react';
 
 const NAV_ITEMS = [
@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { href: '/emergency/mashe', label: 'מודל מעש״ה', icon: Heart },
   { href: '/emergency/teams', label: 'צוותי החירום', icon: Users },
   { href: '/emergency/scripts', label: 'תסריטי שיחה', icon: MessageSquare },
+  { href: '/emergency/contacts', label: 'ספר טלפונים', icon: Phone },
   { href: '/emergency/faq', label: 'שאלות ותשובות', icon: HelpCircle },
 ];
 
