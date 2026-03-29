@@ -1,13 +1,14 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Users, MessageSquare, HelpCircle, ChevronLeft } from 'lucide-react';
+import { Home, Heart, Users, MessageSquare, HelpCircle, Shield } from 'lucide-react';
 import React from 'react';
 
 const NAV_ITEMS = [
-  { href: '/emergency', label: 'דף הבית', icon: Home },
+  { href: '/emergency', label: 'בית', icon: Home },
   { href: '/emergency/mashe', label: 'מודל מעש״ה', icon: Heart },
-  { href: '/emergency/teams', label: 'צוותי חירום', icon: Users },
+  { href: '/emergency/teams', label: 'צוותי החירום', icon: Users },
   { href: '/emergency/scripts', label: 'תסריטי שיחה', icon: MessageSquare },
   { href: '/emergency/faq', label: 'שאלות ותשובות', icon: HelpCircle },
 ];
@@ -16,52 +17,56 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
 
   return (
-    <div dir="rtl" className="min-h-screen bg-[#0f172a] text-white">
+    <div dir="rtl" className="min-h-screen bg-gray-50 text-gray-900">
       {/* Sticky top navigation */}
-      <nav className="sticky top-0 z-50 bg-[#1e293b]/95 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center justify-between h-14">
+      <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between h-16">
+            {/* Brand */}
+            <Link href="/emergency" className="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
+              <Shield size={22} className="text-gray-500" />
+              <div className="text-right">
+                <div className="font-bold text-sm text-gray-900 leading-tight">צוותי חירום</div>
+                <div className="text-[11px] text-gray-400 leading-tight">אגף שירותים חברתיים - נתניה</div>
+              </div>
+            </Link>
+            {/* Logo center */}
+            <Link href="/emergency" className="absolute left-1/2 -translate-x-1/2">
+              <Image src="/netanya-logo.png" alt="עיריית נתניה" width={140} height={40} className="h-9 w-auto" />
+            </Link>
+            {/* Nav items */}
             <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
               {NAV_ITEMS.map(item => {
                 const isActive = pathname === item.href;
-                const Icon = item.icon;
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+                    className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
                       isActive
-                        ? 'bg-white/15 text-white'
-                        : 'text-white/60 hover:text-white hover:bg-white/10'
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-500 hover:text-gray-900 hover:bg-gray-100'
                     }`}
                   >
-                    <Icon size={15} />
                     {item.label}
                   </Link>
                 );
               })}
             </div>
-            <Link
-              href="/"
-              className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-xs whitespace-nowrap mr-2"
-            >
-              לאתר הראשי
-              <ChevronLeft size={14} />
-            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Page content */}
-      <main className="max-w-5xl mx-auto px-4 py-10 animate-fadeIn">
+      {/* Page content - full width for hero sections */}
+      <main className="animate-fadeIn">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-6 mt-16">
-        <div className="max-w-5xl mx-auto px-4 text-center text-sm space-y-1">
-          <p className="text-white/70 font-medium">אגף השירותים החברתיים · עיריית נתניה</p>
-          <p className="text-white/40 text-xs">כלי לריענון ותרגול צוותי חירום · אין להסתמך כתחליף לנהלים רשמיים</p>
+      <footer className="border-t border-gray-200 bg-white py-6 mt-16">
+        <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-1">
+          <p className="text-gray-600 font-medium">אגף השירותים החברתיים · עיריית נתניה</p>
+          <p className="text-gray-400 text-xs">כלי לריענון ותרגול צוותי חירום · אין להסתמך כתחליף לנהלים רשמיים</p>
         </div>
       </footer>
 
@@ -104,7 +109,7 @@ export default function EmergencyLayout({ children }: { children: React.ReactNod
         }
         .card-hover:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+          box-shadow: 0 8px 24px rgba(0,0,0,0.08);
         }
       `}</style>
     </div>
