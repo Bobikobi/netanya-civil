@@ -222,8 +222,8 @@ export default function EmergencyHomePage() {
 
       {/* ===== Side-by-side: Flow Diagram + Parallel Teams ===== */}
       <section className="max-w-6xl mx-auto px-6 mt-14">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* LEFT: Flow diagram */}
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_1fr] gap-6">
+          {/* RIGHT (in RTL): Flow diagram */}
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
               <h2 className="text-2xl font-bold text-gray-900">
