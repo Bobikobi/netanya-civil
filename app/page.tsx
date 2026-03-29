@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Incident, IncidentStatus, IncidentType } from '../types';
 import { formatTimeAgo } from '../lib/utils';
-import { Flame, Waves, Car, Zap, Wind, Shield, AlertCircle, Plus, Loader2, type LucideIcon } from 'lucide-react';
+import { Flame, Waves, Car, Zap, Wind, Shield, AlertCircle, Plus, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 const TYPE_LABELS: Record<IncidentType, string> = {
@@ -16,7 +16,7 @@ const TYPE_LABELS: Record<IncidentType, string> = {
   other: 'אחר',
 };
 
-const TYPE_ICONS: Record<IncidentType, LucideIcon> = {
+const TYPE_ICONS: Record<IncidentType, React.ElementType> = {
   fire: Flame,
   flood: Waves,
   road_hazard: Car,
