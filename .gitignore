@@ -37,3 +37,6 @@ next-env.d.ts
 
 .vercel
 .env*.local
+
+# seed scripts (contain sensitive data)
+/scripts/

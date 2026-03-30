@@ -226,7 +226,7 @@ const TEAMS: TeamData[] = [
 export default function EmergencyTeamsPage() {
   const [expandedTeam, setExpandedTeam] = useState<string | null>(null);
   const { locale } = useI18n();
-  const { unlocked, requestUnlock } = usePhoneAuth();
+  const { unlocked, requestUnlock, getPhone } = usePhoneAuth();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-10">
@@ -306,19 +306,20 @@ export default function EmergencyTeamsPage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[
-            { name: 'רותי גור', role: 'ראש מטה (א׳)', phone: '052-2422009' },
-            { name: 'לימור איצקוביץ', role: 'ראש מטה (ב׳)', phone: '052-3890241' },
-            { name: 'יניר יעקובי', role: 'רכז חירום', phone: '052-3800007' },
-            { name: 'נדין שם טוב', role: 'ראש מטה התערבות', phone: '054-4719718' },
-            { name: 'סיגל קני פז', role: 'ראש מטה רגשי', phone: '054-5594108' },
-            { name: 'מוקד 106', role: 'מוקד עירוני', phone: '106' },
-          ].map((c, i) => (
-            unlocked ? (
-              <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+            { name: 'רותי גור', role: 'ראש מטה (א׳)' },
+            { name: 'לימור איצקוביץ', role: 'ראש מטה (ב׳)' },
+            { name: 'יניר יעקובי', role: 'רכז חירום' },
+            { name: 'נדין שם טוב', role: 'ראש מטה התערבות' },
+            { name: 'סיגל קני פז', role: 'ראש מטה רגשי' },
+            { name: 'מוקד 106', role: 'מוקד עירוני' },
+          ].map((c, i) => {
+            const phone = getPhone('teams', c.name);
+            return unlocked && phone ? (
+              <a key={i} href={`tel:${phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
                 <Phone size={12} className="text-blue-500 flex-shrink-0" />
                 <div className="min-w-0">
                   <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
-                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
+                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{phone}</span></div>
                 </div>
               </a>
             ) : (
@@ -329,8 +330,8 @@ export default function EmergencyTeamsPage() {
                   <div className="text-[10px] text-gray-400">{c.role} · <span className="text-gray-300">●●●-●●●●●●●</span></div>
                 </div>
               </button>
-            )
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>
