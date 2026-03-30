@@ -461,7 +461,6 @@ export default function EmergencyHomePage() {
               <div>
                 <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">התחברות למערכת</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li>הזן את המייל הייעודי: <span className="font-mono text-xs bg-gray-100 px-1 rounded" dir="ltr">rova5@netanyaonecity.onmicrosoft.com</span></li>
                   <li>הקלד את הסיסמה האישית שלך</li>
                   <li><strong>דגש חשוב:</strong> לחץ על "דילוג על ההגדרה" כדי להיכנס מיד ללא אימות דוא"ל</li>
                 </ul>
@@ -489,7 +488,7 @@ export default function EmergencyHomePage() {
               <div>
                 <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">איתור והוספת תושב חדש</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li><strong>חיפוש:</strong> לחץ על תפריט "3 השורות" (המבורגר), עבור ללשונית "פניות" וחפש לפי שם</li>
+                  <li><strong>חיפוש:</strong> לחץ על תפריט "3 השורות", עבור ללשונית "פניות" וחפש לפי שם</li>
                   <li><strong>הוספת תושב חסר:</strong> אם התושב אינו מופיע, פתח את "טופס אינטייק מרכז משפחות"</li>
                   <li>הזן פרטים: שם מלא, תעודת זהות ומספר נייד</li>
                   <li>לאחר השליחה, חזור לאפליקציה המרכזית להמשך מעקב</li>
