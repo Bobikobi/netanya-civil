@@ -1,26 +1,7 @@
 'use client';
 import { Shield, Mail, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import { accessibilityPage } from '@/lib/translations';
-
-const ACCESSIBLE_FEATURES = [
-  'תמיכה בטכנולוגיות מסייעות (קוראי מסך, תצוגה מוגדלת)',
-  'ניווט מלא באמצעות מקלדת בלבד',
-  'ניגודיות צבעים בהתאם לתקן WCAG AA',
-  'טקסט חלופי לכל התמונות והאלמנטים הגרפיים',
-  'מבנה סמנטי תקין עם כותרות היררכיות',
-  'תמיכה בשינוי גודל גופנים ללא פגיעה בפריסה',
-  'ניווט עקבי ואחיד בכל דפי האתר',
-  'קישורים בעלי טקסט מתאר ברור',
-  'טפסים עם תוויות ברורות והנחיות שגיאה',
-  'תמיכה מלאה בשפה העברית ובכיוון RTL',
-];
-
-const NOT_YET_ACCESSIBLE = [
-  'חלק מקובצי PDF המצורפים עשויים שלא להיות נגישים במלואם',
-  'תוכן וידאו ייתכן ואינו כולל כתוביות בכל המקרים',
-  'מפות אינטראקטיביות עשויות לדרוש התאמות נוספות',
-];
+import { accessibilityPage, accessibilityContent, accessibleFeatures, notYetAccessible } from '@/lib/translations';
 
 export default function AccessibilityPage() {
   const { locale } = useI18n();
@@ -49,13 +30,10 @@ export default function AccessibilityPage() {
         <section className="bg-white rounded-2xl border border-gray-200 p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-3">{accessibilityPage.commitmentTitle[locale]}</h2>
           <p className="text-gray-600 leading-relaxed">
-            אתר זה פועל להנגשת תכניו לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות,
-            בהתאם לתקן הישראלי ת&quot;י 5568, הנחיות WCAG 2.1 ברמה AA, וחוק שוויון זכויות לאנשים עם
-            מוגבלות, תשנ&quot;ח-1998, ותקנות הנגישות לשירות (התאמות נגישות לשירות), תשע&quot;ג-2013.
+            {accessibilityContent.commitmentP1[locale]}
           </p>
           <p className="text-gray-600 leading-relaxed mt-3">
-            אני פועל באופן שוטף לשיפור חוויית הגלישה עבור כלל המשתמשים ומשקיע מאמצים ניכרים
-            להבטיח שהאתר יהיה נגיש ושוויוני ככל האפשר.
+            {accessibilityContent.commitmentP2[locale]}
           </p>
         </section>
 
@@ -66,10 +44,10 @@ export default function AccessibilityPage() {
             {accessibilityPage.featuresTitle[locale]}
           </h2>
           <ul className="space-y-2.5">
-            {ACCESSIBLE_FEATURES.map((feature, i) => (
+            {accessibleFeatures.map((feature, i) => (
               <li key={i} className="flex items-start gap-2.5">
                 <span className="mt-1.5 w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
-                <span className="text-gray-600 text-sm">{feature}</span>
+                <span className="text-gray-600 text-sm">{feature[locale]}</span>
               </li>
             ))}
           </ul>
@@ -82,13 +60,13 @@ export default function AccessibilityPage() {
             {accessibilityPage.inProgressTitle[locale]}
           </h2>
           <p className="text-gray-500 text-sm mb-3">
-            אנו מודעים לכך שחלק מהתכנים באתר טרם הונגשו במלואם. אנו עובדים על הנגשתם:
+            {accessibilityContent.inProgressIntro[locale]}
           </p>
           <ul className="space-y-2.5">
-            {NOT_YET_ACCESSIBLE.map((item, i) => (
+            {notYetAccessible.map((item, i) => (
               <li key={i} className="flex items-start gap-2.5">
                 <span className="mt-1.5 w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" />
-                <span className="text-gray-600 text-sm">{item}</span>
+                <span className="text-gray-600 text-sm">{item[locale]}</span>
               </li>
             ))}
           </ul>
@@ -99,19 +77,16 @@ export default function AccessibilityPage() {
           <h2 className="text-lg font-bold text-gray-900 mb-3">{accessibilityPage.legalTitle[locale]}</h2>
           <div className="space-y-3 text-sm text-gray-600">
             <p>
-              <strong className="text-gray-800">חוק שוויון זכויות לאנשים עם מוגבלות (תשנ&quot;ח-1998):</strong>{' '}
-              מחייב גופים ציבוריים להנגיש את שירותיהם המקוונים. תקנה 35 קובעת כי אתר אינטרנט של רשות ציבורית
-              יהיה נגיש בהתאם להנחיות תקן ת&quot;י 5568.
+              <strong className="text-gray-800">{accessibilityContent.legalLaw[locale]}</strong>{' '}
+              {accessibilityContent.legalLawDesc[locale]}
             </p>
             <p>
-              <strong className="text-gray-800">תקן ישראלי ת&quot;י 5568:</strong>{' '}
-              מבוסס על הנחיות WCAG (Web Content Accessibility Guidelines) של ארגון W3C ברמה AA.
-              התקן מפרט דרישות טכניות להנגשת תוכן מקוון.
+              <strong className="text-gray-800">{accessibilityContent.legalStandard[locale]}</strong>{' '}
+              {accessibilityContent.legalStandardDesc[locale]}
             </p>
             <p>
-              <strong className="text-gray-800">תקנה 91 – הצהרת נגישות:</strong>{' '}
-              מחייבת פרסום הצהרת נגישות באתר הכוללת פירוט ההתאמות שבוצעו, תחומים שטרם הונגשו,
-              ופרטי יצירת קשר עם רכז הנגישות.
+              <strong className="text-gray-800">{accessibilityContent.legalDeclaration[locale]}</strong>{' '}
+              {accessibilityContent.legalDeclarationDesc[locale]}
             </p>
           </div>
         </section>
@@ -120,21 +95,20 @@ export default function AccessibilityPage() {
         <section className="bg-blue-50 rounded-2xl border border-blue-200 p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-4">{accessibilityPage.contactTitle[locale]}</h2>
           <p className="text-gray-600 text-sm mb-4">
-            נתקלתם בבעיית נגישות? צרו קשר עם מפתח האתר.
-            אשתדל לטפל בפנייתכם בהקדם האפשרי.
+            {accessibilityContent.contactIntro[locale]}
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             <div className="flex items-center gap-2.5 bg-white rounded-xl border border-blue-100 px-4 py-3">
               <Shield size={16} className="text-blue-500" />
               <div>
-                <p className="text-xs text-gray-400">איש קשר</p>
+                <p className="text-xs text-gray-400">{accessibilityContent.contactPerson[locale]}</p>
                 <p className="text-sm font-medium text-gray-800">אלעד סעדון</p>
               </div>
             </div>
             <a href="mailto:ELAD.SAA@NETANYA.MUNI.IL" className="flex items-center gap-2.5 bg-white rounded-xl border border-blue-100 px-4 py-3 hover:border-blue-300 transition-colors">
               <Mail size={16} className="text-blue-500" />
               <div>
-                <p className="text-xs text-gray-400">דוא&quot;ל</p>
+                <p className="text-xs text-gray-400">{accessibilityContent.email[locale]}</p>
                 <p className="text-sm font-medium text-gray-800">ELAD.SAA@NETANYA.MUNI.IL</p>
               </div>
             </a>
