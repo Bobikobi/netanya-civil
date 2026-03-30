@@ -1,9 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones, ExternalLink, Phone, Lock } from 'lucide-react';
+import { ChevronDown, HelpCircle, Database, LogIn, BarChart3, Truck, FileText, Building2, Headphones, ExternalLink } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
-import { usePhoneAuth } from '@/lib/phone-auth';
 import { faqPage } from '@/lib/translations';
 
 interface FAQCategory {
@@ -93,7 +92,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     iconColor: 'text-teal-500',
     iconBg: 'bg-teal-100',
     questions: [
-      { q: 'אילו טפסים צריך למלא באירוע?', a: 'טופס רישום משפחה, טופס צרכים מיוחדים, טופס איתור נעדרים, וטופס שיבוץ מלון.' },
+      { q: 'אילו טפסים צריך למלא באירוע?', a: 'במידה ומערכת היחד עובדת והתושב מילא את טופס הקליטה אין צורך למלא טפסים ידניים. במידה ומערכת היחד אינה עובדת ולא ניתן למלא את טופס הקליטה הממוחשב אז ניתן להשתמש בטופס הקליטה העירוני. במידה וגם טופס הקליטה העירוני אינו פעיל יש למלא טפסים ידניים: טופס קליטה ידני, טופס שיבוץ לבתי מלון, טופס ניזוק.' },
       { q: 'היכן נמצאים הטפסים?', a: 'בתוך מערכת \'יחד\' או בקישור ישיר שמשותף על ידי המטה. חלק מהטפסים זמינים גם במערכת טפסי מס"ר.' },
       { q: 'אפשר למלא טופס ידני?', a: 'כן, יש גרסאות מודפסות. אבל חובה להעלות למערכת בהקדם האפשרי.' },
       { q: 'מה עושים עם טפסים שלא מלאים עד הסוף?', a: 'מעבירים למנהל הצוות שידאג להשלמה. חשוב לא להשאיר טפסים חלקיים.' },
@@ -108,8 +107,7 @@ const FAQ_CATEGORIES: FAQCategory[] = [
     iconBg: 'bg-indigo-100',
     questions: [
       { q: 'מה תפקיד הרשות המקומית באירוע חירום?', a: 'הרשות אחראית על רווחת התושבים – פינוי, קליטה, שיבוץ למלונות, מידע, סיוע רגשי, ותיאום מול גורמי חוץ.' },
-      { q: 'מי מנהל את מכלול אוכלוסייה?', a: 'מנהל רווחה - עיריית נתניה, או בעל תפקיד שמונה מראש.' },
-      { q: 'מהו "תא רווחה"?', a: 'תא רווחה הוא הגרעין המקצועי במנהל שירותים חברתיים שמנהל את כל הטיפול בתושבים באירוע חירום.' },
+      { q: 'מי מנהל את מכלול אוכלוסייה?', a: 'מנהלת מנהל הרווחה.' },
       { q: 'איך הרשות מתממשקת עם צה"ל ופיקוד העורף?', a: 'דרך קצין קישור ומטה מכלול אוכלוסייה – בדיווחים, ישיבות מצב ומערכות מידע משותפות.' },
     ],
   },
@@ -131,7 +129,6 @@ export default function FAQPage() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
   const { locale } = useI18n();
-  const { unlocked, requestUnlock, getPhone } = usePhoneAuth();
 
   function toggleCategory(id: string) {
     setExpandedCategory(prev => (prev === id ? null : id));
@@ -218,42 +215,7 @@ export default function FAQPage() {
         })}
       </div>
 
-      {/* Embedded key contacts */}
-      <section className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm space-y-3">
-        <h2 className="text-sm font-bold text-gray-900 flex items-center gap-2">
-          <Phone size={16} className="text-blue-500" />
-          {faqPage.contactsTitle[locale]}
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-          {[
-            { name: 'בני שכטר', role: 'מערכות מידע' },
-            { name: 'ענת עשור', role: 'מיון פניות' },
-            { name: 'יניר יעקובי', role: 'רכז חירום מכלול' },
-            { name: 'רויטל נחמיאס', role: 'פרסום ומידע' },
-            { name: 'רקפת וינגרט', role: 'קו פתוח ומידע' },
-            { name: 'מוקד 106', role: 'מוקד עירוני' },
-          ].map((c, i) => {
-            const phone = getPhone('faq', c.name);
-            return unlocked && phone ? (
-              <a key={i} href={`tel:${phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
-                <Phone size={12} className="text-blue-500 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
-                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{phone}</span></div>
-                </div>
-              </a>
-            ) : (
-              <button key={i} onClick={requestUnlock} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors text-right w-full">
-                <Lock size={12} className="text-gray-400 flex-shrink-0" />
-                <div className="min-w-0">
-                  <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
-                  <div className="text-[10px] text-gray-400">{c.role} · <span className="text-gray-300">●●●-●●●●●●●</span></div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </section>
+
     </div>
   );
 }
