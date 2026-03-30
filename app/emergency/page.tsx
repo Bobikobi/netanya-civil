@@ -14,7 +14,6 @@ import {
   Lightbulb,
   ChevronRight,
   ChevronLeft,
-  Shield,
   Hospital,
   Hotel,
   HeartHandshake,
@@ -170,17 +169,13 @@ export default function EmergencyHomePage() {
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto text-center px-6 py-14 md:py-20">
-          {/* Shield icon */}
-          <div className="mx-auto mb-5 w-14 h-14 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center backdrop-blur-sm">
-            <Shield size={26} className="text-white/80" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2 drop-shadow-lg">
+          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.5), 0 0 2px rgba(0,0,0,0.3)' }}>
             {home.heroTitle[locale]}
           </h1>
-          <p className="text-xl md:text-2xl font-bold text-amber-300 mb-4 drop-shadow-md">
+          <p className="text-xl md:text-2xl font-bold text-amber-300 mb-4" style={{ textShadow: '0 2px 6px rgba(0,0,0,0.5)' }}>
             {home.heroSubtitle[locale]}
           </p>
-          <p className="text-white/80 text-sm md:text-base drop-shadow-sm">
+          <p className="text-white/85 text-sm md:text-base" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
             {home.heroDesc[locale]}
           </p>
           {/* Scroll hint */}
