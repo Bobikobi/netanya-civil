@@ -58,7 +58,8 @@ const FLOW_STEPS = [
       'הגעה ראשונה לאזור האירוע',
       'מענה נפשי ראשוני לפצועים ולנוכחים',
       'אחרי הרגעה – רישום ראשוני באפליקציית מודיעין אוכלוסייה',
-      'ניתוב תושבים לנקודות קליטה',
+      'זיהוי תושב באפליקציית מודיעין אוכלוסיה',
+      'הפנייה למס"ר',
       'דיווח למטה על תמונת מצב',
     ],
   },
@@ -131,7 +132,6 @@ export default function EmergencyHomePage() {
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [tipIndex, setTipIndex] = useState(0);
   const [tipFade, setTipFade] = useState(true);
-  const [showMsrForms, setShowMsrForms] = useState(false);
   const { locale } = useI18n();
 
   function toggleStep(id: string) {
@@ -183,70 +183,68 @@ export default function EmergencyHomePage() {
 
       {/* ===== External Links – full width banners ===== */}
       <section className="space-y-3 px-6 max-w-6xl mx-auto -mt-6 relative z-20">
-        <div className={`bg-blue-500 ${showMsrForms ? 'rounded-t-2xl' : 'rounded-2xl'} shadow-lg overflow-hidden`}>
-          <div className="flex items-center gap-4 p-5">
-            <a
-              href="https://emergency-dashboard-live-silk.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 min-w-0 flex items-center gap-4 hover:opacity-80 transition-opacity"
-            >
-              <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-              <div className="flex-1 min-w-0 text-right">
-                <div className="font-bold text-white text-lg">{home.msrSystem[locale]}</div>
-                <div className="text-white/70 text-sm mt-0.5">{home.msrDesc[locale]}</div>
-              </div>
-            </a>
-            <button
-              onClick={() => setShowMsrForms(!showMsrForms)}
-              aria-expanded={showMsrForms}
-              aria-label={home.msrFormsTitle[locale]}
-              className="bg-white/20 hover:bg-white/30 rounded-xl p-2.5 transition-colors flex-shrink-0"
-            >
-              <Download size={20} className="text-white" />
-            </button>
-          </div>
-          {showMsrForms && (
-            <div className="bg-blue-50 border-t border-blue-300 px-5 pb-5 pt-4 space-y-3 animate-slideDown">
-              <div className="text-right">
-                <div className="font-bold text-blue-800 text-sm">{home.msrFormsTitle[locale]}</div>
-                <div className="text-blue-600/70 text-xs mt-0.5">{home.msrFormsDesc[locale]}</div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                <a href="/docs/tofes-rishum-toshavim.docx" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
-                  <Download size={16} className="text-blue-500 flex-shrink-0" />
-                  <div className="min-w-0 text-right">
-                    <div className="text-xs font-bold text-gray-900">{home.msrForm1[locale]}</div>
-                  </div>
-                </a>
-                <a href="/docs/nispach-a-hitchayvut-nizok.doc" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
-                  <Download size={16} className="text-blue-500 flex-shrink-0" />
-                  <div className="min-w-0 text-right">
-                    <div className="text-xs font-bold text-gray-900">{home.msrForm2[locale]}</div>
-                  </div>
-                </a>
-                <a href="/docs/nispach-h-shuvar-hafnaya-malon.docx" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
-                  <Download size={16} className="text-blue-500 flex-shrink-0" />
-                  <div className="min-w-0 text-right">
-                    <div className="text-xs font-bold text-gray-900">{home.msrForm3[locale]}</div>
-                  </div>
-                </a>
-              </div>
+        {/* YACHAD System + Download Forms */}
+        <div className="bg-emerald-500 rounded-2xl shadow-lg overflow-hidden">
+          <a
+            href="https://go.gov.il/wrwov"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-5 hover:opacity-80 transition-opacity"
+          >
+            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+            <div className="flex-1 min-w-0 text-right">
+              <div className="font-bold text-white text-lg">{home.yachadSystem[locale]}</div>
+              <div className="text-white/70 text-sm mt-0.5">{home.yachadDesc[locale]}</div>
             </div>
-          )}
+          </a>
+          <div className="bg-emerald-50 border-t border-emerald-300 px-5 pb-4 pt-3 space-y-2">
+            <div className="flex items-center gap-2">
+              <Download size={14} className="text-emerald-600 flex-shrink-0" />
+              <span className="text-xs font-semibold text-emerald-700">{home.msrFormsInlineExplain[locale]}</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <a href="/docs/tofes-rishum-toshavim.docx" download className="flex items-center gap-2 bg-white border border-emerald-200 rounded-xl px-3 py-2.5 hover:bg-emerald-100 transition-colors">
+                <Download size={16} className="text-emerald-500 flex-shrink-0" />
+                <div className="min-w-0 text-right">
+                  <div className="text-xs font-bold text-gray-900">{home.msrForm1[locale]}</div>
+                </div>
+              </a>
+              <a href="/docs/nispach-a-hitchayvut-nizok.doc" download className="flex items-center gap-2 bg-white border border-emerald-200 rounded-xl px-3 py-2.5 hover:bg-emerald-100 transition-colors">
+                <Download size={16} className="text-emerald-500 flex-shrink-0" />
+                <div className="min-w-0 text-right">
+                  <div className="text-xs font-bold text-gray-900">{home.msrForm2[locale]}</div>
+                </div>
+              </a>
+              <a href="/docs/nispach-h-shuvar-hafnaya-malon.docx" download className="flex items-center gap-2 bg-white border border-emerald-200 rounded-xl px-3 py-2.5 hover:bg-emerald-100 transition-colors">
+                <Download size={16} className="text-emerald-500 flex-shrink-0" />
+                <div className="min-w-0 text-right">
+                  <div className="text-xs font-bold text-gray-900">{home.msrForm3[locale]}</div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
+
+        {/* Population Intelligence App */}
         <a
-          href="https://go.gov.il/wrwov"
+          href="https://play.google.com/store/apps/details?id=com.microsoft.msapps"
           target="_blank"
           rel="noopener noreferrer"
-          className="block bg-emerald-500 hover:bg-emerald-600 transition-colors rounded-2xl p-5 flex items-center gap-4 shadow-lg"
+          className="block bg-blue-500 hover:bg-blue-600 transition-colors rounded-2xl p-5 shadow-lg"
         >
-          <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-          <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">{home.yachadSystem[locale]}</div>
-            <div className="text-white/70 text-sm mt-0.5">{home.yachadDesc[locale]}</div>
+          <div className="flex items-center gap-4">
+            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+            <div className="flex-1 min-w-0 text-right">
+              <div className="font-bold text-white text-lg">{home.populationApp[locale]}</div>
+              <div className="text-white/70 text-sm mt-0.5">{home.populationAppDesc[locale]}</div>
+            </div>
+          </div>
+          <div className="text-white/60 text-xs mt-2 text-right pr-9">
+            {home.populationAppExplain[locale]}
           </div>
         </a>
+
+        {/* Intake Form */}
         <a
           href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
           target="_blank"
