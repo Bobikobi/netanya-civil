@@ -132,6 +132,7 @@ export default function EmergencyHomePage() {
   const [expandedStep, setExpandedStep] = useState<string | null>(null);
   const [tipIndex, setTipIndex] = useState(0);
   const [tipFade, setTipFade] = useState(true);
+  const [showForms, setShowForms] = useState(false);
   const { locale } = useI18n();
 
   function toggleStep(id: string) {
@@ -198,11 +199,15 @@ export default function EmergencyHomePage() {
             </div>
           </a>
           <div className="bg-emerald-50 border-t border-emerald-300 px-5 pb-4 pt-3 space-y-2">
-            <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowForms(!showForms)}
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+            >
               <Download size={14} className="text-emerald-600 flex-shrink-0" />
-              <span className="text-xs font-semibold text-emerald-700">{home.msrFormsInlineExplain[locale]}</span>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <span className="text-xs font-semibold text-emerald-700">{home.msrFormsInlineExplain[locale]} – לחץ כאן</span>
+              <ChevronDown size={14} className={`text-emerald-600 transition-transform duration-200 ${showForms ? 'rotate-180' : ''}`} />
+            </button>
+            {showForms && <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 animate-slideDown">
               <a href="/docs/tofes-rishum-toshavim.docx" download className="flex items-center gap-2 bg-white border border-emerald-200 rounded-xl px-3 py-2.5 hover:bg-emerald-100 transition-colors">
                 <Download size={16} className="text-emerald-500 flex-shrink-0" />
                 <div className="min-w-0 text-right">
@@ -221,7 +226,7 @@ export default function EmergencyHomePage() {
                   <div className="text-xs font-bold text-gray-900">{home.msrForm3[locale]}</div>
                 </div>
               </a>
-            </div>
+            </div>}
           </div>
         </div>
 
