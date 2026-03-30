@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description: "כלי לריענון ותרגול הפעלת מכלול אוכלוסייה בנתניה",
   icons: {
     icon: [
-      { url: '/netanya-logo.png', type: 'image/png' },
+      { url: '/favicon.png', type: 'image/png', sizes: '64x64' },
     ],
-    apple: '/netanya-logo.png',
+    apple: '/apple-icon.png',
   },
 };
 
