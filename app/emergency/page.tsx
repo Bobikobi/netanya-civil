@@ -281,30 +281,33 @@ export default function EmergencyHomePage() {
       </section>
 
       {/* ===== Quick Navigation Links ===== */}
-      <section className="max-w-6xl mx-auto px-6 mt-10">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          {QUICK_LINKS.map(link => {
-            const Icon = link.icon;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="bg-white border border-gray-200 rounded-2xl p-5 text-center card-hover group shadow-sm"
-              >
-                <div className={`mx-auto mb-3 w-12 h-12 rounded-xl ${link.bg} flex items-center justify-center`}>
-                  <Icon size={24} className={`${link.iconColor} transition-transform duration-200 group-hover:scale-110`} />
-                </div>
-                <div className="font-bold text-gray-900 text-sm">{homeQuickLinks[link.key]?.label[locale]}</div>
-                <div className="text-xs text-gray-400 mt-1">{homeQuickLinks[link.key]?.sublabel[locale]}</div>
-              </Link>
-            );
-          })}
+      <section className="py-10 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {QUICK_LINKS.map(link => {
+              const Icon = link.icon;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="bg-white border border-gray-200/80 rounded-2xl p-5 text-center card-hover group shadow-sm hover:border-gray-300"
+                >
+                  <div className={`mx-auto mb-3 w-12 h-12 rounded-xl ${link.bg} flex items-center justify-center shadow-sm`}>
+                    <Icon size={24} className={`${link.iconColor} transition-transform duration-200 group-hover:scale-110`} />
+                  </div>
+                  <div className="font-bold text-gray-900 text-sm">{homeQuickLinks[link.key]?.label[locale]}</div>
+                  <div className="text-xs text-gray-400 mt-1">{homeQuickLinks[link.key]?.sublabel[locale]}</div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* ===== Side-by-side: Flow Diagram + Parallel Teams ===== */}
-      <section className="max-w-6xl mx-auto px-6 mt-14">
-        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
+      <section className="py-14 bg-gradient-to-b from-gray-50 to-gray-100/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
           {/* RIGHT (in RTL): Flow diagram */}
           <div className="space-y-4">
             <div className="text-center lg:text-right space-y-1 mb-2">
@@ -392,11 +395,13 @@ export default function EmergencyHomePage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* ===== Tip Carousel ===== */}
-      <section className="max-w-6xl mx-auto px-6 mt-14 mb-10">
-        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+      <section className="py-10 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2 text-amber-600 font-bold text-sm">
               <Lightbulb size={16} />
@@ -427,10 +432,12 @@ export default function EmergencyHomePage() {
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* ===== Emergency Quick Dial ===== */}
-      <section className="max-w-6xl mx-auto px-6 mt-10 mb-10">
+      <section className="py-10 bg-gradient-to-b from-gray-50 to-gray-100/50">
+        <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-4">
           <h2 className="text-lg font-bold text-gray-900">{home.emergencyDial[locale]}</h2>
           <p className="text-gray-400 text-xs mt-1">{home.emergencyDialDesc[locale]} · <Link href="/emergency/contacts" className="text-blue-500 hover:underline">{home.fullPhoneBook[locale]}</Link></p>
@@ -446,6 +453,7 @@ export default function EmergencyHomePage() {
               <div className="text-[10px] text-white/80 mt-0.5">{homeEmergencyPhones[idx]?.label[locale] ?? ep.label}</div>
             </a>
           ))}
+        </div>
         </div>
       </section>
       {/* Intake Guide Modal */}
