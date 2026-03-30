@@ -82,8 +82,8 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Nav items */}
-            <div className="flex items-center gap-1">
-              <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide">
+            <div className="flex items-center gap-1 min-w-0 flex-1">
+              <div className="flex items-center gap-0.5 md:gap-1 overflow-x-auto scrollbar-hide min-w-0">
                 {NAV_ITEMS.map(item => {
                   const Icon = item.icon;
                   const isActive = pathname === item.href;
