@@ -7,6 +7,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { I18nProvider, useI18n, LOCALE_FLAGS, Locale } from '@/lib/i18n';
 import { PhoneAuthProvider } from '@/lib/phone-auth';
 import { nav, footer } from '@/lib/translations';
+import AccessibilityWidget from '@/components/AccessibilityWidget';
 
 const NAV_ITEMS = [
   { href: '/emergency', key: 'home', icon: Home },
@@ -141,6 +142,8 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+
+      <AccessibilityWidget />
 
       <style jsx global>{`
         @keyframes fadeIn {
