@@ -35,7 +35,7 @@ export const home: Record<string, T> = {
   msrForm1: { he: 'טופס רישום תושבים בזירת אירוע', en: 'Resident Registration at Event Site', ru: 'Регистрация жителей на месте события' },
   msrForm2: { he: 'נספח א׳ – התחייבות ניזוק (מלון / דיור חלופי)', en: 'Appendix A – Victim Commitment (Hotel / Alt. Housing)', ru: 'Прил. А – Обязательство пострадавшего (отель / жильё)' },
   msrForm3: { he: 'נספח ה׳ – שובר הפניה לבית מלון', en: 'Appendix E – Hotel Referral Voucher', ru: 'Прил. Е – Направление в отель' },
-  yachadSystem: { he: 'מערכת יחד – לחץ כאן', en: 'YACHAD System – Click here', ru: 'Система ЯХАД – нажмите' },
+  yachadSystem: { he: 'מערכת יחד', en: 'YACHAD System', ru: 'Система ЯХАД' },
   yachadDesc: { he: 'מערכת לאומית לניהול אירועי חירום ברשויות מקומיות', en: 'National system for managing emergencies in local authorities', ru: 'Национальная система управления ЧС в местных органах власти' },
   taxReport: { he: 'דיווח תושבים שביתם ניזוק – רשות המיסים', en: 'Report damaged property – Tax Authority', ru: 'Сообщить о повреждении имущества – Налоговая служба' },
   taxDesc: { he: 'מילוי למי שביתו נפגע · מגיע לצוות מלונות ולמס רכוש', en: 'For residents whose home was hit · Goes to hotel team & property tax', ru: 'Для жителей с повреждённым жильём · Для команды отелей и налога' },
