@@ -247,6 +247,18 @@ export default function EmergencyHomePage() {
             <div className="text-white/70 text-sm mt-0.5">{home.yachadDesc[locale]}</div>
           </div>
         </a>
+        <a
+          href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block bg-violet-500 hover:bg-violet-600 transition-colors rounded-2xl p-5 flex items-center gap-4 shadow-lg"
+        >
+          <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+          <div className="flex-1 min-w-0 text-right">
+            <div className="font-bold text-white text-lg">{home.intakeForm[locale]}</div>
+            <div className="text-white/70 text-sm mt-0.5">{home.intakeFormDesc[locale]}</div>
+          </div>
+        </a>
       </section>
 
       {/* ===== Quick Navigation Links ===== */}

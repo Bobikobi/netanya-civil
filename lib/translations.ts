@@ -37,6 +37,8 @@ export const home: Record<string, T> = {
   msrForm3: { he: 'נספח ה׳ – שובר הפניה לבית מלון', en: 'Appendix E – Hotel Referral Voucher', ru: 'Прил. Е – Направление в отель' },
   yachadSystem: { he: 'מערכת יחד', en: 'YACHAD System', ru: 'Система ЯХАД' },
   yachadDesc: { he: 'מערכת לאומית לניהול אירועי חירום ברשויות מקומיות', en: 'National system for managing emergencies in local authorities', ru: 'Национальная система управления ЧС в местных органах власти' },
+  intakeForm: { he: 'טופס אינטייק מרכז משפחות – נתניה', en: 'Intake Form – Netanya Family Center', ru: 'Форма приёма – Семейный центр Нетании' },
+  intakeFormDesc: { he: 'מילוי טופס קליטה דיגיטלי למרכז משפחות', en: 'Fill out the digital intake form for the Family Center', ru: 'Заполнение цифровой формы приёма в Семейный центр' },
   taxReport: { he: 'דיווח תושבים שביתם ניזוק – רשות המיסים', en: 'Report damaged property – Tax Authority', ru: 'Сообщить о повреждении имущества – Налоговая служба' },
   taxDesc: { he: 'מילוי למי שביתו נפגע · מגיע לצוות מלונות ולמס רכוש', en: 'For residents whose home was hit · Goes to hotel team & property tax', ru: 'Для жителей с повреждённым жильём · Для команды отелей и налога' },
   flowTitle: { he: 'זרימת הפעלת הצוותים באירוע הרס', en: 'Team Activation Flow in a Destruction Event', ru: 'Порядок активации команд при ЧС' },
