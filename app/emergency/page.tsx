@@ -24,6 +24,8 @@ import {
   UserCheck,
   Download,
   Monitor,
+  BookOpen,
+  X,
 } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
@@ -134,6 +136,7 @@ export default function EmergencyHomePage() {
   const [tipIndex, setTipIndex] = useState(0);
   const [tipFade, setTipFade] = useState(true);
   const [showForms, setShowForms] = useState(false);
+  const [showIntakeGuide, setShowIntakeGuide] = useState(false);
   const { locale } = useI18n();
 
   function toggleStep(id: string) {
@@ -253,18 +256,28 @@ export default function EmergencyHomePage() {
         </a>
 
         {/* Intake Form */}
-        <a
-          href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block bg-violet-500 hover:bg-violet-600 transition-colors rounded-2xl p-5 flex items-center gap-4 shadow-lg"
-        >
-          <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-          <div className="flex-1 min-w-0 text-right">
-            <div className="font-bold text-white text-lg">{home.intakeForm[locale]}</div>
-            <div className="text-white/70 text-sm mt-0.5">{home.intakeFormDesc[locale]}</div>
-          </div>
-        </a>
+        <div className="flex shadow-lg rounded-2xl overflow-hidden">
+          <a
+            href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 bg-violet-500 hover:bg-violet-600 transition-colors p-5 flex items-center gap-4"
+          >
+            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+            <div className="flex-1 min-w-0 text-right">
+              <div className="font-bold text-white text-lg">{home.intakeForm[locale]}</div>
+              <div className="text-white/70 text-sm mt-0.5">{home.intakeFormDesc[locale]}</div>
+            </div>
+          </a>
+          <button
+            onClick={() => setShowIntakeGuide(true)}
+            className="bg-violet-700 hover:bg-violet-800 transition-colors px-3 flex items-center justify-center border-r border-violet-400/30 flex-shrink-0 gap-1.5 group"
+            title="מדריך למילוי הטופס"
+          >
+            <BookOpen size={16} className="text-white/80 group-hover:text-white" />
+            <span className="text-white/90 text-[11px] font-medium leading-tight whitespace-nowrap group-hover:text-white">מדריך<br/>למילוי</span>
+          </button>
+        </div>
       </section>
 
       {/* ===== Quick Navigation Links ===== */}
@@ -435,6 +448,57 @@ export default function EmergencyHomePage() {
           ))}
         </div>
       </section>
+      {/* Intake Guide Modal */}
+      {showIntakeGuide && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowIntakeGuide(false)}>
+          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto" dir="rtl" onClick={e => e.stopPropagation()}>
+            <div className="sticky top-0 bg-violet-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+              <h2 className="font-bold text-lg flex items-center gap-2"><BookOpen size={20} /> מדריך הפעלה: מערכת איתור תושבים בחירום</h2>
+              <button onClick={() => setShowIntakeGuide(false)} className="hover:bg-violet-700 rounded-lg p-1 transition-colors"><X size={20} /></button>
+            </div>
+            <div className="p-5 space-y-5 text-sm text-gray-700 leading-relaxed">
+              {/* Section 1 */}
+              <div>
+                <h3 className="font-bold text-violet-700 text-base mb-2">🔐 התחברות למערכת</h3>
+                <ul className="list-disc pr-5 space-y-1">
+                  <li>הזן את המייל הייעודי: <span className="font-mono text-xs bg-gray-100 px-1 rounded" dir="ltr">rova5@netanyaonecity.onmicrosoft.com</span></li>
+                  <li>הקלד את הסיסמה האישית שלך</li>
+                  <li><strong>דגש חשוב:</strong> לחץ על &quot;דילוג על ההגדרה&quot; כדי להיכנס מיד ללא אימות דוא&quot;ל</li>
+                </ul>
+              </div>
+              {/* Section 2 */}
+              <div>
+                <h3 className="font-bold text-violet-700 text-base mb-2">📱 גישה לאפליקציה</h3>
+                <ul className="list-disc pr-5 space-y-1">
+                  <li>בתפריט התחתון, לחץ על סמל <strong>All apps</strong> (כל האפליקציות)</li>
+                  <li>מתוך הרשימה, בחר באפליקציית <strong>&quot;איתור תושבים בחירום&quot;</strong></li>
+                </ul>
+              </div>
+              {/* Section 3 */}
+              <div>
+                <h3 className="font-bold text-violet-700 text-base mb-2">📋 ניהול ועדכון סטטוס תושב</h3>
+                <ul className="list-disc pr-5 space-y-1">
+                  <li><span className="inline-block w-3 h-3 rounded-full bg-gray-400 ml-1 align-middle"></span> <strong>אפור - טרם החל:</strong> פנייה חדשה או תושב שטרם נוצר עמו קשר</li>
+                  <li><span className="inline-block w-3 h-3 rounded-full bg-orange-400 ml-1 align-middle"></span> <strong>כתום - לא אותר:</strong> תושב שהוגדר כנעדר או שלא ניתן ליצור עמו קשר</li>
+                  <li>לביצוע עדכון: <strong>לחיצה כפולה</strong> על רשומת תושב תפתח את חלון העדכון המלא</li>
+                  <li>ניתן לעדכן שם אירוע, כתובת פגיעה, סיבת המצב והוספת מלל חופשי לתיעוד</li>
+                  <li><strong>חובה:</strong> הקפד ללחוץ על &quot;שמור&quot; בסיום כל עדכון</li>
+                </ul>
+              </div>
+              {/* Section 4 */}
+              <div>
+                <h3 className="font-bold text-violet-700 text-base mb-2">🔍 איתור והוספת תושב חדש</h3>
+                <ul className="list-disc pr-5 space-y-1">
+                  <li><strong>חיפוש:</strong> לחץ על תפריט &quot;3 השורות&quot; (המבורגר), עבור ללשונית &quot;פניות&quot; וחפש לפי שם</li>
+                  <li><strong>הוספת תושב חסר:</strong> אם התושב אינו מופיע, פתח את &quot;טופס אינטייק מרכז משפחות&quot;</li>
+                  <li>הזן פרטים: שם מלא, תעודת זהות ומספר נייד</li>
+                  <li>לאחר השליחה, חזור לאפליקציה המרכזית להמשך מעקב</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
