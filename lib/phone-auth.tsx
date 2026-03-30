@@ -3,14 +3,29 @@ import React, { createContext, useContext, useState, useCallback } from 'react';
 import { Lock } from 'lucide-react';
 import { useI18n } from './i18n';
 
-const PASSWORD = 'ADMIN';
+export interface ContactData {
+  id: number;
+  page: string;
+  name: string;
+  role: string;
+  phone: string;
+  sort_order: number;
+  parent_id: string | null;
+}
 
 interface PhoneAuthContextType {
   unlocked: boolean;
   requestUnlock: () => void;
+  getPhone: (page: string, name: string) => string;
+  pageContacts: (page: string) => ContactData[];
 }
 
-const PhoneAuthContext = createContext<PhoneAuthContextType>({ unlocked: false, requestUnlock: () => {} });
+const PhoneAuthContext = createContext<PhoneAuthContextType>({
+  unlocked: false,
+  requestUnlock: () => {},
+  getPhone: () => '',
+  pageContacts: () => [],
+});
 
 export function usePhoneAuth() {
   return useContext(PhoneAuthContext);
@@ -21,21 +36,52 @@ export function PhoneAuthProvider({ children }: { children: React.ReactNode }) {
   const [showModal, setShowModal] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [contacts, setContacts] = useState<ContactData[]>([]);
   const { locale } = useI18n();
 
   const requestUnlock = useCallback(() => {
     if (!unlocked) setShowModal(true);
   }, [unlocked]);
 
-  function handleSubmit(e: React.FormEvent) {
+  const getPhone = useCallback((page: string, name: string): string => {
+    if (!unlocked) return '';
+    const match = contacts.find(c => c.page === page && c.name === name);
+    if (match) return match.phone;
+    // Fallback: look up from contacts page data (all staff are listed there)
+    const fallback = contacts.find(c => c.page === 'contacts' && c.name === name);
+    return fallback?.phone || '';
+  }, [unlocked, contacts]);
+
+  const getPageContacts = useCallback((page: string): ContactData[] => {
+    if (!unlocked) return [];
+    return contacts.filter(c => c.page === page);
+  }, [unlocked, contacts]);
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (password === PASSWORD) {
-      setUnlocked(true);
-      setShowModal(false);
-      setPassword('');
-      setError(false);
-    } else {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setContacts(data);
+        setUnlocked(true);
+        setShowModal(false);
+        setPassword('');
+        setError(false);
+      } else {
+        setError(true);
+      }
+    } catch {
       setError(true);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -46,10 +92,11 @@ export function PhoneAuthProvider({ children }: { children: React.ReactNode }) {
     submit: { he: 'כניסה', en: 'Enter', ru: 'Войти' },
     errorMsg: { he: 'סיסמה שגויה', en: 'Wrong password', ru: 'Неверный пароль' },
     cancel: { he: 'ביטול', en: 'Cancel', ru: 'Отмена' },
+    loading: { he: 'טוען...', en: 'Loading...', ru: 'Загрузка...' },
   };
 
   return (
-    <PhoneAuthContext.Provider value={{ unlocked, requestUnlock }}>
+    <PhoneAuthContext.Provider value={{ unlocked, requestUnlock, getPhone, pageContacts: getPageContacts }}>
       {children}
       {showModal && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 px-4" onClick={() => setShowModal(false)}>
@@ -69,10 +116,11 @@ export function PhoneAuthProvider({ children }: { children: React.ReactNode }) {
                 placeholder={labels.placeholder[locale]}
                 className={`w-full border ${error ? 'border-red-400' : 'border-gray-200'} rounded-xl px-4 py-3 text-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 autoFocus
+                disabled={loading}
               />
               {error && <p className="text-red-500 text-sm">{labels.errorMsg[locale]}</p>}
-              <button type="submit" className="w-full bg-gray-900 text-white font-bold rounded-xl px-4 py-3 hover:bg-gray-800 transition-colors">
-                {labels.submit[locale]}
+              <button type="submit" disabled={loading} className="w-full bg-gray-900 text-white font-bold rounded-xl px-4 py-3 hover:bg-gray-800 transition-colors disabled:opacity-50">
+                {loading ? labels.loading[locale] : labels.submit[locale]}
               </button>
               <button type="button" onClick={() => setShowModal(false)} className="w-full text-gray-400 text-sm hover:text-gray-600 transition-colors">
                 {labels.cancel[locale]}
@@ -82,19 +130,5 @@ export function PhoneAuthProvider({ children }: { children: React.ReactNode }) {
         </div>
       )}
     </PhoneAuthContext.Provider>
-  );
-}
-
-/** Wrapper for phone display: shows masked text + lock icon if not unlocked */
-export function ProtectedPhone({ phone, children }: { phone: string; children: React.ReactNode }) {
-  const { unlocked, requestUnlock } = usePhoneAuth();
-
-  if (unlocked) return <>{children}</>;
-
-  return (
-    <button onClick={requestUnlock} className="flex items-center gap-1.5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer">
-      <Lock size={12} />
-      <span className="text-xs">●●●-●●●●●●●</span>
-    </button>
   );
 }

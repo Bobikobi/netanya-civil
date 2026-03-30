@@ -3,115 +3,8 @@ import { useState } from 'react';
 import { Phone, Search, Copy, Check, ExternalLink, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
-import { usePhoneAuth } from '@/lib/phone-auth';
+import { usePhoneAuth, ContactData } from '@/lib/phone-auth';
 import { contactsPage } from '@/lib/translations';
-
-export interface Contact {
-  name: string;
-  role: string;
-  phone: string;
-  phone2?: string;
-  category: string;
-}
-
-const CONTACTS: Contact[] = [
-  // מטה מכלול אוכלוסייה
-  { name: 'רותי גור', role: 'ראש מטה (משמרת א׳)', phone: '052-2422009', category: 'מטה מכלול' },
-  { name: 'עדי פוליטי', role: 'סגן ראש מטה (משמרת א׳)', phone: '052-3315503', category: 'מטה מכלול' },
-  { name: 'לימור איצקוביץ', role: 'ראש מטה (משמרת ב׳)', phone: '052-3890241', category: 'מטה מכלול' },
-  { name: 'דבי סבטוי', role: 'סגן ראש מטה (משמרת ב׳)', phone: '052-8138756', category: 'מטה מכלול' },
-  { name: 'יניר יעקובי', role: 'רכז חירום מכלול', phone: '052-3800007', category: 'מטה מכלול' },
-  { name: 'בני שכטר', role: 'מערכות מידע ונתונים', phone: '052-2452270', category: 'מטה מכלול' },
-  { name: 'לוציאנה', role: 'מערכות מידע ונתונים', phone: '050-6400205', category: 'מטה מכלול' },
-  { name: 'ענת עשור', role: 'מיון פניות', phone: '052-6404403', category: 'מטה מכלול' },
-  { name: 'רויטל נחמיאס', role: 'פרסום, שיווק ומידע', phone: '054-4922372', category: 'מטה מכלול' },
-  { name: 'חגית אביב', role: 'משאבי אנוש (1)', phone: '050-7233665', category: 'מטה מכלול' },
-  { name: 'רויטל רש', role: 'משאבי אנוש (2)', phone: '050-3808184', category: 'מטה מכלול' },
-
-  // מטה צוותי התערבות
-  { name: 'נדין שם טוב', role: 'ראש מטה התערבות', phone: '054-4719718', category: 'צוותי התערבות' },
-  { name: 'יעל קידר', role: 'צוותי התערבות', phone: '058-5768666', category: 'צוותי התערבות' },
-
-  // רובעים
-  { name: 'דקלה קליין', role: 'רובע א׳', phone: '050-6936618', category: 'רובעים' },
-  { name: 'מורית שטרן', role: 'רובע א׳', phone: '054-6783122', category: 'רובעים' },
-  { name: 'אורלי וקשי', role: 'רובע ב׳', phone: '052-5123079', category: 'רובעים' },
-  { name: 'אודי מגידי', role: 'רובע ב׳', phone: '052-5799063', category: 'רובעים' },
-  { name: 'מירי ברון', role: 'רובע ג׳', phone: '050-7112414', category: 'רובעים' },
-  { name: 'אור הרוש', role: 'רובע ג׳', phone: '052-5343103', category: 'רובעים' },
-  { name: 'מיכל חלפון', role: 'רובע ד׳', phone: '050-2748662', category: 'רובעים' },
-  { name: 'סיון לוי נפתלי', role: 'רובע ד׳', phone: '052-6879393', category: 'רובעים' },
-  { name: 'אביבית דבי', role: 'רובע ה׳', phone: '052-2207705', category: 'רובעים' },
-  { name: 'אירית שפירא', role: 'רובע ה׳', phone: '052-4434987', category: 'רובעים' },
-
-  // מס"ר – מרכז משפחות
-  { name: 'שביט ביטון', role: 'מרכז משפחות', phone: '054-4849474', category: 'מס"ר' },
-  { name: 'ליטל לוריא', role: 'מרכז משפחות', phone: '054-8184472', category: 'מס"ר' },
-  { name: 'כנרת מנטין', role: 'מתחם המתנה', phone: '', category: 'מס"ר' },
-  { name: 'מיה אופננג', role: 'מתחם נעדרים', phone: '', category: 'מס"ר' },
-
-  // מטה מל"מ
-  { name: 'שני רשף', role: 'ראש מטה מל"מ', phone: '054-7336485', category: 'מטה מל"מ' },
-  { name: 'ציפי כרמלי', role: 'סגן מטה מל"מ', phone: '052-2587918', category: 'מטה מל"מ' },
-  { name: 'נאוה תמיר', role: 'אס"ל', phone: '054-7717016', category: 'מטה מל"מ' },
-  { name: 'דפנה מור', role: 'אס"ל', phone: '052-2724404', category: 'מטה מל"מ' },
-  { name: 'בל מרקוביץ', role: 'שפ"ח', phone: '052-4565525', category: 'מטה מל"מ' },
-
-  // מטה רגשי
-  { name: 'סיגל קני פז', role: 'ראש מטה רגשי', phone: '054-5594108', category: 'מטה רגשי' },
-  { name: 'מירב מור', role: 'סגן מטה רגשי', phone: '052-4686349', category: 'מטה רגשי' },
-
-  // קו פתוח ומידע
-  { name: 'רקפת וינגרט', role: 'צוות קו פתוח ומידע', phone: '052-5799061', category: 'קו פתוח' },
-  { name: 'שלומית עמרני', role: 'צוות קו פתוח ומידע', phone: '054-2339491', category: 'קו פתוח' },
-
-  // קישור בית חולים
-  { name: 'שמרית דיאמנט', role: 'קישור בית חולים (1)', phone: '052-4722014', category: 'קישור בתי חולים' },
-  { name: 'אסנת דוד', role: 'קישור בית חולים (2)', phone: '054-8200602', category: 'קישור בתי חולים' },
-
-  // מטה חללים (בשורה מרה)
-  { name: 'נילי חומן', role: 'ראש מטה חללים', phone: '050-5958666', category: 'מטה חללים' },
-  { name: 'יעל שחר', role: 'סגן מטה חללים', phone: '052-4476011', category: 'מטה חללים' },
-
-  // מטה אוכלוסיות מיוחדות (תל"ם)
-  { name: 'קלרה חן', role: 'ראש מטה אוכלוסיות מיוחדות', phone: '052-6642723', category: 'אוכלוסיות מיוחדות' },
-  { name: 'יעל רכס', role: 'סגן מטה אוכלוסיות מיוחדות', phone: '052-5550588', category: 'אוכלוסיות מיוחדות' },
-
-  // מטה קליטת אוכלוסייה (מלונות)
-  { name: 'אתי עמיאל', role: 'ראש מטה קליטת אוכלוסייה', phone: '054-8462292', category: 'קליטת אוכלוסייה' },
-  { name: 'הדר שחר פז', role: 'סגן מטה קליטת אוכלוסייה', phone: '054-4251952', category: 'קליטת אוכלוסייה' },
-
-  // מטה תפעול ומתנדבים
-  { name: 'אפרת ברוך', role: 'ראש מטה תפעול ומתנדבים', phone: '052-4680330', category: 'תפעול ומתנדבים' },
-  { name: 'מלי גניש', role: 'סגן + חמ"ל לוגיסטיקה', phone: '052-2921818', category: 'תפעול ומתנדבים' },
-  { name: 'אתי יוזף', role: 'חמ"ל מתנדבים', phone: '052-5799082', category: 'תפעול ומתנדבים' },
-
-  // מטה אזרחים ותיקים
-  { name: 'גילה גלעדי', role: 'ראש מטה אזרחים ותיקים', phone: '052-5799058', category: 'אזרחים ותיקים' },
-  { name: 'ספי אביב', role: 'סגן מטה אזרחים ותיקים', phone: '054-6460570', category: 'אזרחים ותיקים' },
-
-  // מטה קליטת עלייה
-  { name: 'בני אמר', role: 'ראש מטה קליטת עלייה', phone: '052-6398920', category: 'קליטת עלייה' },
-
-  // מטה תיירות
-  { name: 'אולגה לורייה', role: 'ראש מטה תיירות', phone: '054-3355359', category: 'תיירות' },
-  { name: 'עדנה שפיצר', role: 'סגן מטה תיירות', phone: '054-3451816', category: 'תיירות' },
-
-  // מטה בריאות
-  { name: 'שלומי רוקח', role: 'ראש מטה בריאות', phone: '052-3684242', category: 'בריאות' },
-
-  // מרכז ט.ל.י.ה
-  { name: 'צפי גלובין', role: 'מרכז ט.ל.י.ה', phone: '054-4501520', category: 'ט.ל.י.ה' },
-
-  // גורמי חוץ
-  { name: 'מוקד עירוני', role: 'מוקד 106', phone: '106', category: 'גורמי חוץ' },
-  { name: 'משטרת ישראל', role: 'מוקד 100', phone: '100', category: 'גורמי חוץ' },
-  { name: 'מד"א', role: 'מוקד 101', phone: '101', category: 'גורמי חוץ' },
-  { name: 'כיבוי והצלה', role: 'מוקד 102', phone: '102', category: 'גורמי חוץ' },
-  { name: 'פיקוד העורף', role: 'מוקד 104', phone: '104', category: 'גורמי חוץ' },
-  { name: 'ער"ן – עזרה ראשונה נפשית', role: 'קו חירום', phone: '1201', category: 'גורמי חוץ' },
-  { name: 'נט"ל – קו סיוע רגשי', role: 'קו חירום', phone: '*2784', category: 'גורמי חוץ' },
-];
 
 const CATEGORIES = [
   'מטה מכלול',
@@ -160,7 +53,8 @@ export default function ContactsPage() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
   const { locale } = useI18n();
-  const { unlocked, requestUnlock } = usePhoneAuth();
+  const { unlocked, requestUnlock, pageContacts } = usePhoneAuth();
+  const allContacts = pageContacts('contacts');
 
   function copyPhone(phone: string) {
     navigator.clipboard.writeText(phone);
@@ -198,20 +92,20 @@ export default function ContactsPage() {
     );
   }
 
-  const filtered = CONTACTS.filter(c => {
+  const filtered = allContacts.filter(c => {
     const matchesSearch =
       !search ||
       c.name.includes(search) ||
       c.role.includes(search) ||
       c.phone.includes(search) ||
-      c.category.includes(search);
-    const matchesCategory = !activeCategory || c.category === activeCategory;
+      (c.parent_id || '').includes(search);
+    const matchesCategory = !activeCategory || c.parent_id === activeCategory;
     return matchesSearch && matchesCategory;
   });
 
   const grouped = CATEGORIES.map(cat => ({
     category: cat,
-    contacts: filtered.filter(c => c.category === cat),
+    contacts: filtered.filter(c => c.parent_id === cat),
   })).filter(g => g.contacts.length > 0);
 
   return (

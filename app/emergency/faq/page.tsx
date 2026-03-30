@@ -131,7 +131,7 @@ export default function FAQPage() {
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
   const { locale } = useI18n();
-  const { unlocked, requestUnlock } = usePhoneAuth();
+  const { unlocked, requestUnlock, getPhone } = usePhoneAuth();
 
   function toggleCategory(id: string) {
     setExpandedCategory(prev => (prev === id ? null : id));
@@ -226,19 +226,20 @@ export default function FAQPage() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {[
-            { name: 'בני שכטר', role: 'מערכות מידע', phone: '052-2452270' },
-            { name: 'ענת עשור', role: 'מיון פניות', phone: '052-6404403' },
-            { name: 'יניר יעקובי', role: 'רכז חירום מכלול', phone: '052-3800007' },
-            { name: 'רויטל נחמיאס', role: 'פרסום ומידע', phone: '054-4922372' },
-            { name: 'רקפת וינגרט', role: 'קו פתוח ומידע', phone: '052-5799061' },
-            { name: 'מוקד 106', role: 'מוקד עירוני', phone: '106' },
-          ].map((c, i) => (
-            unlocked ? (
-              <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+            { name: 'בני שכטר', role: 'מערכות מידע' },
+            { name: 'ענת עשור', role: 'מיון פניות' },
+            { name: 'יניר יעקובי', role: 'רכז חירום מכלול' },
+            { name: 'רויטל נחמיאס', role: 'פרסום ומידע' },
+            { name: 'רקפת וינגרט', role: 'קו פתוח ומידע' },
+            { name: 'מוקד 106', role: 'מוקד עירוני' },
+          ].map((c, i) => {
+            const phone = getPhone('faq', c.name);
+            return unlocked && phone ? (
+              <a key={i} href={`tel:${phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
                 <Phone size={12} className="text-blue-500 flex-shrink-0" />
                 <div className="min-w-0">
                   <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
-                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
+                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{phone}</span></div>
                 </div>
               </a>
             ) : (
@@ -249,8 +250,8 @@ export default function FAQPage() {
                   <div className="text-[10px] text-gray-400">{c.role} · <span className="text-gray-300">●●●-●●●●●●●</span></div>
                 </div>
               </button>
-            )
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>
