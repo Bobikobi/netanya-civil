@@ -79,8 +79,10 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
       <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:z-[100] focus:bg-white focus:border focus:border-gray-300 focus:rounded-lg focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-gray-900 focus:shadow-lg" style={{ [dir === 'rtl' ? 'right' : 'left']: '0.5rem' }}>
         {locale === 'he' ? 'דלג לתוכן' : locale === 'en' ? 'Skip to content' : 'Перейти к содержанию'}
       </a>
+      {/* Brand strip */}
+      <div className="h-1 bg-gradient-to-l from-[#1e3a5f] via-[#2563eb] to-[#1e3a5f]" />
       {/* Sticky top navigation */}
-      <nav aria-label={locale === 'he' ? 'ניווט ראשי' : locale === 'en' ? 'Main navigation' : 'Главная навигация'} className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <nav aria-label={locale === 'he' ? 'ניווט ראשי' : locale === 'en' ? 'Main navigation' : 'Главная навигация'} className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200/80 shadow-sm">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             {/* Nav items */}
@@ -110,8 +112,8 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
             </div>
             {/* Logo + Brand */}
             <div className="flex items-center gap-3">
-              <Link href="/emergency" className="hidden md:flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-2">
-                <Shield size={22} className="text-gray-500" />
+              <Link href="/emergency" className="hidden md:flex items-center gap-3 bg-gradient-to-l from-gray-50 to-white border border-gray-200 rounded-xl px-4 py-2 shadow-sm">
+                <Shield size={22} className="text-[#1e3a5f]" />
                 <div className={locale === 'he' ? 'text-right' : 'text-left'}>
                   <div className="font-bold text-sm text-gray-900 leading-tight">{t('brand', nav)}</div>
                   <div className="text-[11px] text-gray-400 leading-tight">{t('brandSub', nav)}</div>
@@ -131,16 +133,20 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Footer */}
-      <footer aria-label={locale === 'he' ? 'כותרת תחתונה' : locale === 'en' ? 'Footer' : 'Подвал'} className="border-t border-gray-200 bg-white py-6 mt-16">
-        <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-2">
-          <p className="text-gray-600 font-medium">{t('line1', footer)}</p>
-          <p className="text-gray-400 text-xs">{t('line2', footer)}</p>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 pt-2 border-t border-gray-100 mt-3">
-            <Link href="/emergency/accessibility" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">{t('accessibility', footer)}</Link>
-            <Link href="/emergency/privacy" className="text-xs text-gray-400 hover:text-blue-500 transition-colors">{t('privacy', footer)}</Link>
-            <span className="text-xs text-gray-300">© {new Date().getFullYear()} אלעד סעדון</span>
+      <footer aria-label={locale === 'he' ? 'כותרת תחתונה' : locale === 'en' ? 'Footer' : 'Подвал'} className="mt-16">
+        <div className="h-px bg-gradient-to-l from-transparent via-gray-300 to-transparent" />
+        <div className="bg-gradient-to-b from-gray-50 to-white py-8">
+          <div className="max-w-6xl mx-auto px-6 text-center text-sm space-y-3">
+            <p className="text-gray-700 font-semibold">{t('line1', footer)}</p>
+            <p className="text-gray-400 text-xs leading-relaxed">{t('line2', footer)}</p>
+            <div className="flex flex-wrap justify-center gap-x-4 gap-y-1 pt-3 border-t border-gray-200/60 mt-4">
+              <Link href="/emergency/accessibility" className="text-xs text-gray-500 hover:text-[#1e3a5f] transition-colors">{t('accessibility', footer)}</Link>
+              <Link href="/emergency/privacy" className="text-xs text-gray-500 hover:text-[#1e3a5f] transition-colors">{t('privacy', footer)}</Link>
+              <span className="text-xs text-gray-300">© {new Date().getFullYear()} אלעד סעדון</span>
+            </div>
           </div>
         </div>
+        <div className="h-1 bg-gradient-to-l from-[#1e3a5f] via-[#2563eb] to-[#1e3a5f]" />
       </footer>
 
       <AccessibilityWidget />
