@@ -16,6 +16,12 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "מכלול אוכלוסייה – מנהל הרווחה, עיריית נתניה",
   description: "כלי לריענון ותרגול הפעלת מכלול אוכלוסייה בנתניה",
+  icons: {
+    icon: [
+      { url: '/netanya-logo.png', type: 'image/png' },
+    ],
+    apple: '/netanya-logo.png',
+  },
 };
 
 export default function RootLayout({
