@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Phone, Search, Copy, Check, ExternalLink, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
+import { usePhoneAuth } from '@/lib/phone-auth';
 import { contactsPage } from '@/lib/translations';
 
 export interface Contact {
@@ -158,20 +159,8 @@ export default function ContactsPage() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [copiedPhone, setCopiedPhone] = useState<string | null>(null);
-  const [authenticated, setAuthenticated] = useState(false);
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
   const { locale } = useI18n();
-
-  function handleLogin(e: React.FormEvent) {
-    e.preventDefault();
-    if (password === 'ADMIN') {
-      setAuthenticated(true);
-      setError(false);
-    } else {
-      setError(true);
-    }
-  }
+  const { unlocked, requestUnlock } = usePhoneAuth();
 
   function copyPhone(phone: string) {
     navigator.clipboard.writeText(phone);
@@ -179,13 +168,10 @@ export default function ContactsPage() {
     setTimeout(() => setCopiedPhone(null), 1500);
   }
 
-  if (!authenticated) {
+  if (!unlocked) {
     const labels = {
       title: { he: 'ספר טלפונים מוגן', en: 'Protected Phone Book', ru: 'Защищённый справочник' },
       desc: { he: 'הזן סיסמה כדי לגשת לספר הטלפונים', en: 'Enter password to access the phone book', ru: 'Введите пароль для доступа к справочнику' },
-      placeholder: { he: 'סיסמה', en: 'Password', ru: 'Пароль' },
-      submit: { he: 'כניסה', en: 'Enter', ru: 'Войти' },
-      errorMsg: { he: 'סיסמה שגויה', en: 'Wrong password', ru: 'Неверный пароль' },
     };
     return (
       <div className="max-w-md mx-auto px-6 py-20">
@@ -197,23 +183,16 @@ export default function ContactsPage() {
             <h1 className="text-2xl font-bold text-gray-900">{labels.title[locale]}</h1>
             <p className="text-gray-400 text-sm mt-1">{labels.desc[locale]}</p>
           </div>
-          <form onSubmit={handleLogin} className="space-y-3">
-            <input
-              type="password"
-              value={password}
-              onChange={e => { setPassword(e.target.value); setError(false); }}
-              placeholder={labels.placeholder[locale]}
-              className={`w-full border ${error ? 'border-red-400' : 'border-gray-200'} rounded-xl px-4 py-3 text-center text-lg focus:outline-none focus:ring-2 focus:ring-blue-500`}
-              autoFocus
-            />
-            {error && <p className="text-red-500 text-sm">{labels.errorMsg[locale]}</p>}
-            <button
-              type="submit"
-              className="w-full bg-gray-900 text-white font-bold rounded-xl px-4 py-3 hover:bg-gray-800 transition-colors"
-            >
-              {labels.submit[locale]}
-            </button>
-          </form>
+          <button
+            onClick={requestUnlock}
+            className="w-full bg-gray-900 text-white font-bold rounded-xl px-4 py-3 hover:bg-gray-800 transition-colors"
+          >
+            {{
+              he: 'הזן סיסמה',
+              en: 'Enter Password',
+              ru: 'Ввести пароль',
+            }[locale]}
+          </button>
         </div>
       </div>
     );

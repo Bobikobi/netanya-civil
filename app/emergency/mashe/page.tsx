@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { ChevronDown, AlertTriangle, CheckCircle, Play, BookOpen, Phone } from 'lucide-react';
+import { ChevronDown, AlertTriangle, CheckCircle, Play, BookOpen, Phone, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
+import { usePhoneAuth } from '@/lib/phone-auth';
 import { mashe as masheT, masheSteps as masheStepsT, masheMistakes, masheReminders } from '@/lib/translations';
 
 const STEPS = [
@@ -74,6 +75,7 @@ const REMINDERS = [
 export default function MashePage() {
   const [expandedStep, setExpandedStep] = useState<number | null>(0);
   const { locale } = useI18n();
+  const { unlocked, requestUnlock } = usePhoneAuth();
 
   return (
     <div className="max-w-5xl mx-auto px-6 py-10 space-y-14">
@@ -212,13 +214,23 @@ export default function MashePage() {
             { name: 'נט"ל', role: 'קו סיוע רגשי', phone: '*2784' },
             { name: 'מוקד 106', role: 'מוקד עירוני', phone: '106' },
           ].map((c, i) => (
-            <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
-              <Phone size={12} className="text-blue-500 flex-shrink-0" />
-              <div className="min-w-0">
-                <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
-                <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
-              </div>
-            </a>
+            unlocked ? (
+              <a key={i} href={`tel:${c.phone}`} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors">
+                <Phone size={12} className="text-blue-500 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
+                  <div className="text-[10px] text-gray-400">{c.role} · <span dir="ltr">{c.phone}</span></div>
+                </div>
+              </a>
+            ) : (
+              <button key={i} onClick={requestUnlock} className="flex items-center gap-2.5 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 hover:bg-blue-50 hover:border-blue-200 transition-colors text-right w-full">
+                <Lock size={12} className="text-gray-400 flex-shrink-0" />
+                <div className="min-w-0">
+                  <div className="text-xs font-bold text-gray-900 truncate">{c.name}</div>
+                  <div className="text-[10px] text-gray-400">{c.role} · <span className="text-gray-300">●●●-●●●●●●●</span></div>
+                </div>
+              </button>
+            )
           ))}
         </div>
       </section>

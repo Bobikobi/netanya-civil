@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { Home, Heart, Users, MessageSquare, HelpCircle, Shield, Phone, GitBranch, Globe } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 import { I18nProvider, useI18n, LOCALE_FLAGS, Locale } from '@/lib/i18n';
+import { PhoneAuthProvider } from '@/lib/phone-auth';
 import { nav, footer } from '@/lib/translations';
 
 const NAV_ITEMS = [
@@ -190,7 +191,9 @@ function LayoutInner({ children }: { children: React.ReactNode }) {
 export default function EmergencyLayout({ children }: { children: React.ReactNode }) {
   return (
     <I18nProvider>
-      <LayoutInner>{children}</LayoutInner>
+      <PhoneAuthProvider>
+        <LayoutInner>{children}</LayoutInner>
+      </PhoneAuthProvider>
     </I18nProvider>
   );
 }

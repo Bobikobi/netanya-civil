@@ -1,8 +1,9 @@
 'use client';
 import { useState } from 'react';
-import { Phone, ChevronDown, Shield } from 'lucide-react';
+import { Phone, ChevronDown, Shield, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
+import { usePhoneAuth } from '@/lib/phone-auth';
 import { orgchartPage } from '@/lib/translations';
 
 interface OrgUnit {
@@ -222,6 +223,7 @@ const SUPPORT_STAFF = [
 
 function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
   const [expanded, setExpanded] = useState(depth < 2);
+  const { unlocked, requestUnlock } = usePhoneAuth();
   const hasChildren = node.children && node.children.length > 0;
 
   return (
@@ -245,15 +247,25 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
                       {p.name}{p.role ? ` – ${p.role}` : ''}
                     </span>
                     {p.phone && (
-                      <a
-                        href={`tel:${p.phone}`}
-                        onClick={e => e.stopPropagation()}
-                        className={`flex items-center gap-0.5 ${depth === 0 ? 'text-white/70 hover:text-white' : 'text-blue-500 hover:text-blue-700'} hover:underline`}
-                        dir="ltr"
-                      >
-                        <Phone size={10} />
-                        {p.phone}
-                      </a>
+                      unlocked ? (
+                        <a
+                          href={`tel:${p.phone}`}
+                          onClick={e => e.stopPropagation()}
+                          className={`flex items-center gap-0.5 ${depth === 0 ? 'text-white/70 hover:text-white' : 'text-blue-500 hover:text-blue-700'} hover:underline`}
+                          dir="ltr"
+                        >
+                          <Phone size={10} />
+                          {p.phone}
+                        </a>
+                      ) : (
+                        <span
+                          onClick={e => { e.stopPropagation(); requestUnlock(); }}
+                          className={`flex items-center gap-0.5 cursor-pointer ${depth === 0 ? 'text-white/40' : 'text-gray-400'} hover:text-gray-600`}
+                        >
+                          <Lock size={10} />
+                          <span className="text-[10px]">●●●-●●●●●●●</span>
+                        </span>
+                      )
                     )}
                   </div>
                 ))}
@@ -284,6 +296,7 @@ function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
 
 export default function OrgChartPage() {
   const { locale } = useI18n();
+  const { unlocked, requestUnlock } = usePhoneAuth();
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-10 space-y-10">
@@ -307,10 +320,17 @@ export default function OrgChartPage() {
               <div className="text-xs text-gray-400 mb-1">{s.unit}</div>
               <div className="font-bold text-gray-900 text-sm">{s.name}</div>
               {s.phone && (
-                <a href={`tel:${s.phone}`} className="flex items-center gap-1 text-blue-500 text-xs mt-1 hover:underline" dir="ltr">
-                  <Phone size={11} />
-                  {s.phone}
-                </a>
+                unlocked ? (
+                  <a href={`tel:${s.phone}`} className="flex items-center gap-1 text-blue-500 text-xs mt-1 hover:underline" dir="ltr">
+                    <Phone size={11} />
+                    {s.phone}
+                  </a>
+                ) : (
+                  <button onClick={requestUnlock} className="flex items-center gap-1 text-gray-400 text-xs mt-1 hover:text-gray-600 transition-colors">
+                    <Lock size={11} />
+                    <span>●●●-●●●●●●●</span>
+                  </button>
+                )
               )}
             </div>
           ))}
