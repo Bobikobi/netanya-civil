@@ -23,6 +23,7 @@ import {
   ShieldHalf,
   BarChart3,
   UserCheck,
+  Download,
 } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
@@ -193,6 +194,34 @@ export default function EmergencyHomePage() {
             <div className="text-white/70 text-sm mt-0.5">{home.msrDesc[locale]}</div>
           </div>
         </a>
+
+        {/* MSR Manual Forms Download */}
+        <div className="bg-blue-50 border border-blue-200 rounded-2xl p-5 space-y-3">
+          <div className="text-right">
+            <div className="font-bold text-blue-800 text-sm">{home.msrFormsTitle[locale]}</div>
+            <div className="text-blue-600/70 text-xs mt-0.5">{home.msrFormsDesc[locale]}</div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <a href="/docs/tofes-rishum-toshavim.docx" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
+              <Download size={16} className="text-blue-500 flex-shrink-0" />
+              <div className="min-w-0 text-right">
+                <div className="text-xs font-bold text-gray-900">{home.msrForm1[locale]}</div>
+              </div>
+            </a>
+            <a href="/docs/nispach-a-hitchayvut-nizok.doc" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
+              <Download size={16} className="text-blue-500 flex-shrink-0" />
+              <div className="min-w-0 text-right">
+                <div className="text-xs font-bold text-gray-900">{home.msrForm2[locale]}</div>
+              </div>
+            </a>
+            <a href="/docs/nispach-h-shuvar-hafnaya-malon.docx" download className="flex items-center gap-2 bg-white border border-blue-200 rounded-xl px-3 py-2.5 hover:bg-blue-100 transition-colors">
+              <Download size={16} className="text-blue-500 flex-shrink-0" />
+              <div className="min-w-0 text-right">
+                <div className="text-xs font-bold text-gray-900">{home.msrForm3[locale]}</div>
+              </div>
+            </a>
+          </div>
+        </div>
         <a
           href="https://go.gov.il/wrwov"
           target="_blank"
