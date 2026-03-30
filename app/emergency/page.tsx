@@ -24,6 +24,7 @@ import {
   BarChart3,
   UserCheck,
   Download,
+  Monitor,
 } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
@@ -91,6 +92,7 @@ const PARALLEL_TEAMS = [
   { icon: HandHelping, color: 'text-teal-500', bg: 'bg-teal-50', border: 'border-teal-200' },
   { icon: ShieldHalf, color: 'text-indigo-500', bg: 'bg-indigo-50', border: 'border-indigo-200' },
   { icon: BarChart3, color: 'text-blue-500', bg: 'bg-blue-50', border: 'border-blue-200' },
+  { icon: Monitor, color: 'text-cyan-500', bg: 'bg-cyan-50', border: 'border-cyan-200' },
 ];
 
 const QUICK_LINKS = [
