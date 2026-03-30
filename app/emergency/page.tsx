@@ -456,41 +456,41 @@ export default function EmergencyHomePage() {
               <h2 className="font-bold text-lg flex items-center gap-2"><BookOpen size={20} /> מדריך הפעלה: מערכת איתור תושבים בחירום</h2>
               <button onClick={() => setShowIntakeGuide(false)} className="hover:bg-violet-700 rounded-lg p-1 transition-colors"><X size={20} /></button>
             </div>
-            <div className="p-5 space-y-5 text-sm text-gray-700 leading-relaxed">
+            <div className="p-5 space-y-7 text-sm text-gray-700 leading-relaxed">
               {/* Section 1 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2">🔐 התחברות למערכת</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">התחברות למערכת</h3>
                 <ul className="list-disc pr-5 space-y-1">
                   <li>הזן את המייל הייעודי: <span className="font-mono text-xs bg-gray-100 px-1 rounded" dir="ltr">rova5@netanyaonecity.onmicrosoft.com</span></li>
                   <li>הקלד את הסיסמה האישית שלך</li>
-                  <li><strong>דגש חשוב:</strong> לחץ על &quot;דילוג על ההגדרה&quot; כדי להיכנס מיד ללא אימות דוא&quot;ל</li>
+                  <li><strong>דגש חשוב:</strong> לחץ על "דילוג על ההגדרה" כדי להיכנס מיד ללא אימות דוא"ל</li>
                 </ul>
               </div>
               {/* Section 2 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2">📱 גישה לאפליקציה</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">גישה לאפליקציה</h3>
                 <ul className="list-disc pr-5 space-y-1">
                   <li>בתפריט התחתון, לחץ על סמל <strong>All apps</strong> (כל האפליקציות)</li>
-                  <li>מתוך הרשימה, בחר באפליקציית <strong>&quot;איתור תושבים בחירום&quot;</strong></li>
+                  <li>מתוך הרשימה, בחר באפליקציית <strong>"איתור תושבים בחירום"</strong></li>
                 </ul>
               </div>
               {/* Section 3 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2">📋 ניהול ועדכון סטטוס תושב</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">ניהול ועדכון סטטוס תושב</h3>
                 <ul className="list-disc pr-5 space-y-1">
                   <li><span className="inline-block w-3 h-3 rounded-full bg-gray-400 ml-1 align-middle"></span> <strong>אפור - טרם החל:</strong> פנייה חדשה או תושב שטרם נוצר עמו קשר</li>
                   <li><span className="inline-block w-3 h-3 rounded-full bg-orange-400 ml-1 align-middle"></span> <strong>כתום - לא אותר:</strong> תושב שהוגדר כנעדר או שלא ניתן ליצור עמו קשר</li>
                   <li>לביצוע עדכון: <strong>לחיצה כפולה</strong> על רשומת תושב תפתח את חלון העדכון המלא</li>
                   <li>ניתן לעדכן שם אירוע, כתובת פגיעה, סיבת המצב והוספת מלל חופשי לתיעוד</li>
-                  <li><strong>חובה:</strong> הקפד ללחוץ על &quot;שמור&quot; בסיום כל עדכון</li>
+                  <li><strong>חובה:</strong> הקפד ללחוץ על "שמור" בסיום כל עדכון</li>
                 </ul>
               </div>
               {/* Section 4 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2">🔍 איתור והוספת תושב חדש</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">איתור והוספת תושב חדש</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li><strong>חיפוש:</strong> לחץ על תפריט &quot;3 השורות&quot; (המבורגר), עבור ללשונית &quot;פניות&quot; וחפש לפי שם</li>
-                  <li><strong>הוספת תושב חסר:</strong> אם התושב אינו מופיע, פתח את &quot;טופס אינטייק מרכז משפחות&quot;</li>
+                  <li><strong>חיפוש:</strong> לחץ על תפריט "3 השורות" (המבורגר), עבור ללשונית "פניות" וחפש לפי שם</li>
+                  <li><strong>הוספת תושב חסר:</strong> אם התושב אינו מופיע, פתח את "טופס אינטייק מרכז משפחות"</li>
                   <li>הזן פרטים: שם מלא, תעודת זהות ומספר נייד</li>
                   <li>לאחר השליחה, חזור לאפליקציה המרכזית להמשך מעקב</li>
                 </ul>
