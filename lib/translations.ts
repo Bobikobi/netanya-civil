@@ -25,9 +25,9 @@ export const footer: Record<string, T> = {
 
 // ===== HOME PAGE =====
 export const home: Record<string, T> = {
-  heroTitle: { he: 'צוותי חירום', en: 'Emergency Teams', ru: 'Команды ЧС' },
-  heroSubtitle: { he: 'מנהל שירותים חברתיים', en: 'Social Services Administration', ru: 'Управление социальных служб' },
-  heroDesc: { he: 'כלי לריענון ותרגול הפעלת צוותי חירום של מנהל השירותים החברתיים בנתניה', en: 'A tool for refreshing and practicing emergency team operations in Netanya\'s Social Services Administration', ru: 'Инструмент для обновления и практики работы групп ЧС управления социальных служб Нетании' },
+  heroTitle: { he: 'מכלול אוכלוסייה', en: 'Population Division', ru: 'Отдел населения' },
+  heroSubtitle: { he: 'מנהל הרווחה - עיריית נתניה', en: 'Welfare Administration - Netanya Municipality', ru: 'Управление соцобеспечения - Нетания' },
+  heroDesc: { he: 'כלי לריענון ותרגול הפעלת מכלול אוכלוסייה בנתניה', en: 'A tool for refreshing and practicing the Population Division operations in Netanya', ru: 'Инструмент для обновления и практики работы отдела населения Нетании' },
   msrSystem: { he: 'מערכת טפסי מס״ר', en: 'MSR Forms System', ru: 'Система форм МСР' },
   msrDesc: { he: 'רישום משפחות · יציאה מאזור שנפגע · איתור נעדרים', en: 'Family registration · Evacuation from affected area · Locating missing persons', ru: 'Регистрация семей · Эвакуация из зоны · Поиск пропавших' },
   yachadSystem: { he: 'מערכת יחד – לחץ כאן', en: 'YACHAD System – Click here', ru: 'Система ЯХАД – нажмите' },
