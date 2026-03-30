@@ -17,7 +17,7 @@ export const nav: Record<string, T> = {
 };
 
 export const footer: Record<string, T> = {
-  line1: { he: 'יוזמה פרטית לסיוע לצוותי חירום · מנהל השירותים החברתיים, נתניה', en: 'Private initiative to assist emergency teams · Social Services Administration, Netanya', ru: 'Частная инициатива для помощи группам ЧС · Управление соцслужб, Нетания' },
+  line1: { he: 'יוזמה פרטית לסיוע לצוותי חירום · מנהל רווחה - עיריית נתניה', en: 'Private initiative to assist emergency teams · Welfare Administration - Netanya Municipality', ru: 'Частная инициатива для помощи группам ЧС · Управление соцобеспечения - Нетания' },
   line2: { he: 'אתר זה אינו אתר רשמי של עיריית נתניה · כלי לריענון ותרגול · אין להסתמך כתחליף לנהלים רשמיים', en: 'This is not an official Netanya municipality website · Training & refresher tool · Not a substitute for official procedures', ru: 'Это не официальный сайт муниципалитета Нетании · Инструмент для обучения · Не заменяет официальные процедуры' },
   accessibility: { he: 'הצהרת נגישות', en: 'Accessibility', ru: 'Доступность' },
   privacy: { he: 'מדיניות פרטיות', en: 'Privacy Policy', ru: 'Конфиденциальность' },
@@ -37,8 +37,8 @@ export const home: Record<string, T> = {
   msrForm3: { he: 'נספח ה׳ – שובר הפניה לבית מלון', en: 'Appendix E – Hotel Referral Voucher', ru: 'Прил. Е – Направление в отель' },
   yachadSystem: { he: 'מערכת יחד', en: 'YACHAD System', ru: 'Система ЯХАД' },
   yachadDesc: { he: 'מערכת לאומית לניהול אירועי חירום ברשויות מקומיות', en: 'National system for managing emergencies in local authorities', ru: 'Национальная система управления ЧС в местных органах власти' },
-  intakeForm: { he: 'טופס אינטייק מרכז משפחות – נתניה', en: 'Intake Form – Netanya Family Center', ru: 'Форма приёма – Семейный центр Нетании' },
-  intakeFormDesc: { he: 'מילוי טופס קליטה דיגיטלי למרכז משפחות', en: 'Fill out the digital intake form for the Family Center', ru: 'Заполнение цифровой формы приёма в Семейный центр' },
+  intakeForm: { he: 'טופס קליטה עירוני', en: 'Municipal Intake Form', ru: 'Городская форма приёма' },
+  intakeFormDesc: { he: 'לשימוש רק במידה ומערכת יחד אינה פעילה', en: 'For use only when YACHAD system is not active', ru: 'Использовать только когда система ЯХАД не активна' },
   msrFormsInlineExplain: { he: 'במידה ויש קשיים בחיבור למערכת יחד', en: 'In case of difficulties connecting to YACHAD system', ru: 'При проблемах с подключением к системе ЯХАД' },
   populationApp: { he: 'אפליקציית מודיעין אוכלוסיה', en: 'Population Intelligence App', ru: 'Приложение учёта населения' },
   populationAppDesc: { he: 'אפליקציה לזיהוי ראשוני של התושבים בזירת האירוע', en: 'App for initial identification of residents at the event scene', ru: 'Приложение для первичной идентификации жителей на месте события' },
@@ -259,7 +259,7 @@ export const orgchartPage: Record<string, T> = {
 export const accessibilityPage: Record<string, T> = {
   title: { he: 'הצהרת נגישות', en: 'Accessibility Statement', ru: 'Заявление о доступности' },
   updated: { he: 'עודכן לאחרונה: אפריל 2026', en: 'Last updated: April 2026', ru: 'Последнее обновление: апрель 2026' },
-  disclaimer: { he: 'שימו לב: אתר זה הוא יוזמה פרטית של אלעד סעדון, עובד מנהל השירותים החברתיים בעיריית נתניה, ונועד לסייע לצוותי החירום בעת אירוע. האתר אינו אתר רשמי של עיריית נתניה. התכנים באתר נועדו לריענון ותרגול בלבד ואין להסתמך עליהם כתחליף לנהלים רשמיים.', en: 'Note: This website is a private initiative by Elad Saadon, an employee of the Social Services Administration at Netanya Municipality, designed to assist emergency teams during events. This is not an official Netanya Municipality website. Content is for training purposes only and should not substitute official procedures.', ru: 'Внимание: Этот сайт является частной инициативой Элада Саадона, сотрудника управления социальных служб муниципалитета Нетании, предназначен для помощи группам ЧС. Это не официальный сайт муниципалитета. Содержание предназначено только для обучения.' },
+  disclaimer: { he: 'שימו לב: אתר זה הוא יוזמה פרטית של אלעד סעדון, עובד מנהל רווחה - עיריית נתניה, ונועד לסייע לצוותי החירום בעת אירוע. האתר אינו אתר רשמי של עיריית נתניה. התכנים באתר נועדו לריענון ותרגול בלבד ואין להסתמך עליהם כתחליף לנהלים רשמיים.', en: 'Note: This website is a private initiative by Elad Saadon, an employee of the Welfare Administration at Netanya Municipality, designed to assist emergency teams during events. This is not an official Netanya Municipality website. Content is for training purposes only and should not substitute official procedures.', ru: 'Внимание: Этот сайт является частной инициативой Элада Саадона, сотрудника управления социальных служб муниципалитета Нетании, предназначен для помощи группам ЧС. Это не официальный сайт муниципалитета. Содержание предназначено только для обучения.' },
   commitmentTitle: { he: 'מחויבות לנגישות', en: 'Commitment to Accessibility', ru: 'Обязательство доступности' },
   featuresTitle: { he: 'התאמות נגישות שבוצעו', en: 'Accessibility Features Implemented', ru: 'Реализованные функции доступности' },
   inProgressTitle: { he: 'תחומים בתהליך הנגשה', en: 'Areas in Progress', ru: 'Области в процессе' },
