@@ -157,24 +157,30 @@ export default function EmergencyHomePage() {
   return (
     <div>
       {/* ===== HERO – full width dark blue ===== */}
-      <section className="relative bg-[#2d4a6f] overflow-hidden">
-        {/* Decorative circles */}
-        <div className="absolute top-1/2 right-[-8%] -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-white/[0.06]" />
-        <div className="absolute top-[-15%] left-[-5%] w-[350px] h-[350px] rounded-full bg-white/[0.04]" />
-        <div className="absolute bottom-[-20%] left-[30%] w-[250px] h-[250px] rounded-full bg-white/[0.03]" />
+      <section className="relative bg-[#1e3a5f] overflow-hidden">
+        {/* Background image – dimmed & tinted to match site palette */}
+        <div className="absolute inset-0">
+          <img
+            src="/hero-bg.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-[center_30%] scale-110 mix-blend-luminosity opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1e3a5f]/80 via-[#1e3a5f]/50 to-[#1e3a5f]/90" />
+        </div>
 
         <div className="relative z-10 max-w-3xl mx-auto text-center px-6 py-14 md:py-20">
           {/* Shield icon */}
-          <div className="mx-auto mb-5 w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center">
-            <Shield size={26} className="text-white/70" />
+          <div className="mx-auto mb-5 w-14 h-14 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center backdrop-blur-sm">
+            <Shield size={26} className="text-white/80" />
           </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight mb-2 drop-shadow-lg">
             {home.heroTitle[locale]}
           </h1>
-          <p className="text-xl md:text-2xl font-bold text-amber-400 mb-4">
+          <p className="text-xl md:text-2xl font-bold text-amber-300 mb-4 drop-shadow-md">
             {home.heroSubtitle[locale]}
           </p>
-          <p className="text-white/60 text-sm md:text-base">
+          <p className="text-white/80 text-sm md:text-base drop-shadow-sm">
             {home.heroDesc[locale]}
           </p>
           {/* Scroll hint */}
