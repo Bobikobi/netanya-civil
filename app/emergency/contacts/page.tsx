@@ -4,7 +4,7 @@ import { Phone, Search, Copy, Check, ExternalLink, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
 import { usePhoneAuth, ContactData } from '@/lib/phone-auth';
-import { contactsPage } from '@/lib/translations';
+import { contactsPage, contactCategories, contactsUI } from '@/lib/translations';
 
 const CATEGORIES = [
   'מטה מכלול',
@@ -155,7 +155,7 @@ export default function ContactsPage() {
               activeCategory === cat ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
             }`}
           >
-            {cat}
+            {contactCategories[cat]?.[locale] ?? cat}
           </button>
         ))}
       </div>
@@ -168,9 +168,9 @@ export default function ContactsPage() {
             <div key={group.category}>
               <div className="flex items-center gap-2 mb-3">
                 <span className={`${colors.badge} px-3 py-1 rounded-lg text-xs font-bold`}>
-                  {group.category}
+                  {contactCategories[group.category]?.[locale] ?? group.category}
                 </span>
-                <span className="text-gray-300 text-xs">{group.contacts.length} אנשי קשר</span>
+                <span className="text-gray-300 text-xs">{group.contacts.length} {contactsUI.contacts[locale]}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
                 {group.contacts.map((contact, idx) => (
@@ -181,7 +181,7 @@ export default function ContactsPage() {
                     <div className="flex items-start justify-between gap-2">
                       <div className="min-w-0 flex-1">
                         <div className="font-bold text-gray-900 text-sm truncate">
-                          {contact.name || <span className="text-gray-300 font-normal">טרם הוזן</span>}
+                          {contact.name || <span className="text-gray-300 font-normal">{contactsUI.notEntered[locale]}</span>}
                         </div>
                         <div className="text-xs text-gray-500 mt-0.5">{contact.role}</div>
                       </div>
@@ -199,7 +199,7 @@ export default function ContactsPage() {
                         <button
                           onClick={() => copyPhone(contact.phone)}
                           className="p-1 rounded-md hover:bg-white/80 transition-colors"
-                          title="העתק מספר"
+                          title={contactsUI.copyNumber[locale]}
                         >
                           {copiedPhone === contact.phone ? (
                             <Check size={13} className="text-green-500" />
@@ -210,7 +210,7 @@ export default function ContactsPage() {
                       </div>
                     )}
                     {!contact.phone && (
-                      <div className="mt-2.5 text-xs text-gray-300">מספר טלפון טרם הוזן</div>
+                      <div className="mt-2.5 text-xs text-gray-300">{contactsUI.phoneNotEntered[locale]}</div>
                     )}
                   </div>
                 ))}
@@ -223,13 +223,13 @@ export default function ContactsPage() {
       {filtered.length === 0 && (
         <div className="text-center py-12">
           <Phone size={40} className="mx-auto text-gray-200 mb-3" />
-          <p className="text-gray-400 text-sm">לא נמצאו אנשי קשר תואמים</p>
+          <p className="text-gray-400 text-sm">{contactsUI.noResults[locale]}</p>
         </div>
       )}
 
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
         <p className="text-amber-700 text-sm font-medium">
-          מבוסס על תרשים מבנה ארגוני מכלול אוכלוסייה · מעודכן אפריל 2026
+          {contactsUI.basedOn[locale]}
         </p>
       </div>
     </div>

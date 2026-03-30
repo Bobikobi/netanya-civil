@@ -4,7 +4,7 @@ import { Phone, ChevronDown, Shield, Lock } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
 import { usePhoneAuth } from '@/lib/phone-auth';
-import { orgchartPage } from '@/lib/translations';
+import { orgchartPage, orgchartUnits, orgchartRoles, orgchartSupportUnits } from '@/lib/translations';
 
 interface OrgUnit {
   id: string;
@@ -224,29 +224,32 @@ const SUPPORT_STAFF = [
 function OrgNode({ node, depth = 0 }: { node: OrgUnit; depth?: number }) {
   const [expanded, setExpanded] = useState(depth < 2);
   const { unlocked, requestUnlock, getPhone } = usePhoneAuth();
+  const { locale } = useI18n();
   const hasChildren = node.children && node.children.length > 0;
+  const translatedTitle = orgchartUnits[node.title]?.[locale] ?? node.title;
 
   return (
     <div className="animate-fadeIn">
       <button
         onClick={() => setExpanded(!expanded)}
         aria-expanded={hasChildren ? expanded : undefined}
-        aria-label={node.title}
+        aria-label={translatedTitle}
         className={`w-full ${node.color} border-2 ${node.borderColor} rounded-xl p-3 text-right transition-all duration-300 hover:shadow-lg ${
           depth === 0 ? 'mb-4' : ''
         }`}
       >
         <div className="flex items-center justify-between">
           <div className="flex-1 min-w-0">
-            <div className={`font-bold text-sm ${node.textColor}`}>{node.title}</div>
+            <div className={`font-bold text-sm ${node.textColor}`}>{translatedTitle}</div>
             {node.people.length > 0 && (
               <div className="mt-1.5 space-y-0.5">
                 {node.people.map((p, i) => {
                   const phone = getPhone('contacts', p.name);
+                  const translatedRole = p.role ? (orgchartRoles[p.role]?.[locale] ?? p.role) : '';
                   return (
                   <div key={i} className="flex items-center gap-2 text-xs">
                     <span className={`${depth === 0 ? 'text-white/80' : 'text-gray-600'}`}>
-                      {p.name}{p.role ? ` – ${p.role}` : ''}
+                      {p.name}{translatedRole ? ` – ${translatedRole}` : ''}
                     </span>
                     {unlocked && phone ? (
                         <a
@@ -320,7 +323,7 @@ export default function OrgChartPage() {
             const phone = getPhone('contacts', s.name);
             return (
             <div key={idx} className="bg-gray-50 border border-gray-200 rounded-xl p-3 hover:shadow-md transition-shadow">
-              <div className="text-xs text-gray-400 mb-1">{s.unit}</div>
+              <div className="text-xs text-gray-400 mb-1">{orgchartSupportUnits[s.unit]?.[locale] ?? s.unit}</div>
               <div className="font-bold text-gray-900 text-sm">{s.name}</div>
               {unlocked && phone ? (
                   <a href={`tel:${phone}`} className="flex items-center gap-1 text-blue-500 text-xs mt-1 hover:underline" dir="ltr">

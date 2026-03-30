@@ -29,7 +29,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 import { useI18n } from '@/lib/i18n';
-import { home, homeQuickLinks, homeFlowSteps, homeTips, homeEmergencyPhones, homeParallelTeams } from '@/lib/translations';
+import { home, homeQuickLinks, homeFlowSteps, homeTips, homeEmergencyPhones, homeParallelTeams, intakeGuide } from '@/lib/translations';
 
 const FLOW_STEPS = [
   {
@@ -210,7 +210,7 @@ export default function EmergencyHomePage() {
               className="flex items-center gap-2 hover:opacity-80 transition-opacity"
             >
               <Download size={14} className="text-emerald-600 flex-shrink-0" />
-              <span className="text-xs font-semibold text-emerald-700">{home.msrFormsInlineExplain[locale]} – לחץ כאן</span>
+              <span className="text-xs font-semibold text-emerald-700">{home.msrFormsInlineExplain[locale]} {intakeGuide.clickHere[locale]}</span>
               <ChevronDown size={14} className={`text-emerald-600 transition-transform duration-200 ${showForms ? 'rotate-180' : ''}`} />
             </button>
             {showForms && <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 animate-slideDown">
@@ -272,10 +272,10 @@ export default function EmergencyHomePage() {
           <button
             onClick={() => setShowIntakeGuide(true)}
             className="bg-violet-700 hover:bg-violet-800 transition-colors px-3 flex items-center justify-center border-r border-violet-400/30 flex-shrink-0 gap-1.5 group"
-            title="מדריך למילוי הטופס"
+            title={intakeGuide.guideBtnTitle[locale]}
           >
             <BookOpen size={16} className="text-white/80 group-hover:text-white" />
-            <span className="text-white/90 text-[11px] font-medium leading-tight whitespace-nowrap group-hover:text-white">מדריך<br/>למילוי</span>
+            <span className="text-white/90 text-[11px] font-medium leading-tight whitespace-nowrap group-hover:text-white">{intakeGuide.guideBtn[locale]}<br/>{intakeGuide.guideBtnSub[locale]}</span>
           </button>
         </div>
       </section>
@@ -461,45 +461,45 @@ export default function EmergencyHomePage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowIntakeGuide(false)}>
           <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto" dir="rtl" onClick={e => e.stopPropagation()}>
             <div className="sticky top-0 bg-violet-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
-              <h2 className="font-bold text-lg flex items-center gap-2"><BookOpen size={20} /> מדריך הפעלה: מערכת איתור תושבים בחירום</h2>
+              <h2 className="font-bold text-lg flex items-center gap-2"><BookOpen size={20} /> {intakeGuide.modalTitle[locale]}</h2>
               <button onClick={() => setShowIntakeGuide(false)} className="hover:bg-violet-700 rounded-lg p-1 transition-colors"><X size={20} /></button>
             </div>
             <div className="p-5 space-y-7 text-sm text-gray-700 leading-relaxed">
               {/* Section 1 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">התחברות למערכת</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">{intakeGuide.section1Title[locale]}</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li>הקלד את הסיסמה האישית שלך</li>
-                  <li><strong>דגש חשוב:</strong> לחץ על "דילוג על ההגדרה" כדי להיכנס מיד ללא אימות דוא"ל</li>
+                  <li>{intakeGuide.section1Item1[locale]}</li>
+                  <li><strong>{intakeGuide.section1Item2[locale]}</strong> {intakeGuide.section1Item2Rest[locale]}</li>
                 </ul>
               </div>
               {/* Section 2 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">גישה לאפליקציה</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">{intakeGuide.section2Title[locale]}</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li>בתפריט התחתון, לחץ על סמל <strong>All apps</strong> (כל האפליקציות)</li>
-                  <li>מתוך הרשימה, בחר באפליקציית <strong>"איתור תושבים בחירום"</strong></li>
+                  <li>{intakeGuide.section2Item1[locale]} <strong>{intakeGuide.section2Item1Bold[locale]}</strong> {intakeGuide.section2Item1Paren[locale]}</li>
+                  <li>{intakeGuide.section2Item2[locale]} <strong>{intakeGuide.section2Item2Bold[locale]}</strong></li>
                 </ul>
               </div>
               {/* Section 3 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">ניהול ועדכון סטטוס תושב</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">{intakeGuide.section3Title[locale]}</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li><span className="inline-block w-3 h-3 rounded-full bg-gray-400 ml-1 align-middle"></span> <strong>אפור - טרם החל:</strong> פנייה חדשה או תושב שטרם נוצר עמו קשר</li>
-                  <li><span className="inline-block w-3 h-3 rounded-full bg-orange-400 ml-1 align-middle"></span> <strong>כתום - לא אותר:</strong> תושב שהוגדר כנעדר או שלא ניתן ליצור עמו קשר</li>
-                  <li>לביצוע עדכון: <strong>לחיצה כפולה</strong> על רשומת תושב תפתח את חלון העדכון המלא</li>
-                  <li>ניתן לעדכן שם אירוע, כתובת פגיעה, סיבת המצב והוספת מלל חופשי לתיעוד</li>
-                  <li><strong>חובה:</strong> הקפד ללחוץ על "שמור" בסיום כל עדכון</li>
+                  <li><span className="inline-block w-3 h-3 rounded-full bg-gray-400 ml-1 align-middle"></span> <strong>{intakeGuide.section3Gray[locale]}</strong> {intakeGuide.section3GrayDesc[locale]}</li>
+                  <li><span className="inline-block w-3 h-3 rounded-full bg-orange-400 ml-1 align-middle"></span> <strong>{intakeGuide.section3Orange[locale]}</strong> {intakeGuide.section3OrangeDesc[locale]}</li>
+                  <li>{intakeGuide.section3Update[locale]} <strong>{intakeGuide.section3UpdateBold[locale]}</strong> {intakeGuide.section3UpdateRest[locale]}</li>
+                  <li>{intakeGuide.section3Fields[locale]}</li>
+                  <li><strong>{intakeGuide.section3Save[locale]}</strong> {intakeGuide.section3SaveRest[locale]}</li>
                 </ul>
               </div>
               {/* Section 4 */}
               <div>
-                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">איתור והוספת תושב חדש</h3>
+                <h3 className="font-bold text-violet-700 text-base mb-2 border-b border-violet-100 pb-1">{intakeGuide.section4Title[locale]}</h3>
                 <ul className="list-disc pr-5 space-y-1">
-                  <li><strong>חיפוש:</strong> לחץ על תפריט "3 השורות", עבור ללשונית "פניות" וחפש לפי שם</li>
-                  <li><strong>הוספת תושב חסר:</strong> אם התושב אינו מופיע, פתח את "טופס אינטייק מרכז משפחות"</li>
-                  <li>הזן פרטים: שם מלא, תעודת זהות ומספר נייד</li>
-                  <li>לאחר השליחה, חזור לאפליקציה המרכזית להמשך מעקב</li>
+                  <li><strong>{intakeGuide.section4Search[locale]}</strong> {intakeGuide.section4SearchRest[locale]}</li>
+                  <li><strong>{intakeGuide.section4Add[locale]}</strong> {intakeGuide.section4AddRest[locale]}</li>
+                  <li>{intakeGuide.section4Details[locale]}</li>
+                  <li>{intakeGuide.section4Return[locale]}</li>
                 </ul>
               </div>
             </div>

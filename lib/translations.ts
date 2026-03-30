@@ -276,4 +276,260 @@ export const privacyPage: Record<string, T> = {
   disclaimer: { he: 'שימו לב: אתר זה הוא יוזמה פרטית ואינו אתר רשמי של עיריית נתניה. האחריות על האתר ותכניו היא של מפעיל האתר בלבד.', en: 'Note: This website is a private initiative and not an official Netanya Municipality website. Responsibility for the site and its content lies solely with the site operator.', ru: 'Внимание: Этот сайт является частной инициативой, а не официальным сайтом муниципалитета Нетании. Ответственность за сайт лежит на операторе.' },
   questionsLabel: { he: 'שאלות בנוגע למדיניות הפרטיות?', en: 'Questions about the privacy policy?', ru: 'Вопросы о политике конфиденциальности?' },
   updateNotice: { he: 'מפעיל האתר שומר לעצמו את הזכות לעדכן מדיניות זו מעת לעת. שינויים מהותיים יפורסמו באתר.', en: 'The site operator reserves the right to update this policy from time to time. Material changes will be published on the site.', ru: 'Оператор сайта оставляет за собой право обновлять эту политику. Существенные изменения будут опубликованы на сайте.' },
+  intro: { he: 'מדיניות פרטיות זו מפרטת את אופן האיסוף, השימוש והשמירה על מידע אישי באתר צוותי חירום, יוזמה פרטית של אלעד סעדון לסיוע לצוותי חירום של מנהל רווחה - עיריית נתניה. המדיניות פועלת ברוח חוק הגנת הפרטיות, תשמ"א-1981, תיקון 13 לחוק, חוק הגנת הצרכן, וחוק התקשורת (בזק ושידורים) (תיקון מס\' 40), תשס"ח-2008 ("חוק הספאם").', en: 'This privacy policy details how personal information is collected, used and stored on the Emergency Teams website, a private initiative by Elad Saadon to assist the emergency teams of the Welfare Administration at Netanya Municipality. The policy operates in the spirit of the Privacy Protection Law 1981, Amendment 13, the Consumer Protection Law, and the Communications Law (Telecommunications and Broadcasting) (Amendment No. 40), 2008.', ru: 'Данная политика конфиденциальности описывает порядок сбора, использования и хранения личной информации на сайте команд ЧС — частной инициативе Элада Саадона для помощи командам ЧС Управления соцобеспечения муниципалитета Нетании. Политика действует в духе Закона о защите частной жизни 1981, Поправки 13, Закона о защите потребителей и Закона о связи 2008.' },
+};
+
+export const privacySections = [
+  { title: { he: 'איסוף מידע', en: 'Information Collection', ru: 'Сбор информации' }, content: { he: 'האתר אוסף מידע בסיסי הנדרש לצורך תפעולו התקין בלבד. מידע זה עשוי לכלול נתוני גלישה כלליים (כגון כתובת IP, סוג דפדפן, מערכת הפעלה) המשמשים לצורכי אבטחה ושיפור חוויית השימוש. האתר אינו אוסף מידע אישי מזהה (כגון שם, מספר זהות, כתובת) אלא אם כן המשתמש מוסר אותו מרצונו בטפסי יצירת קשר.', en: 'The website collects only basic information necessary for its proper operation. This may include general browsing data (such as IP address, browser type, operating system) used for security and improving user experience. The website does not collect personally identifiable information (such as name, ID number, address) unless voluntarily provided by the user through contact forms.', ru: 'Сайт собирает только базовую информацию, необходимую для его нормальной работы. Это может включать общие данные о просмотре (IP-адрес, тип браузера, ОС), используемые для безопасности и улучшения пользовательского опыта. Сайт не собирает личную идентифицирующую информацию, если пользователь не предоставляет её добровольно.' } },
+  { title: { he: 'אבטחת מידע', en: 'Information Security', ru: 'Безопасность информации' }, content: { he: 'מפעיל האתר נוקט באמצעי אבטחת מידע סבירים להגנה על המידע המאוחסן באתר, ברוח חוק הגנת הפרטיות, תשמ"א-1981, ותיקון 13 לחוק. האתר מוגן באמצעות הצפנת SSL/TLS, ומידע המאוחסן במערכות מאובטח בהתאם לסטנדרטים המקובלים.', en: 'The site operator takes reasonable security measures to protect information stored on the website, in the spirit of the Privacy Protection Law 1981 and Amendment 13. The site is protected by SSL/TLS encryption, and stored information is secured according to accepted standards.', ru: 'Оператор сайта принимает разумные меры безопасности для защиты хранимой информации в духе Закона о защите частной жизни 1981 и Поправки 13. Сайт защищён SSL/TLS шифрованием, информация хранится в соответствии с принятыми стандартами.' } },
+  { title: { he: 'שימוש במידע', en: 'Use of Information', ru: 'Использование информации' }, content: { he: 'המידע שנאסף באתר ישמש אך ורק למטרות שלשמן נמסר: תפעול האתר, מענה לפניות, שיפור השירות ותחזוקת מערכות. לא יועבר מידע אישי לצד שלישי כלשהו, למעט במקרים הנדרשים על-פי חוק או בצו שיפוטי. לא נעשה שימוש במידע לצרכים שיווקיים או מסחריים.', en: 'Information collected on the website will be used solely for the purposes for which it was provided: site operation, responding to inquiries, service improvement, and system maintenance. No personal information will be transferred to any third party, except as required by law or court order. Information is not used for marketing or commercial purposes.', ru: 'Собранная информация используется исключительно для целей, для которых она была предоставлена: работа сайта, ответы на запросы, улучшение сервиса и обслуживание систем. Личная информация не передаётся третьим лицам, кроме случаев, предусмотренных законом.' } },
+  { title: { he: 'עוגיות (Cookies)', en: 'Cookies', ru: 'Файлы Cookie' }, content: { he: 'האתר עשוי להשתמש בעוגיות (Cookies) לצורך שיפור חוויית הגלישה ותפעול תקין של האתר. עוגיות הן קבצי טקסט קטנים הנשמרים במכשיר המשתמש. ניתן להגדיר את הדפדפן כך שידחה עוגיות או יתריע על שליחתן, אולם חלק מפונקציות האתר עשויות שלא לפעול כראוי ללא עוגיות.', en: 'The website may use cookies to improve browsing experience and ensure proper site operation. Cookies are small text files stored on the user\'s device. You can configure your browser to reject cookies or alert you when they are sent, but some site features may not work properly without cookies.', ru: 'Сайт может использовать файлы cookie для улучшения опыта просмотра и обеспечения нормальной работы. Cookie — это небольшие текстовые файлы на устройстве пользователя. Вы можете настроить браузер для отклонения cookie, но некоторые функции сайта могут работать некорректно без них.' } },
+  { title: { he: 'זכות עיון, תיקון ומחיקה', en: 'Right of Access, Correction and Deletion', ru: 'Право на доступ, исправление и удаление' }, content: { he: 'בהתאם לחוק הגנת הפרטיות, כל אדם רשאי לעיין במידע אישי המוחזק לגביו, לבקש לתקנו או למחקו. לצורך מימוש זכויות אלו, ניתן לפנות למפעיל האתר בדוא"ל ELAD.SAA@NETANYA.MUNI.IL. אטפל בפנייתכם בהקדם האפשרי.', en: 'Under the Privacy Protection Law, any person may view personal information held about them, request correction or deletion. To exercise these rights, contact the site operator at ELAD.SAA@NETANYA.MUNI.IL. We will handle your inquiry as soon as possible.', ru: 'В соответствии с Законом о защите частной жизни каждый может просмотреть хранимую о нём информацию, запросить исправление или удаление. Для реализации этих прав обратитесь к оператору сайта по адресу ELAD.SAA@NETANYA.MUNI.IL.' } },
+];
+
+// ===== CONTACTS PAGE: categories =====
+export const contactCategories: Record<string, T> = {
+  'מטה מכלול': { he: 'מטה מכלול', en: 'Division HQ', ru: 'Штаб отдела' },
+  'צוותי התערבות': { he: 'צוותי התערבות', en: 'Intervention Teams', ru: 'Группы вмешательства' },
+  'רובעים': { he: 'רובעים', en: 'Districts', ru: 'Районы' },
+  'מס"ר': { he: 'מס"ר', en: 'MSR', ru: 'МСР' },
+  'מטה מל"מ': { he: 'מטה מל"מ', en: 'MALAM HQ', ru: 'Штаб МАЛАМ' },
+  'מטה רגשי': { he: 'מטה רגשי', en: 'Emotional HQ', ru: 'Эмоциональный штаб' },
+  'קו פתוח': { he: 'קו פתוח', en: 'Open Line', ru: 'Горячая линия' },
+  'קישור בתי חולים': { he: 'קישור בתי חולים', en: 'Hospital Liaison', ru: 'Связь с больницами' },
+  'מטה חללים': { he: 'מטה חללים', en: 'Casualties HQ', ru: 'Штаб погибших' },
+  'אוכלוסיות מיוחדות': { he: 'אוכלוסיות מיוחדות', en: 'Special Populations', ru: 'Особые группы населения' },
+  'קליטת אוכלוסייה': { he: 'קליטת אוכלוסייה', en: 'Population Intake', ru: 'Приём населения' },
+  'תפעול ומתנדבים': { he: 'תפעול ומתנדבים', en: 'Operations & Volunteers', ru: 'Операции и волонтёры' },
+  'אזרחים ותיקים': { he: 'אזרחים ותיקים', en: 'Senior Citizens', ru: 'Пожилые граждане' },
+  'קליטת עלייה': { he: 'קליטת עלייה', en: 'Immigration Absorption', ru: 'Абсорбция репатриантов' },
+  'תיירות': { he: 'תיירות', en: 'Tourism', ru: 'Туризм' },
+  'בריאות': { he: 'בריאות', en: 'Health', ru: 'Здравоохранение' },
+  'ט.ל.י.ה': { he: 'ט.ל.י.ה', en: 'TLYA', ru: 'ТЛИЯ' },
+  'גורמי חוץ': { he: 'גורמי חוץ', en: 'External Agencies', ru: 'Внешние организации' },
+};
+
+export const contactsUI: Record<string, T> = {
+  contacts: { he: 'אנשי קשר', en: 'contacts', ru: 'контакты' },
+  notEntered: { he: 'טרם הוזן', en: 'Not entered', ru: 'Не введено' },
+  phoneNotEntered: { he: 'מספר טלפון טרם הוזן', en: 'Phone number not entered', ru: 'Номер телефона не введён' },
+  noResults: { he: 'לא נמצאו אנשי קשר תואמים', en: 'No matching contacts found', ru: 'Совпадающие контакты не найдены' },
+  basedOn: { he: 'מבוסס על תרשים מבנה ארגוני מכלול אוכלוסייה · מעודכן אפריל 2026', en: 'Based on the Population Division organizational chart · Updated April 2026', ru: 'На основе организационной схемы отдела населения · Обновлено апрель 2026' },
+  copyNumber: { he: 'העתק מספר', en: 'Copy number', ru: 'Копировать номер' },
+};
+
+// ===== FAQ: translated categories =====
+export const faqUI: Record<string, T> = {
+  questions: { he: 'שאלות', en: 'questions', ru: 'вопросы' },
+  q: { he: 'ש:', en: 'Q:', ru: 'В:' },
+  a: { he: 'ת:', en: 'A:', ru: 'О:' },
+};
+
+export const faqCategories = [
+  {
+    id: 'general',
+    title: { he: 'מטרת מערכת \'יחד\' ומידע כללי', en: 'YACHAD System Purpose & General Info', ru: 'Назначение системы ЯХАД и общая информация' },
+    questions: [
+      { q: { he: 'מה זו מערכת \'יחד\'?', en: 'What is the YACHAD system?', ru: 'Что такое система ЯХАД?' }, a: { he: 'מערכת \'יחד\' היא מערכת ממוחשבת לאומית לניהול אירועי חירום ברשויות מקומיות. היא מאפשרת רישום תושבים שנפגעו, ניהול צרכים, מעקב אחר פנויים ומשובצים למלונות, ותיאום בין גורמים.', en: 'YACHAD is a national computerized system for managing emergencies in local authorities. It enables registration of affected residents, needs management, tracking of available/placed individuals in hotels, and coordination between agencies.', ru: 'ЯХАД — национальная компьютерная система управления ЧС в местных органах власти. Позволяет регистрировать пострадавших, управлять потребностями, отслеживать размещение в отелях и координировать работу.' } },
+      { q: { he: 'מי אחראי על תפעול המערכת?', en: 'Who is responsible for operating the system?', ru: 'Кто отвечает за работу системы?' }, a: { he: 'הרשות המקומית – בדרך כלל דרך מכלול אוכלוסייה ומנהל רווחה - עיריית נתניה. יש גורמי מטה ארציים שמלווים את התהליך.', en: 'The local authority – usually through the Population Division and the Welfare Administration at Netanya Municipality. National HQ staff support the process.', ru: 'Местная администрация — обычно через отдел населения и Управление соцобеспечения Нетании. Национальный штаб сопровождает процесс.' } },
+      { q: { he: 'מתי מפעילים את המערכת?', en: 'When is the system activated?', ru: 'Когда активируется система?' }, a: { he: 'בכל אירוע חירום שמצריך פינוי תושבים, שיבוץ למלונות, או מעקב אחר נפגעים – לרבות אירועי ביטחון, שריפות, הצפות ואסונות.', en: 'During any emergency requiring resident evacuation, hotel placement, or casualty tracking – including security events, fires, floods and disasters.', ru: 'При любой ЧС, требующей эвакуации, размещения в отелях или отслеживания пострадавших — включая события безопасности, пожары, наводнения и бедствия.' } },
+      { q: { he: 'האם המערכת מחליפה את הטיפול הישיר בתושבים?', en: 'Does the system replace direct care for residents?', ru: 'Заменяет ли система прямую помощь жителям?' }, a: { he: 'לא. המערכת היא כלי עבודה לצוותים – היא לא מחליפה את האינטראקציה האנושית, אלא מסייעת בניהול ותיעוד.', en: 'No. The system is a work tool for teams – it doesn\'t replace human interaction, but assists in management and documentation.', ru: 'Нет. Система — это рабочий инструмент для команд, она не заменяет человеческое взаимодействие, а помогает в управлении и документации.' } },
+      { q: { he: 'מה הקשר בין מערכת \'יחד\' למערכת 106?', en: 'What is the connection between YACHAD and the 106 system?', ru: 'Какая связь между системой ЯХАД и системой 106?' }, a: { he: 'מוקד 106 הוא ערוץ הדיווח של התושבים. \'יחד\' היא המערכת הפנימית שבה נרשמות הפניות ומנוהל הטיפול.', en: 'The 106 center is the residents\' reporting channel. YACHAD is the internal system where referrals are recorded and care is managed.', ru: 'Центр 106 — канал обращения жителей. ЯХАД — внутренняя система, где регистрируются обращения и управляется помощь.' } },
+    ],
+  },
+  {
+    id: 'data_entry',
+    title: { he: 'הזנת נתונים למערכת', en: 'Data Entry into the System', ru: 'Ввод данных в систему' },
+    questions: [
+      { q: { he: 'מי מוסמך להזין נתונים למערכת?', en: 'Who is authorized to enter data?', ru: 'Кто уполномочен вводить данные?' }, a: { he: 'כל עובד בעל הרשאה שקיבל תדרוך. בדרך כלל – צוותי שולחן קדמי, מס"ר ומטה מכלול.', en: 'Any authorized employee who received a briefing. Usually – front desk teams, MSR and division HQ.', ru: 'Любой уполномоченный сотрудник, прошедший инструктаж. Обычно — команды приёмной, МСР и штаб отдела.' } },
+      { q: { he: 'אילו נתונים חובה להזין?', en: 'What data must be entered?', ru: 'Какие данные обязательны?' }, a: { he: 'שם מלא, מספר תעודת זהות, כתובת, מספר טלפון, הרכב משפחה, וצרכים מיוחדים.', en: 'Full name, ID number, address, phone number, family composition, and special needs.', ru: 'ФИО, номер удостоверения, адрес, телефон, состав семьи и особые потребности.' } },
+      { q: { he: 'מה עושים אם אין מספר תעודת זהות?', en: 'What to do if there\'s no ID number?', ru: 'Что делать если нет номера удостоверения?' }, a: { he: 'ניתן לרשום עם פרטים חלופיים (שם, טלפון) ולעדכן את תעודת הזהות בהמשך.', en: 'You can register with alternative details (name, phone) and update the ID later.', ru: 'Можно зарегистрировать с альтернативными данными (имя, телефон) и обновить ID позже.' } },
+      { q: { he: 'האם ניתן לעדכן נתונים אחרי ההזנה הראשונית?', en: 'Can data be updated after initial entry?', ru: 'Можно ли обновить данные после первоначального ввода?' }, a: { he: 'כן, ניתן לעדכן ולהשלים פרטים בכל שלב.', en: 'Yes, details can be updated and completed at any stage.', ru: 'Да, данные можно обновлять и дополнять на любом этапе.' } },
+    ],
+  },
+  {
+    id: 'access',
+    title: { he: 'כניסה והרשאות למערכת \'יחד\'', en: 'YACHAD System Access & Permissions', ru: 'Доступ и разрешения системы ЯХАД' },
+    questions: [
+      { q: { he: 'איך נכנסים למערכת?', en: 'How do you log into the system?', ru: 'Как войти в систему?' }, a: { he: 'דרך ממשק אינטרנט ייעודי עם שם משתמש וסיסמה. ההרשאות ניתנות מראש על ידי מנהל המערכת.', en: 'Through a dedicated web interface with username and password. Permissions are granted in advance by the system administrator.', ru: 'Через специальный веб-интерфейс с логином и паролем. Разрешения предоставляются заранее администратором.' } },
+      { q: { he: 'מה עושים אם שכחתי סיסמה?', en: 'What if I forgot my password?', ru: 'Что делать если забыли пароль?' }, a: { he: 'יש לפנות למנהל המערכת ברשות או לתמיכה הטכנית הארצית.', en: 'Contact the system administrator at the authority or the national technical support.', ru: 'Обратитесь к администратору системы или в национальную техподдержку.' } },
+      { q: { he: 'האם ניתן להיכנס מטלפון נייד?', en: 'Can you log in from a mobile phone?', ru: 'Можно ли войти с мобильного?' }, a: { he: 'כן, המערכת זמינה גם מדפדפן בטלפון נייד.', en: 'Yes, the system is also available from a mobile browser.', ru: 'Да, система доступна и через мобильный браузер.' } },
+      { q: { he: 'כמה רמות הרשאה יש?', en: 'How many permission levels are there?', ru: 'Сколько уровней доступа?' }, a: { he: 'יש מספר רמות – צופה, מזין, מנהל צוות ומנהל מערכת. ההרשאות מוגדרות לפי תפקיד.', en: 'There are several levels – viewer, data entry, team manager and system administrator. Permissions are defined by role.', ru: 'Несколько уровней — наблюдатель, оператор ввода, руководитель группы и администратор. Разрешения определяются по должности.' } },
+      { q: { he: 'מי מקבל הרשאות?', en: 'Who receives permissions?', ru: 'Кто получает разрешения?' }, a: { he: 'עובדי מנהל רווחה, מנהלי מכלול, ובעלי תפקידים שהוגדרו מראש בתוכנית ההפעלה.', en: 'Welfare administration employees, division managers, and designated personnel as defined in the activation plan.', ru: 'Сотрудники управления соцобеспечения, руководители отделов и назначенные лица согласно плану активации.' } },
+    ],
+  },
+  {
+    id: 'reports',
+    title: { he: 'נתונים ודוחות', en: 'Data & Reports', ru: 'Данные и отчёты' },
+    questions: [
+      { q: { he: 'אילו דוחות ניתן להפיק?', en: 'What reports can be generated?', ru: 'Какие отчёты можно создать?' }, a: { he: 'דוח תושבים מפונים, דוח שיבוצים למלונות, דוח צרכים מיוחדים, דוח נעדרים, ודוח תמונת מצב כללי.', en: 'Evacuated residents report, hotel placement report, special needs report, missing persons report, and general status report.', ru: 'Отчёт об эвакуированных, размещении в отелях, особых потребностях, пропавших и общий отчёт о ситуации.' } },
+      { q: { he: 'מי יכול להפיק דוחות?', en: 'Who can generate reports?', ru: 'Кто может создавать отчёты?' }, a: { he: 'כל מי שיש לו הרשאת "מנהל צוות" ומעלה.', en: 'Anyone with "team manager" permission or higher.', ru: 'Любой с разрешением «руководитель группы» или выше.' } },
+      { q: { he: 'באיזו תדירות יש לעדכן את תמונת המצב?', en: 'How often should the status be updated?', ru: 'Как часто обновлять ситуацию?' }, a: { he: 'בזמן אירוע פעיל – כל 15-30 דקות. לאחר מכן – לפי הצורך.', en: 'During an active event – every 15-30 minutes. Afterwards – as needed.', ru: 'Во время активного события — каждые 15-30 минут. После — по необходимости.' } },
+      { q: { he: 'האם הנתונים מתעדכנים בזמן אמת?', en: 'Is data updated in real time?', ru: 'Обновляются ли данные в реальном времени?' }, a: { he: 'כן, כל הזנה של נתונים מתעדכנת מיידית ונראית לכל בעלי ההרשאות.', en: 'Yes, every data entry is updated immediately and visible to all authorized users.', ru: 'Да, каждый ввод данных обновляется мгновенно и виден всем уполномоченным пользователям.' } },
+      { q: { he: 'איך משתפים דוחות עם גורמי חוץ?', en: 'How are reports shared with external agencies?', ru: 'Как делиться отчётами с внешними организациями?' }, a: { he: 'ניתן לייצא דוחות ל-PDF או Excel ולשלוח בצורה מאובטחת.', en: 'Reports can be exported to PDF or Excel and sent securely.', ru: 'Отчёты можно экспортировать в PDF или Excel и отправить безопасно.' } },
+      { q: { he: 'מי אחראי על דיוק הנתונים?', en: 'Who is responsible for data accuracy?', ru: 'Кто отвечает за точность данных?' }, a: { he: 'כל גורם מזין אחראי על הנתונים שלו. מנהל המכלול אחראי על בקרה כללית.', en: 'Each data entry person is responsible for their data. The division manager is responsible for overall quality control.', ru: 'Каждый оператор отвечает за свои данные. Руководитель отдела контролирует качество в целом.' } },
+    ],
+  },
+  {
+    id: 'evacuation',
+    title: { he: 'תהליך הפינוי', en: 'Evacuation Process', ru: 'Процесс эвакуации' },
+    questions: [
+      { q: { he: 'מי מחליט על פינוי?', en: 'Who decides on evacuation?', ru: 'Кто решает об эвакуации?' }, a: { he: 'פיקוד העורף בתיאום עם הרשות המקומית. ראש העיר מקבל את ההחלטה הסופית ברמה המקומית.', en: 'Home Front Command in coordination with the local authority. The mayor makes the final decision at the local level.', ru: 'Командование тыла в координации с местной администрацией. Мэр принимает окончательное решение на местном уровне.' } },
+      { q: { he: 'לאן מפנים תושבים?', en: 'Where are residents evacuated to?', ru: 'Куда эвакуируют жителей?' }, a: { he: 'למלונות, מקלטים ציבוריים, או לרשויות אחרות – בהתאם להנחיות.', en: 'To hotels, public shelters, or other authorities – according to guidelines.', ru: 'В отели, общественные убежища или другие администрации — согласно указаниям.' } },
+      { q: { he: 'מה עם תושבים שלא יכולים להתפנות בעצמם?', en: 'What about residents who cannot evacuate on their own?', ru: 'Как быть с теми, кто не может эвакуироваться самостоятельно?' }, a: { he: 'צוותי תל"ם ומד"א אחראים על פינוי אוכלוסיות פגיעות. יש רשימות מוכנות מראש.', en: 'TALEM teams and MDA are responsible for evacuating vulnerable populations. Pre-prepared lists exist.', ru: 'Команды ТАЛЕМ и МДА отвечают за эвакуацию уязвимого населения. Существуют подготовленные списки.' } },
+      { q: { he: 'מה קורה עם חיות מחמד?', en: 'What about pets?', ru: 'Что с домашними животными?' }, a: { he: 'יש מלונות שמקבלים חיות מחמד. במקרים אחרים – תיאום עם השירות הווטרינרי העירוני.', en: 'Some hotels accept pets. Otherwise – coordination with the municipal veterinary service.', ru: 'Некоторые отели принимают животных. Иначе — координация с городской ветслужбой.' } },
+      { q: { he: 'כמה זמן נמשך פינוי?', en: 'How long does evacuation last?', ru: 'Сколько длится эвакуация?' }, a: { he: 'תלוי בהיקף האירוע. ימים עד שבועות. הכל מנוהל ומתועד במערכת.', en: 'Depends on the event scope. Days to weeks. Everything is managed and documented in the system.', ru: 'Зависит от масштаба события. От дней до недель. Всё управляется и документируется в системе.' } },
+    ],
+  },
+  {
+    id: 'forms',
+    title: { he: 'מילוי טופס דיווח', en: 'Filling Report Forms', ru: 'Заполнение форм отчётов' },
+    questions: [
+      { q: { he: 'אילו טפסים צריך למלא באירוע?', en: 'What forms need to be filled during an event?', ru: 'Какие формы нужно заполнять при ЧС?' }, a: { he: 'במידה ומערכת היחד עובדת והתושב מילא את טופס הקליטה אין צורך למלא טפסים ידניים. במידה ומערכת היחד אינה עובדת ולא ניתן למלא את טופס הקליטה הממוחשב אז ניתן להשתמש בטופס הקליטה העירוני. במידה וגם טופס הקליטה העירוני אינו פעיל יש למלא טפסים ידניים: טופס קליטה ידני, טופס שיבוץ לבתי מלון, טופס ניזוק.', en: 'If YACHAD works and the resident filled the intake form, no manual forms are needed. If YACHAD is down, use the municipal intake form. If that\'s also unavailable, fill manual forms: intake form, hotel placement form, damage form.', ru: 'Если ЯХАД работает и житель заполнил форму приёма — ручные формы не нужны. Если ЯХАД не работает, используйте городскую форму. Если и она недоступна — ручные формы: приём, размещение в отеле, ущерб.' } },
+      { q: { he: 'היכן נמצאים הטפסים?', en: 'Where are the forms located?', ru: 'Где находятся формы?' }, a: { he: 'בתוך מערכת \'יחד\' או בקישור ישיר שמשותף על ידי המטה. חלק מהטפסים זמינים גם במערכת טפסי מס"ר.', en: 'Within the YACHAD system or via a direct link shared by HQ. Some forms are also available in the MSR forms system.', ru: 'В системе ЯХАД или по прямой ссылке от штаба. Некоторые формы доступны также в системе форм МСР.' } },
+      { q: { he: 'אפשר למלא טופס ידני?', en: 'Can forms be filled manually?', ru: 'Можно заполнить форму вручную?' }, a: { he: 'כן, יש גרסאות מודפסות. אבל חובה להעלות למערכת בהקדם האפשרי.', en: 'Yes, printed versions exist. But they must be uploaded to the system ASAP.', ru: 'Да, есть печатные версии. Но их необходимо загрузить в систему как можно скорее.' } },
+      { q: { he: 'מה עושים עם טפסים שלא מלאים עד הסוף?', en: 'What to do with incomplete forms?', ru: 'Что делать с незаполненными формами?' }, a: { he: 'מעבירים למנהל הצוות שידאג להשלמה. חשוב לא להשאיר טפסים חלקיים.', en: 'Pass to team manager for completion. It\'s important not to leave partial forms.', ru: 'Передайте руководителю группы для завершения. Важно не оставлять частично заполненные формы.' } },
+      { q: { he: 'איך התושב ממלא דיווח על נזק לנכס?', en: 'How does a resident report property damage?', ru: 'Как житель сообщает о повреждении имущества?' }, a: { he: 'דרך טופס רשות המיסים – "דיווח תושבים שביתם ניזוק". הקישור מופיע בדף הבית.', en: 'Through the Tax Authority form – "Report for residents with damaged homes." Link appears on the home page.', ru: 'Через форму налоговой — «Отчёт жителей о повреждённом жилье». Ссылка на главной странице.' } },
+    ],
+  },
+  {
+    id: 'municipality',
+    title: { he: 'תפקיד הרשות המקומית', en: 'Role of the Local Authority', ru: 'Роль местной администрации' },
+    questions: [
+      { q: { he: 'מה תפקיד הרשות המקומית באירוע חירום?', en: 'What is the local authority\'s role in an emergency?', ru: 'Какова роль местной администрации при ЧС?' }, a: { he: 'הרשות אחראית על רווחת התושבים – פינוי, קליטה, שיבוץ למלונות, מידע, סיוע רגשי, ותיאום מול גורמי חוץ.', en: 'The authority is responsible for residents\' welfare – evacuation, intake, hotel placement, information, emotional support, and external coordination.', ru: 'Администрация отвечает за благополучие жителей — эвакуация, приём, размещение, информирование, эмоциональная поддержка и координация.' } },
+      { q: { he: 'מי מנהל את מכלול אוכלוסייה?', en: 'Who manages the Population Division?', ru: 'Кто управляет отделом населения?' }, a: { he: 'מנהלת מנהל הרווחה.', en: 'The Welfare Administration Director.', ru: 'Директор управления соцобеспечения.' } },
+      { q: { he: 'איך הרשות מתממשקת עם צה"ל ופיקוד העורף?', en: 'How does the authority interface with IDF and Home Front Command?', ru: 'Как администрация взаимодействует с ЦАХАЛ и Командованием тыла?' }, a: { he: 'דרך קצין קישור ומטה מכלול אוכלוסייה – בדיווחים, ישיבות מצב ומערכות מידע משותפות.', en: 'Through a liaison officer and Population Division HQ – via reports, situation meetings and shared information systems.', ru: 'Через офицера связи и штаб отдела населения — через отчёты, совещания по обстановке и общие информационные системы.' } },
+    ],
+  },
+  {
+    id: 'support',
+    title: { he: 'תמיכה וקישורים', en: 'Support & Links', ru: 'Поддержка и ссылки' },
+    questions: [
+      { q: { he: 'לאן לפנות בבעיה טכנית?', en: 'Where to turn for technical issues?', ru: 'Куда обращаться при технических проблемах?' }, a: { he: 'לתמיכה הטכנית של מערכת \'יחד\' – המספר מופיע במערכת עצמה ובחומרי ההדרכה.', en: 'To YACHAD system technical support – the number appears in the system itself and training materials.', ru: 'В техподдержку системы ЯХАД — номер указан в самой системе и учебных материалах.' } },
+      { q: { he: 'איפה אפשר לקרוא עוד על הנהלים?', en: 'Where can I read more about procedures?', ru: 'Где можно прочитать о процедурах?' }, a: { he: 'בפורטל החירום של משרד הרווחה, ובחומרים שמופצים על ידי מנהל המכלול.', en: 'On the Ministry of Welfare emergency portal, and in materials distributed by the division manager.', ru: 'На портале ЧС Министерства соцобеспечения и в материалах руководителя отдела.' } },
+      { q: { he: 'יש הדרכות למערכת?', en: 'Are there system training sessions?', ru: 'Есть ли обучение по системе?' }, a: { he: 'כן, יש הדרכות תקופתיות ותרגילי שולחן. מומלץ להשתתף באופן קבוע.', en: 'Yes, there are periodic training sessions and tabletop exercises. Regular participation is recommended.', ru: 'Да, проводятся периодические тренинги и настольные учения. Рекомендуется регулярное участие.' } },
+    ],
+  },
+];
+
+// ===== EMERGENCY PAGE: intake guide modal =====
+export const intakeGuide: Record<string, T> = {
+  modalTitle: { he: 'מדריך הפעלה: מערכת איתור תושבים בחירום', en: 'Activation Guide: Emergency Resident Tracking System', ru: 'Руководство по активации: Система поиска жителей в ЧС' },
+  guideBtn: { he: 'מדריך', en: 'Guide', ru: 'Гид' },
+  guideBtnSub: { he: 'למילוי', en: 'to fill', ru: 'для заполнения' },
+  guideBtnTitle: { he: 'מדריך למילוי הטופס', en: 'Form filling guide', ru: 'Руководство по заполнению' },
+  section1Title: { he: 'התחברות למערכת', en: 'System Login', ru: 'Вход в систему' },
+  section1Item1: { he: 'הקלד את הסיסמה האישית שלך', en: 'Enter your personal password', ru: 'Введите свой личный пароль' },
+  section1Item2: { he: 'דגש חשוב:', en: 'Important note:', ru: 'Важное примечание:' },
+  section1Item2Rest: { he: 'לחץ על "דילוג על ההגדרה" כדי להיכנס מיד ללא אימות דוא"ל', en: 'Click "Skip setup" to enter immediately without email verification', ru: 'Нажмите «Пропустить настройку» для входа без подтверждения email' },
+  section2Title: { he: 'גישה לאפליקציה', en: 'Accessing the Application', ru: 'Доступ к приложению' },
+  section2Item1: { he: 'בתפריט התחתון, לחץ על סמל', en: 'In the bottom menu, click the', ru: 'В нижнем меню нажмите на значок' },
+  section2Item1Bold: { he: 'All apps', en: 'All apps', ru: 'All apps' },
+  section2Item1Paren: { he: '(כל האפליקציות)', en: '(all applications)', ru: '(все приложения)' },
+  section2Item2: { he: 'מתוך הרשימה, בחר באפליקציית', en: 'From the list, select the', ru: 'Из списка выберите приложение' },
+  section2Item2Bold: { he: '"איתור תושבים בחירום"', en: '"Emergency Resident Tracking"', ru: '«Поиск жителей в ЧС»' },
+  section3Title: { he: 'ניהול ועדכון סטטוס תושב', en: 'Managing & Updating Resident Status', ru: 'Управление и обновление статуса жителя' },
+  section3Gray: { he: 'אפור - טרם החל:', en: 'Gray - Not started:', ru: 'Серый — Не начат:' },
+  section3GrayDesc: { he: 'פנייה חדשה או תושב שטרם נוצר עמו קשר', en: 'New referral or resident not yet contacted', ru: 'Новое обращение или житель, с которым ещё не связались' },
+  section3Orange: { he: 'כתום - לא אותר:', en: 'Orange - Not found:', ru: 'Оранжевый — Не найден:' },
+  section3OrangeDesc: { he: 'תושב שהוגדר כנעדר או שלא ניתן ליצור עמו קשר', en: 'Resident defined as missing or unreachable', ru: 'Житель, определённый как пропавший или недоступный' },
+  section3Update: { he: 'לביצוע עדכון:', en: 'To update:', ru: 'Для обновления:' },
+  section3UpdateBold: { he: 'לחיצה כפולה', en: 'double-click', ru: 'двойной клик' },
+  section3UpdateRest: { he: 'על רשומת תושב תפתח את חלון העדכון המלא', en: 'on a resident record opens the full update window', ru: 'по записи жителя откроет полное окно обновления' },
+  section3Fields: { he: 'ניתן לעדכן שם אירוע, כתובת פגיעה, סיבת המצב והוספת מלל חופשי לתיעוד', en: 'You can update event name, damage address, status reason and add free text for documentation', ru: 'Можно обновить название события, адрес повреждения, причину статуса и добавить свободный текст' },
+  section3Save: { he: 'חובה:', en: 'Required:', ru: 'Обязательно:' },
+  section3SaveRest: { he: 'הקפד ללחוץ על "שמור" בסיום כל עדכון', en: 'Make sure to click "Save" after every update', ru: 'Обязательно нажмите «Сохранить» после каждого обновления' },
+  section4Title: { he: 'איתור והוספת תושב חדש', en: 'Finding & Adding a New Resident', ru: 'Поиск и добавление нового жителя' },
+  section4Search: { he: 'חיפוש:', en: 'Search:', ru: 'Поиск:' },
+  section4SearchRest: { he: 'לחץ על תפריט "3 השורות", עבור ללשונית "פניות" וחפש לפי שם', en: 'Click the "3 lines" menu, go to the "Referrals" tab and search by name', ru: 'Нажмите меню «3 линии», перейдите на вкладку «Обращения» и ищите по имени' },
+  section4Add: { he: 'הוספת תושב חסר:', en: 'Adding a missing resident:', ru: 'Добавление отсутствующего жителя:' },
+  section4AddRest: { he: 'אם התושב אינו מופיע, פתח את "טופס אינטייק מרכז משפחות"', en: 'If the resident doesn\'t appear, open the "Family Center Intake Form"', ru: 'Если житель не найден, откройте «Форму приёма семейного центра»' },
+  section4Details: { he: 'הזן פרטים: שם מלא, תעודת זהות ומספר נייד', en: 'Enter details: full name, ID number and mobile number', ru: 'Введите данные: ФИО, номер удостоверения и мобильный' },
+  section4Return: { he: 'לאחר השליחה, חזור לאפליקציה המרכזית להמשך מעקב', en: 'After submitting, return to the main app to continue tracking', ru: 'После отправки вернитесь в основное приложение для продолжения отслеживания' },
+  clickHere: { he: '– לחץ כאן', en: '– click here', ru: '– нажмите здесь' },
+};
+
+// ===== ACCESSIBILITY PAGE: full content =====
+export const accessibilityContent: Record<string, T> = {
+  commitmentP1: { he: 'אתר זה פועל להנגשת תכניו לכלל האוכלוסייה, לרבות אנשים עם מוגבלויות, בהתאם לתקן הישראלי ת"י 5568, הנחיות WCAG 2.1 ברמה AA, וחוק שוויון זכויות לאנשים עם מוגבלות, תשנ"ח-1998, ותקנות הנגישות לשירות (התאמות נגישות לשירות), תשע"ג-2013.', en: 'This website strives to make its content accessible to the entire population, including people with disabilities, in accordance with Israeli Standard SI 5568, WCAG 2.1 Level AA guidelines, the Equal Rights for Persons with Disabilities Law 1998, and the Accessibility Regulations for Services 2013.', ru: 'Этот сайт стремится сделать контент доступным для всего населения, включая людей с ограниченными возможностями, в соответствии с израильским стандартом SI 5568, руководством WCAG 2.1 уровня AA, Законом о равных правах для лиц с инвалидностью 1998 и Правилами доступности услуг 2013.' },
+  commitmentP2: { he: 'אני פועל באופן שוטף לשיפור חוויית הגלישה עבור כלל המשתמשים ומשקיע מאמצים ניכרים להבטיח שהאתר יהיה נגיש ושוויוני ככל האפשר.', en: 'I continuously work to improve the browsing experience for all users and invest significant effort to ensure the website is as accessible and equitable as possible.', ru: 'Я постоянно работаю над улучшением опыта просмотра для всех пользователей и прилагаю значительные усилия для обеспечения максимальной доступности и равенства.' },
+  inProgressIntro: { he: 'אנו מודעים לכך שחלק מהתכנים באתר טרם הונגשו במלואם. אנו עובדים על הנגשתם:', en: 'We are aware that some content on the site has not yet been fully made accessible. We are working on it:', ru: 'Мы знаем, что часть контента на сайте ещё не полностью доступна. Мы работаем над этим:' },
+  contactIntro: { he: 'נתקלתם בבעיית נגישות? צרו קשר עם מפתח האתר. אשתדל לטפל בפנייתכם בהקדם האפשרי.', en: 'Encountered an accessibility issue? Contact the site developer. I will try to address your inquiry as soon as possible.', ru: 'Столкнулись с проблемой доступности? Свяжитесь с разработчиком сайта. Я постараюсь рассмотреть ваш запрос как можно скорее.' },
+  contactPerson: { he: 'איש קשר', en: 'Contact person', ru: 'Контактное лицо' },
+  email: { he: 'דוא"ל', en: 'Email', ru: 'Эл. почта' },
+  legalLaw: { he: 'חוק שוויון זכויות לאנשים עם מוגבלות (תשנ"ח-1998):', en: 'Equal Rights for Persons with Disabilities Law (1998):', ru: 'Закон о равных правах лиц с инвалидностью (1998):' },
+  legalLawDesc: { he: 'מחייב גופים ציבוריים להנגיש את שירותיהם המקוונים. תקנה 35 קובעת כי אתר אינטרנט של רשות ציבורית יהיה נגיש בהתאם להנחיות תקן ת"י 5568.', en: 'Requires public bodies to make their online services accessible. Regulation 35 states that a public authority website must be accessible according to SI 5568 guidelines.', ru: 'Обязывает государственные органы обеспечить доступность онлайн-услуг. Правило 35 гласит, что сайт государственного органа должен быть доступен согласно стандарту SI 5568.' },
+  legalStandard: { he: 'תקן ישראלי ת"י 5568:', en: 'Israeli Standard SI 5568:', ru: 'Израильский стандарт SI 5568:' },
+  legalStandardDesc: { he: 'מבוסס על הנחיות WCAG (Web Content Accessibility Guidelines) של ארגון W3C ברמה AA. התקן מפרט דרישות טכניות להנגשת תוכן מקוון.', en: 'Based on the W3C WCAG (Web Content Accessibility Guidelines) at Level AA. The standard specifies technical requirements for making online content accessible.', ru: 'Основан на руководстве W3C WCAG уровня AA. Стандарт устанавливает технические требования к доступности онлайн-контента.' },
+  legalDeclaration: { he: 'תקנה 91 – הצהרת נגישות:', en: 'Regulation 91 – Accessibility Declaration:', ru: 'Правило 91 — Декларация доступности:' },
+  legalDeclarationDesc: { he: 'מחייבת פרסום הצהרת נגישות באתר הכוללת פירוט ההתאמות שבוצעו, תחומים שטרם הונגשו, ופרטי יצירת קשר עם רכז הנגישות.', en: 'Requires publishing an accessibility declaration on the site detailing accommodations made, areas not yet accessible, and contact details for the accessibility coordinator.', ru: 'Требует публикации декларации доступности с описанием выполненных адаптаций, ещё недоступных областей и контактных данных координатора.' },
+};
+
+export const accessibleFeatures = [
+  { he: 'תמיכה בטכנולוגיות מסייעות (קוראי מסך, תצוגה מוגדלת)', en: 'Support for assistive technologies (screen readers, magnified display)', ru: 'Поддержка вспомогательных технологий (экранные чтецы, увеличенный дисплей)' },
+  { he: 'ניווט מלא באמצעות מקלדת בלבד', en: 'Full keyboard-only navigation', ru: 'Полная навигация только с клавиатуры' },
+  { he: 'ניגודיות צבעים בהתאם לתקן WCAG AA', en: 'Color contrast according to WCAG AA standard', ru: 'Цветовой контраст согласно стандарту WCAG AA' },
+  { he: 'טקסט חלופי לכל התמונות והאלמנטים הגרפיים', en: 'Alt text for all images and graphic elements', ru: 'Альтернативный текст для всех изображений и графики' },
+  { he: 'מבנה סמנטי תקין עם כותרות היררכיות', en: 'Proper semantic structure with hierarchical headings', ru: 'Правильная семантическая структура с иерархическими заголовками' },
+  { he: 'תמיכה בשינוי גודל גופנים ללא פגיעה בפריסה', en: 'Support for font size changes without layout impact', ru: 'Поддержка изменения размера шрифта без нарушения макета' },
+  { he: 'ניווט עקבי ואחיד בכל דפי האתר', en: 'Consistent navigation across all site pages', ru: 'Единообразная навигация по всем страницам сайта' },
+  { he: 'קישורים בעלי טקסט מתאר ברור', en: 'Links with clear descriptive text', ru: 'Ссылки с чётким описательным текстом' },
+  { he: 'טפסים עם תוויות ברורות והנחיות שגיאה', en: 'Forms with clear labels and error guidance', ru: 'Формы с понятными метками и указаниями об ошибках' },
+  { he: 'תמיכה מלאה בשפה העברית ובכיוון RTL', en: 'Full support for Hebrew language and RTL direction', ru: 'Полная поддержка иврита и направления RTL' },
+];
+
+export const notYetAccessible = [
+  { he: 'חלק מקובצי PDF המצורפים עשויים שלא להיות נגישים במלואם', en: 'Some attached PDF files may not be fully accessible', ru: 'Некоторые прикреплённые PDF-файлы могут быть не полностью доступны' },
+  { he: 'תוכן וידאו ייתכן ואינו כולל כתוביות בכל המקרים', en: 'Video content may not include subtitles in all cases', ru: 'Видеоконтент может не содержать субтитры во всех случаях' },
+  { he: 'מפות אינטראקטיביות עשויות לדרוש התאמות נוספות', en: 'Interactive maps may require additional adjustments', ru: 'Интерактивные карты могут потребовать дополнительных адаптаций' },
+];
+
+// ===== ORGCHART PAGE: unit titles and roles =====
+export const orgchartUnits: Record<string, T> = {
+  'מטה חירום עירוני': { he: 'מטה חירום עירוני', en: 'Municipal Emergency HQ', ru: 'Муниципальный штаб ЧС' },
+  'מטה מכלול אוכלוסייה': { he: 'מטה מכלול אוכלוסייה', en: 'Population Division HQ', ru: 'Штаб отдела населения' },
+  'מטה צוותי התערבות': { he: 'מטה צוותי התערבות', en: 'Intervention Teams HQ', ru: 'Штаб групп вмешательства' },
+  'רובע א׳': { he: 'רובע א׳', en: 'District A', ru: 'Район А' },
+  'רובע ב׳': { he: 'רובע ב׳', en: 'District B', ru: 'Район Б' },
+  'רובע ג׳': { he: 'רובע ג׳', en: 'District C', ru: 'Район В' },
+  'רובע ד׳': { he: 'רובע ד׳', en: 'District D', ru: 'Район Г' },
+  'רובע ה׳': { he: 'רובע ה׳', en: 'District E', ru: 'Район Д' },
+  'מרכז משפחות (מס"ר)': { he: 'מרכז משפחות (מס"ר)', en: 'Family Center (MSR)', ru: 'Семейный центр (МСР)' },
+  'מתחם המתנה': { he: 'מתחם המתנה', en: 'Waiting Area', ru: 'Зона ожидания' },
+  'מתחם נעדרים': { he: 'מתחם נעדרים', en: 'Missing Persons Area', ru: 'Зона пропавших' },
+  'מתחם קליטה': { he: 'מתחם קליטה', en: 'Intake Area', ru: 'Зона приёма' },
+  'מתחם שיבוץ': { he: 'מתחם שיבוץ', en: 'Placement Area', ru: 'Зона размещения' },
+  'מטה מל"מ': { he: 'מטה מל"מ', en: 'MALAM HQ', ru: 'Штаб МАЛАМ' },
+  'מטה רגשי': { he: 'מטה רגשי', en: 'Emotional Support HQ', ru: 'Штаб эмоциональной поддержки' },
+  'צוות קו פתוח ומידע': { he: 'צוות קו פתוח ומידע', en: 'Open Line & Information Team', ru: 'Группа горячей линии и информации' },
+  'קישור בית חולים': { he: 'קישור בית חולים', en: 'Hospital Liaison', ru: 'Связь с больницей' },
+  'מטה חללים (ליווי מש׳ + תר"ח)': { he: 'מטה חללים (ליווי מש׳ + תר"ח)', en: 'Casualties HQ (Family Escort + Donation)', ru: 'Штаб погибших (сопровождение семей + пожертвования)' },
+  'מטה אוכלוסיות מיוחדות': { he: 'מטה אוכלוסיות מיוחדות', en: 'Special Populations HQ', ru: 'Штаб особых групп населения' },
+  'מטה קליטת אוכלוסייה': { he: 'מטה קליטת אוכלוסייה', en: 'Population Intake HQ', ru: 'Штаб приёма населения' },
+  'מטה תפעול ומתנדבים': { he: 'מטה תפעול ומתנדבים', en: 'Operations & Volunteers HQ', ru: 'Штаб операций и волонтёров' },
+  'מטה אזרחים ותיקים': { he: 'מטה אזרחים ותיקים', en: 'Senior Citizens HQ', ru: 'Штаб пожилых граждан' },
+  'מטה קליטת עלייה': { he: 'מטה קליטת עלייה', en: 'Immigration Absorption HQ', ru: 'Штаб абсорбции репатриантов' },
+  'מטה תיירות': { he: 'מטה תיירות', en: 'Tourism HQ', ru: 'Штаб туризма' },
+  'מטה בריאות': { he: 'מטה בריאות', en: 'Health HQ', ru: 'Штаб здравоохранения' },
+};
+
+export const orgchartRoles: Record<string, T> = {
+  'ראש מטה': { he: 'ראש מטה', en: 'Head of HQ', ru: 'Руководитель штаба' },
+  'סגן': { he: 'סגן', en: 'Deputy', ru: 'Заместитель' },
+  'רכז חירום': { he: 'רכז חירום', en: 'Emergency Coordinator', ru: 'Координатор ЧС' },
+  'שפ"ח': { he: 'שפ"ח', en: 'Psychological Services', ru: 'Психологическая служба' },
+  'סגן + לוגיסטיקה': { he: 'סגן + לוגיסטיקה', en: 'Deputy + Logistics', ru: 'Заместитель + логистика' },
+  'חמ"ל מתנדבים': { he: 'חמ"ל מתנדבים', en: 'Volunteer Operations Center', ru: 'Центр операций волонтёров' },
+  'ראש מטה (א׳)': { he: 'ראש מטה (א׳)', en: 'Head of HQ (A)', ru: 'Руководитель штаба (А)' },
+  'סגן (א׳)': { he: 'סגן (א׳)', en: 'Deputy (A)', ru: 'Заместитель (А)' },
+  'ראש מטה (ב׳)': { he: 'ראש מטה (ב׳)', en: 'Head of HQ (B)', ru: 'Руководитель штаба (Б)' },
+  'סגן (ב׳)': { he: 'סגן (ב׳)', en: 'Deputy (B)', ru: 'Заместитель (Б)' },
+};
+
+export const orgchartSupportUnits: Record<string, T> = {
+  'מיון פניות': { he: 'מיון פניות', en: 'Referral Sorting', ru: 'Сортировка обращений' },
+  'מערכות מידע': { he: 'מערכות מידע', en: 'Information Systems', ru: 'Информационные системы' },
+  'פרסום ומידע': { he: 'פרסום ומידע', en: 'Publicity & Information', ru: 'Публикации и информация' },
+  'משאבי אנוש': { he: 'משאבי אנוש', en: 'Human Resources', ru: 'Кадровые ресурсы' },
+  'מרכז ט.ל.י.ה': { he: 'מרכז ט.ל.י.ה', en: 'TLYA Center', ru: 'Центр ТЛИЯ' },
 };

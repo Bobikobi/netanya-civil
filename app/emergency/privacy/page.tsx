@@ -1,40 +1,10 @@
 'use client';
 import { Lock, Shield, Eye, Trash2, UserCheck, Bell } from 'lucide-react';
 import { useI18n } from '@/lib/i18n';
-import { privacyPage } from '@/lib/translations';
+import { privacyPage, privacySections } from '@/lib/translations';
 
-const SECTIONS = [
-  {
-    icon: Eye,
-    title: 'איסוף מידע',
-    color: 'blue',
-    content: `האתר אוסף מידע בסיסי הנדרש לצורך תפעולו התקין בלבד. מידע זה עשוי לכלול נתוני גלישה כלליים (כגון כתובת IP, סוג דפדפן, מערכת הפעלה) המשמשים לצורכי אבטחה ושיפור חוויית השימוש. האתר אינו אוסף מידע אישי מזהה (כגון שם, מספר זהות, כתובת) אלא אם כן המשתמש מוסר אותו מרצונו בטפסי יצירת קשר.`,
-  },
-  {
-    icon: Shield,
-    title: 'אבטחת מידע',
-    color: 'green',
-    content: `מפעיל האתר נוקט באמצעי אבטחת מידע סבירים להגנה על המידע המאוחסן באתר, ברוח חוק הגנת הפרטיות, תשמ"א-1981, ותיקון 13 לחוק. האתר מוגן באמצעות הצפנת SSL/TLS, ומידע המאוחסן במערכות מאובטח בהתאם לסטנדרטים המקובלים.`,
-  },
-  {
-    icon: UserCheck,
-    title: 'שימוש במידע',
-    color: 'purple',
-    content: `המידע שנאסף באתר ישמש אך ורק למטרות שלשמן נמסר: תפעול האתר, מענה לפניות, שיפור השירות ותחזוקת מערכות. לא יועבר מידע אישי לצד שלישי כלשהו, למעט במקרים הנדרשים על-פי חוק או בצו שיפוטי. לא נעשה שימוש במידע לצרכים שיווקיים או מסחריים.`,
-  },
-  {
-    icon: Bell,
-    title: 'עוגיות (Cookies)',
-    color: 'amber',
-    content: `האתר עשוי להשתמש בעוגיות (Cookies) לצורך שיפור חוויית הגלישה ותפעול תקין של האתר. עוגיות הן קבצי טקסט קטנים הנשמרים במכשיר המשתמש. ניתן להגדיר את הדפדפן כך שידחה עוגיות או יתריע על שליחתן, אולם חלק מפונקציות האתר עשויות שלא לפעול כראוי ללא עוגיות.`,
-  },
-  {
-    icon: Trash2,
-    title: 'זכות עיון, תיקון ומחיקה',
-    color: 'red',
-    content: `בהתאם לחוק הגנת הפרטיות, כל אדם רשאי לעיין במידע אישי המוחזק לגביו, לבקש לתקנו או למחקו. לצורך מימוש זכויות אלו, ניתן לפנות למפעיל האתר בדוא"ל ELAD.SAA@NETANYA.MUNI.IL. אטפל בפנייתכם בהקדם האפשרי.`,
-  },
-];
+const ICONS = [Eye, Shield, UserCheck, Bell, Trash2];
+const COLORS = ['blue', 'green', 'purple', 'amber', 'red'];
 
 const COLOR_MAP: Record<string, { bg: string; border: string; icon: string }> = {
   blue: { bg: 'bg-blue-50', border: 'border-blue-200', icon: 'text-blue-500' },
@@ -69,27 +39,24 @@ export default function PrivacyPage() {
       {/* Intro */}
       <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-8">
         <p className="text-gray-600 leading-relaxed">
-          מדיניות פרטיות זו מפרטת את אופן האיסוף, השימוש והשמירה על מידע אישי באתר צוותי חירום,
-          יוזמה פרטית של אלעד סעדון לסיוע לצוותי חירום של מנהל רווחה - עיריית נתניה.
-          המדיניות פועלת ברוח חוק הגנת הפרטיות, תשמ&quot;א-1981, תיקון 13 לחוק, חוק הגנת הצרכן,
-          וחוק התקשורת (בזק ושידורים) (תיקון מס&apos; 40), תשס&quot;ח-2008 (&quot;חוק הספאם&quot;).
+          {privacyPage.intro[locale]}
         </p>
       </div>
 
       {/* Sections */}
       <div className="space-y-5">
-        {SECTIONS.map((section, i) => {
-          const colors = COLOR_MAP[section.color];
-          const Icon = section.icon;
+        {privacySections.map((section, i) => {
+          const colors = COLOR_MAP[COLORS[i]];
+          const Icon = ICONS[i];
           return (
             <section key={i} className="bg-white rounded-2xl border border-gray-200 p-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className={`w-9 h-9 rounded-lg ${colors.bg} ${colors.border} border flex items-center justify-center`}>
                   <Icon size={18} className={colors.icon} />
                 </div>
-                <h2 className="text-lg font-bold text-gray-900">{section.title}</h2>
+                <h2 className="text-lg font-bold text-gray-900">{section.title[locale]}</h2>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed">{section.content}</p>
+              <p className="text-gray-600 text-sm leading-relaxed">{section.content[locale]}</p>
             </section>
           );
         })}
