@@ -237,47 +237,49 @@ export default function EmergencyHomePage() {
         </div>
 
         {/* Population Intelligence App */}
-        <a
-          href="https://play.google.com/store/apps/details?id=com.microsoft.msapps"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block bg-blue-500 hover:bg-blue-600 transition-colors rounded-2xl p-5 shadow-lg"
-        >
-          <div className="flex items-center gap-4">
-            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-            <div className="flex-1 min-w-0 text-right">
-              <div className="font-bold text-white text-lg">{home.populationApp[locale]}</div>
-              <div className="text-white/70 text-sm mt-0.5">{home.populationAppDesc[locale]}</div>
-            </div>
-          </div>
-          <div className="text-white/60 text-xs mt-2 text-right pr-9">
-            {home.populationAppExplain[locale]}
-          </div>
-        </a>
-
-        {/* Intake Form */}
         <div className="flex shadow-lg rounded-2xl overflow-hidden">
           <a
-            href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
+            href="https://play.google.com/store/apps/details?id=com.microsoft.msapps"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-violet-500 hover:bg-violet-600 transition-colors p-5 flex items-center gap-4"
+            className="flex-1 bg-blue-500 hover:bg-blue-600 transition-colors p-5"
           >
-            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
-            <div className="flex-1 min-w-0 text-right">
-              <div className="font-bold text-white text-lg">{home.intakeForm[locale]}</div>
-              <div className="text-white/70 text-sm mt-0.5">{home.intakeFormDesc[locale]}</div>
+            <div className="flex items-center gap-4">
+              <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+              <div className="flex-1 min-w-0 text-right">
+                <div className="font-bold text-white text-lg">{home.populationApp[locale]}</div>
+                <div className="text-white/70 text-sm mt-0.5">{home.populationAppDesc[locale]}</div>
+              </div>
+            </div>
+            <div className="text-white/60 text-xs mt-2 text-right pr-9">
+              {home.populationAppExplain[locale]}
             </div>
           </a>
           <button
             onClick={() => setShowIntakeGuide(true)}
-            className="bg-violet-700 hover:bg-violet-800 transition-colors px-3 flex items-center justify-center border-r border-violet-400/30 flex-shrink-0 gap-1.5 group"
+            className="bg-blue-700 hover:bg-blue-800 transition-colors px-3 flex items-center justify-center border-r border-blue-400/30 flex-shrink-0 gap-1.5 group"
             title={intakeGuide.guideBtnTitle[locale]}
           >
             <BookOpen size={16} className="text-white/80 group-hover:text-white" />
             <span className="text-white/90 text-[11px] font-medium leading-tight whitespace-nowrap group-hover:text-white">{intakeGuide.guideBtn[locale]}<br/>{intakeGuide.guideBtnSub[locale]}</span>
           </button>
         </div>
+
+        {/* Intake Form */}
+        <a
+          href="https://netanya.flowmateapp.com/form/PMVznck3VBaPMjhYKFqC12PAw9zg7dwEORQWDITI?session=uf18QrktdH7KWseyPPujy1SIK4O5WODnKoxOPHTJ&restricted=true"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block bg-violet-500 hover:bg-violet-600 transition-colors rounded-2xl p-5 shadow-lg"
+        >
+          <div className="flex items-center gap-4">
+            <ExternalLink size={20} className="text-white/70 flex-shrink-0" />
+            <div className="flex-1 min-w-0 text-right">
+              <div className="font-bold text-white text-lg">{home.intakeForm[locale]}</div>
+              <div className="text-white/70 text-sm mt-0.5">{home.intakeFormDesc[locale]}</div>
+            </div>
+          </div>
+        </a>
       </section>
 
       {/* ===== Quick Navigation Links ===== */}
