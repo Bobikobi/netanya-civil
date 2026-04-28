@@ -40,3 +40,12 @@ next-env.d.ts
 
 # seed scripts (contain sensitive data)
 /scripts/
+.env.local
+!.env.example
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*service-account*.json
+*credentials*.json

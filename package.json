@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "repo:guard": "node scripts/public-repo-guard.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -32,4 +33,4 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
-}
+}\n
