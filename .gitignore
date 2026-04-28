@@ -49,3 +49,4 @@ next-env.d.ts
 *.pfx
 *service-account*.json
 *credentials*.json
+!scripts/public-repo-guard.mjs
