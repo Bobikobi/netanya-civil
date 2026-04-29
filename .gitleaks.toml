@@ -1,0 +1,21 @@
+title = "netanya-civil gitleaks config"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Supabase anon keys and NEXT_PUBLIC_* vars in .env.example are intentionally public"
+paths = [
+  '''.env\.example'''
+]
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+''',
+  '''sb_publishable_[A-Za-z0-9_-]+'''
+]
+
+[[allowlists]]
+description = "NEXT_PUBLIC_ prefixed env vars are intentionally client-side public"
+regexTarget = "line"
+regexes = [
+  '''NEXT_PUBLIC_[A-Z_]+='''
+]
