@@ -1,0 +1,21 @@
+title = "netanya-civil gitleaks config"
+
+[extend]
+# Use the default ruleset and extend it
+useDefault = true
+
+[[allowlists]]
+description = "Supabase anon keys in .env.example are intentionally public (NEXT_PUBLIC_* pattern)"
+paths = [
+  '''.env\.example'''
+]
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+'''
+]
+
+[[allowlists]]
+description = "NEXT_PUBLIC_ prefixed vars are intentionally client-side public"
+regexTarget = "line"
+regexes = [
+  '''NEXT_PUBLIC_[A-Z_]+='''
+]
